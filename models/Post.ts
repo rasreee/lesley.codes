@@ -6,4 +6,4 @@ export type PostMetaData = {
   publishedAt: string
 }
 
-export type Post = PostMetaData & { content: string }
+export type IPost = PostMetaData & { content: string }

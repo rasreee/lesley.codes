@@ -1,5 +1,5 @@
 import { format, parseISO } from 'date-fns'
-import { Post } from 'models/Post'
+import { IPost } from 'models/post'
 import Image from 'next/image'
 import type { PropsWithChildren } from 'react'
 import Page from 'ui/Page'
@@ -10,7 +10,7 @@ const editUrl = (slug) => `https://github.com/rasreee/lesley.codes/edit/main/dat
 const discussUrl = (slug) =>
   `https://mobile.twitter.com/search?q=${encodeURIComponent(`https://lesley.codes/blog/${slug}`)}`
 
-export default function BlogLayout({ children, post }: PropsWithChildren<{ post: Post }>) {
+export default function BlogLayout({ children, post }: PropsWithChildren<{ post: IPost }>) {
   return (
     <Page
       title={`${post.title} – Lee Robinson`}

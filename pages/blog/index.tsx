@@ -1,12 +1,12 @@
 import { getAllPosts } from 'lib/api'
 import { pick } from 'lib/utils'
-import { Post } from 'models/Post'
+import { IPost } from 'models/post'
 import { useState } from 'react'
 import BlogPost from 'ui/BlogPost'
 import Page from 'ui/Page'
 
 type Props = {
-  allPosts: Post[]
+  allPosts: IPost[]
 }
 
 export default function Blog({ allPosts }: Props) {
@@ -74,7 +74,7 @@ export default function Blog({ allPosts }: Props) {
 }
 
 export const getStaticProps = async () => {
-  const allPosts = getAllPosts(['title', 'date', 'slug', 'author', 'coverImage', 'excerpt'])
+  const allPosts = getAllPosts(['title', 'publishedAt', 'slug', 'image', 'summary'])
 
   return {
     props: { allPosts }

@@ -1,10 +1,10 @@
 import fetcher from 'lib/fetcher'
-import { Views } from 'lib/types'
-import { Post } from 'models/Post'
+import { IPost } from 'models/post'
+import { Views } from 'models/views'
 import Link from 'next/link'
 import useSWR from 'swr'
 
-export default function BlogPost({ title, summary, slug }: Pick<Post, 'title' | 'summary' | 'slug'>) {
+export default function BlogPost({ title, summary, slug }: Pick<IPost, 'title' | 'summary' | 'slug'>) {
   const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher)
   const views = data?.total
 

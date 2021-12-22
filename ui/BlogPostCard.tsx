@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import fetcher from 'lib/fetcher'
-import { Views } from 'lib/types'
+import { Views } from 'models/views'
 import Link from 'next/link'
 import useSWR from 'swr'
 
