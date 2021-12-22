@@ -1,6 +1,21 @@
-import { AppProps } from 'next/app'
-import '../styles/index.css'
+import 'styles/global.css'
 
-export default function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import { useAnalytics } from 'lib/analytics'
+import { AppProps } from 'next/app'
+import { ThemeProvider } from 'next-themes'
+import Seo from 'ui/Seo'
+
+function App({ Component, pageProps }: AppProps) {
+  useAnalytics()
+
+  return (
+    <>
+      <ThemeProvider attribute="class">
+        <Seo />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
+  )
 }
+
+export default App
