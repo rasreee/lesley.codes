@@ -1,5 +1,4 @@
 import { getAllPosts } from 'lib/api'
-import { pick } from 'lib/utils'
 import { IPost } from 'models/post'
 import { useState } from 'react'
 import BlogPost from 'ui/BlogPost'
@@ -47,6 +46,7 @@ export default function Blog({ allPosts }: Props) {
               strokeWidth={2}
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             />
+            []
           </svg>
         </div>
         {!searchValue && (

@@ -1,6 +1,6 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import { IPost, PostMetaData } from 'models/post'
+import { IPost } from 'models/post'
 import { join, resolve } from 'path'
 
 const postsDirectory = join(process.cwd(), '_posts')

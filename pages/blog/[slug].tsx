@@ -1,15 +1,10 @@
-import BlogLayout from 'layouts/blog'
 import { getAllPosts, getPostBySlug } from 'lib/api'
-import fetcher from 'lib/fetcher'
 import markdownToHtml from 'lib/markdownToHtml'
 import { normalizeQueryParam } from 'lib/query'
-import { getViews, useViews } from 'lib/viewsApi'
+import { useViews } from 'lib/viewsApi'
 import { IPost } from 'models/post'
-import { Views } from 'models/views'
 import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import useSWR from 'swr'
 import Page from 'ui/Page'
 import PostBody from 'ui/post-body'
 import PostHeader from 'ui/post-header'
@@ -21,7 +16,7 @@ type Props = {
   preview?: boolean
 }
 
-export default function Post({ post, morePosts, preview }: Props) {
+export default function Post({ post }: Props) {
   const router = useRouter()
 
   let param = 'slug' in router.query ? router.query['slug'] : null
@@ -43,22 +38,6 @@ export default function Post({ post, morePosts, preview }: Props) {
   }
 
   console.log('Views: ', views)
-  // useEffect(() => {
-  //   if (!param) return
-
-  //   const postFetcher = async () => {
-  //     setLoading(true)
-
-  //     const rawPost = getPostBySlug(slug, ['title', 'image', 'summary', 'publishedAt', 'content'])
-  //     const { content: rawContent, ...restPost } = rawPost
-  //     const content = await markdownToHtml(rawContent || '')
-
-  //     setFoundPost({ ...restPost, content })
-  //     setLoading(false)
-  //   }
-
-  //   postFetcher()
-  // }, [param])
 
   return (
     <Page title={post.title} description={post.summary}>
