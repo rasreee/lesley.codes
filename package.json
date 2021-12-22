@@ -16,7 +16,8 @@
     "format": "prettier --write \"./**/*.{js,json,ts,tsx}\"",
     "analyze": "ANALYZE=true next build",
     "analyze:server": "BUNDLE_ANALYZE=server next build",
-    "analyze:browser": "BUNDLE_ANALYZE=browser next build"
+    "analyze:browser": "BUNDLE_ANALYZE=browser next build",
+    "test:build": "yarn type-check && yarn lint"
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.29.0",

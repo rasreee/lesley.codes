@@ -19,7 +19,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {}
   },
   "include": [
     "next-env.d.ts",
@@ -28,8 +29,6 @@
   ],
   "exclude": [
     "node_modules",
-    ".next",
-    "_posts",
-    ".vscode"
+    ".next"
   ]
 }
