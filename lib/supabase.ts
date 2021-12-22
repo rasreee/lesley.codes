@@ -26,3 +26,14 @@ if (!_supabase) throw new Error('Supabase was not initialized yet')
 
 const supabase = _supabase
 export default supabase
+
+import { createContext, useContext } from 'react'
+
+export const SupabaseContext = createContext<SupabaseClient | undefined>(undefined)
+
+export const useSupabase = () => {
+  const ctx = useContext(SupabaseContext)
+  if (typeof ctx === 'undefined') throw new Error('failed to ensure defined context')
+
+  return ctx
+}
