@@ -7,7 +7,7 @@
     "dev": "next",
     "start": "next start",
     "typecheck": "tsc",
-    "clean:dist": "rimraf .next yarn-error.log .contentlayer tsconfig.tsbuildinfo",
+    "clean:dist": "rimraf .next yarn-error.log tsconfig.tsbuildinfo",
     "clean": "yarn clean:dist && rimraf node_modules && yarn cache clean",
     "build": "yarn clean:dist && yarn format && next build",
     "lint": "eslint --ignore-path .gitignore --cache --ext .js,.jsx,.ts,.tsx ./",
