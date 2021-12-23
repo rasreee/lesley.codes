@@ -31,16 +31,21 @@ export default function PostRoute({ post }: Props) {
 
   return (
     <Page title={post.title} description={post.excerpt}>
-      {router.isFallback ? (
-        <Post.Title>Loading…</Post.Title>
-      ) : (
-        <>
-          <article className="mb-32">
-            <Post.Header title={post.title} excerpt={post.excerpt} image={post.image} publishedAt={post.publishedAt} />
-            <Post.Body content={post.content} />
-          </article>
-        </>
-      )}
+      <>
+        {router.isFallback ? (
+          <Post.Title>Loading…</Post.Title>
+        ) : (
+          <>
+            <article className="mb-32">
+              <Post>
+                <Post.Header title={post.title} image={post.image} publishedAt={post.publishedAt} />
+                <Post.Callout>{post.excerpt}</Post.Callout>
+                <Post.Body content={post.content} />
+              </Post>
+            </article>
+          </>
+        )}
+      </>
     </Page>
   )
 }

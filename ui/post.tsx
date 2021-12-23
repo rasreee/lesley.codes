@@ -5,7 +5,6 @@ import DateFormatter from './DateFormatter'
 
 type PostHeaderProps = {
   title: string
-  excerpt: string
   image: string
   publishedAt: string
 }
@@ -26,18 +25,19 @@ const PostTitle = ({ children }: PostTitleProps) => {
   )
 }
 
-const PostHeader = ({ title, image, excerpt, publishedAt }: PostHeaderProps) => {
+const PostHeader = ({ title, image, publishedAt }: PostHeaderProps) => {
   return (
     <div className="max-w-2xl mx-auto flex flex-col gap-6">
-      <div className="">
-        <PostTitle>{title}</PostTitle>
-      </div>
-      <div className="text-base">
-        <DateFormatter dateString={publishedAt} />
-      </div>
-      <div className="bg-gray-800 rounded-lg w-full p-6">
-        <div className="text markdown align-middle">{excerpt}</div>
-      </div>
+      <PostTitle>{title}</PostTitle>
+      <DateFormatter dateString={publishedAt} />
+    </div>
+  )
+}
+
+const PostCallout = ({ children }) => {
+  return (
+    <div className="bg-gray-800 rounded-lg w-full p-6 max-w-2xl mx-auto">
+      <div className="text markdown align-middle">{children}</div>
     </div>
   )
 }
@@ -48,16 +48,17 @@ type PostBodyProps = {
 
 const PostBody = ({ content }: PostBodyProps) => {
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto px-3">
       <div className={classNames('markdown')} dangerouslySetInnerHTML={{ __html: content }} />
     </div>
   )
 }
 
 export const Post = ({ children }) => {
-  return <div>{children}</div>
+  return <div className="flex flex-col items-center gap-6">{children}</div>
 }
 
 Post.Header = PostHeader
 Post.Title = PostTitle
+Post.Callout = PostCallout
 Post.Body = PostBody
