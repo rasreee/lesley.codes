@@ -1,0 +1,7 @@
+.app-bg {
+	@apply  bg-opacity-60 bg-gray-50 dark:bg-gray-800;
+}
+
+.highlight-bg {
+	@apply bg-cultured dark:bg-gray-600 dark:bg-opacity-50;
+}
