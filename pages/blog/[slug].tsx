@@ -23,19 +23,13 @@ export default function Post({ post }: Props) {
   const slug = param ? normalizeQueryParam(param) : null
   const { views, error } = useViews(slug)
 
-  if (typeof views === 'undefined' && typeof error === 'undefined') {
-    return <div>LOADING!!!</div>
-  }
-
   if (error) {
     return <ErrorPage statusCode={404} />
   }
 
-  if (!router.isFallback || !views) {
-    return <ErrorPage statusCode={404} />
+  if (!views) {
+    return <div>LOADING!!!</div>
   }
-
-  console.log('Views: ', views)
 
   return (
     <Page title={post.title} description={post.excerpt}>
