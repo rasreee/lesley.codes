@@ -8,16 +8,29 @@ import MobileMenu from 'ui/MobileMenu'
 
 import { Meta, MetaProps } from './Meta'
 
+const getRouteName = (pathname: string) => {
+  return pathname === '/' ? 'HOME' : pathname.split('/')[1].toUpperCase()
+}
+
 function NavItem({ href, text }) {
   const router = useRouter()
-  const isActive = router.asPath === href
+  const routeName = getRouteName(href)
+  const navName = getRouteName(router.pathname)
+
+  const isActive = routeName === navName
+
+  // console.log('Router: ', JSON.stringify(router, null, 4))
+  console.log({ routeName, navName })
+  console.log('isActive: ', isActive)
 
   return (
     <NextLink href={href}>
       <a
         className={classNames(
-          isActive ? 'font-semibold text-gray-800 dark:text-gray-200' : 'font-normal text-gray-600 dark:text-gray-400',
-          'hidden md:inline-block p-1 sm:px-3 sm:py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-all'
+          isActive
+            ? 'font-semibold text-gray-900 dark:text-gray-50'
+            : 'font-medium text-gray-600 dark:text-gray-300 dark:text-opacity-70',
+          'hidden md:inline-block p-1 sm:px-3 sm:py-2 rounded-lg dark:hover:text-gray-50 hover:bg-gray-200 dark:hover:bg-onyx-800 transition-all'
         )}
       >
         <span className="capsize">{text}</span>
