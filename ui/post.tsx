@@ -44,7 +44,7 @@ const PostBody = ({ content }: PostBodyProps) => {
 }
 
 export const Post = ({ children }) => {
-  return <div className="flex flex-col items-center gap-6">{children}</div>
+  return <div className="flex flex-col items-center gap-3">{children}</div>
 }
 
 Post.Header = PostHeader
