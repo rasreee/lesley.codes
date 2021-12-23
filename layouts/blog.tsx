@@ -12,9 +12,9 @@ const discussUrl = (slug) =>
 export default function BlogLayout({ children, post }: PropsWithChildren<{ post: Post }>) {
   return (
     <Page
-      title={`${post.title} – Lee Robinson`}
+      title={`${post.title} – Lesley Chang`}
       description={post.excerpt}
-      image={`https://lesley.io${post.image}`}
+      image={`https://lesley.codes${post.image}`}
       publishedAt={post.publishedAt}
       type="article"
     >
@@ -22,7 +22,7 @@ export default function BlogLayout({ children, post }: PropsWithChildren<{ post:
         <h1 className="mb-4 text-3xl font-bold tracking-tight text-black md:text-5xl dark:text-white">{post.title}</h1>
         <div className="flex flex-col items-start justify-between w-full mt-2 md:flex-row md:items-center">
           <div className="flex items-center">
-            <Image alt="Lee Robinson" height={24} width={24} src="/avatar.jpg" className="rounded-full" />
+            <Image alt="Lesley Chang" height={24} width={24} src="/avatar.jpg" className="rounded-full" />
             <p className="ml-2 text-sm text-gray-700 dark:text-gray-300">
               {'Lesley Chang / '}
               {post.publishedAt}
