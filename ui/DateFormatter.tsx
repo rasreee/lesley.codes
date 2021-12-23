@@ -5,13 +5,14 @@ type Props = {
   dateString: string
   size?: string
   pattern?: string
+  className?: string
 }
 
-const DateFormatter = ({ dateString, size = 'base', pattern = 'LLL d, yyyy' }: Props) => {
+const DateFormatter = ({ dateString, className = 'text-hin', size = 'base', pattern = 'LLL d, yyyy' }: Props) => {
   const date = new Date(dateString)
 
   return (
-    <time className={classNames(`text-${size}`, 'text-hint')} dateTime={dateString}>
+    <time className={classNames(`text-${size}`, className)} dateTime={dateString}>
       {format(date, pattern)}
     </time>
   )

@@ -30,7 +30,7 @@ const PostHeader = ({ title, image, publishedAt }: PostHeaderProps) => {
   return (
     <div className="max-w-2xl mx-auto flex flex-col gap-6">
       <PostTitle>{title}</PostTitle>
-      <DateFormatter dateString={publishedAt} />
+      <DateFormatter className="text-cerulean" dateString={publishedAt} />
     </div>
   )
 }
@@ -41,7 +41,7 @@ type PostBodyProps = {
 
 const PostBody = ({ content }: PostBodyProps) => {
   return (
-    <div className="max-w-2xl mx-auto px-3">
+    <div className="max-w-2xl mx-auto">
       <div className={classNames('markdown')} dangerouslySetInnerHTML={{ __html: content }} />
     </div>
   )
