@@ -7,7 +7,6 @@ import { useSupabase } from './supabase'
 export const getViews = (slug: string) => {
   return async (supabase: SupabaseClient): Promise<Views> => {
     const { data, error } = await supabase.from<Views>('views').select('*').match({ slug }).single()
-    console.log('getViews response:\n\n', JSON.stringify({ data, error }))
 
     if (error) throw error
 
