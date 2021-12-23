@@ -40,7 +40,7 @@ export default function Post({ post }: Props) {
   console.log('Views: ', views)
 
   return (
-    <Page title={post.title} description={post.summary}>
+    <Page title={post.title} description={post.excerpt}>
       {router.isFallback ? (
         <PostTitle>Loading…</PostTitle>
       ) : (
@@ -48,8 +48,8 @@ export default function Post({ post }: Props) {
           <article className="mb-32">
             <PostHeader
               title={post.title}
-              coverImage={post.image}
-              date={post.publishedAt}
+              image={post.image}
+              publishedAt={post.publishedAt}
               author={{ name: 'Lesley Chang', picture: 'avatar.png' }}
             />
             <PostBody content={post.content} />
@@ -67,7 +67,7 @@ type Params = {
 }
 
 export async function getStaticProps({ params }: Params) {
-  const post = getPostBySlug(params.slug, ['title', 'image', 'summary', 'publishedAt', 'content'])
+  const post = getPostBySlug(params.slug, ['title', 'image', 'excerpt', 'publishedAt', 'content'])
   const content = await markdownToHtml(post.content || '')
 
   return {

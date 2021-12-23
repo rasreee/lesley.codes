@@ -14,9 +14,9 @@ export default function BlogLayout({ children, post }: PropsWithChildren<{ post:
   return (
     <Page
       title={`${post.title} – Lee Robinson`}
-      description={post.summary}
+      description={post.excerpt}
       image={`https://lesley.io${post.image}`}
-      date={new Date(post.publishedAt).toISOString()}
+      publishedAt={new Date(post.publishedAt).toISOString()}
       type="article"
     >
       <article className="flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16">

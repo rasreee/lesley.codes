@@ -1,9 +1,11 @@
-export type PostMetaData = {
+export interface PostMetaData {
   slug: string
   image: string
   title: string
-  summary: string
+  excerpt: string
   publishedAt: string
 }
 
-export type IPost = PostMetaData & { content: string }
+export interface IPost extends PostMetaData {
+  content: string
+}

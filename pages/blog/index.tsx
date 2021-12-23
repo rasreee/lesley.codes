@@ -1,8 +1,8 @@
 import { getAllPosts } from 'lib/api'
 import { IPost } from 'models/post'
 import { useState } from 'react'
-import BlogPost from 'ui/BlogPost'
 import Page from 'ui/Page'
+import PostPreview from 'ui/post-preview'
 
 type Props = {
   allPosts: IPost[]
@@ -54,10 +54,12 @@ export default function Blog({ allPosts }: Props) {
             <h3 className="mt-8 mb-4 text-2xl font-bold tracking-tight text-black md:text-4xl dark:text-white">
               Most Popular
             </h3>
-            <BlogPost
+            <PostPreview
               title="Learn How to Pre-render Pages Using Static Generation with Next.js"
-              summary="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus."
+              excerpt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus."
               slug="hello-world"
+              publishedAt="2021-12-24"
+              image="/unsplash/pattern-1.jpg"
             />
           </>
         )}
@@ -66,7 +68,7 @@ export default function Blog({ allPosts }: Props) {
         </h3>
         {!filteredBlogPosts.length && <p className="mb-4 text-gray-600 dark:text-gray-400">No posts found.</p>}
         {filteredBlogPosts.map((post) => (
-          <BlogPost key={post.title} {...post} />
+          <PostPreview key={post.title} {...post} />
         ))}
       </div>
     </Page>
@@ -74,7 +76,7 @@ export default function Blog({ allPosts }: Props) {
 }
 
 export const getStaticProps = async () => {
-  const allPosts = getAllPosts(['title', 'publishedAt', 'slug', 'image', 'summary'])
+  const allPosts = getAllPosts(['title', 'publishedAt', 'slug', 'image', 'excerpt'])
 
   return {
     props: { allPosts }

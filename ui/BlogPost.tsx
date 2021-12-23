@@ -4,7 +4,7 @@ import { Views } from 'models/views'
 import Link from 'next/link'
 import useSWR from 'swr'
 
-export default function BlogPost({ title, summary, slug }: Pick<IPost, 'title' | 'summary' | 'slug'>) {
+export default function BlogPost({ title, excerpt, slug }: Pick<IPost, 'title' | 'excerpt' | 'slug'>) {
   const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher)
   const views = data?.total
 
@@ -18,7 +18,7 @@ export default function BlogPost({ title, summary, slug }: Pick<IPost, 'title' |
               {`${views ? new Number(views).toLocaleString() : '–––'} views`}
             </p>
           </div>
-          <p className="text-gray-600 dark:text-gray-400">{summary}</p>
+          <p className="text-gray-600 dark:text-gray-400">{excerpt}</p>
         </div>
       </a>
     </Link>

@@ -5,7 +5,7 @@ export interface MetaProps {
   title?: string
   description?: string
   image?: string
-  date?: string
+  publishedAt?: string
   type?: string
 }
 
