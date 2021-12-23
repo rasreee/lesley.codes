@@ -1,6 +1,7 @@
 import { AppConfig } from 'lib/AppConfig'
 import Image from 'next/image'
 import Link from 'next/link'
+import { H1, P } from 'ui/typography'
 
 import Page from '../ui/Page'
 
@@ -10,10 +11,8 @@ export default function HomeRoute() {
       <div className="flex flex-col justify-center items-start max-w-2xl border-gray-200 dark:border-gray-700 mx-auto pb-16">
         <div className="flex flex-col-reverse sm:flex-row items-start gap-6">
           <div className="flex flex-col gap-5 w-[60%]">
-            <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-1 text-black dark:text-white">
-              {AppConfig.title}
-            </h1>
-            <p className="text-gray-600 dark:text-gray-400 mb-16">{AppConfig.description}</p>
+            <H1>{AppConfig.title}</H1>
+            <P>{AppConfig.description}</P>
           </div>
           <div className="relative mb-8 sm:mb-0">
             <Image

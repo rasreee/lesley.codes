@@ -35,7 +35,7 @@ module.exports = {
         },
         'onyx': { 900: '#1C1F21', 800: '#262A2C', 700: '#2F3437', 600: '#3C4144', 500: '#42494D' },
         'cultured': '#F1F1EF',
-        'cerulean': '#2DAADC'
+        'cerulean': { 500: '#2DAADC', 600: '#2193C0', 700: '#1E85AE' }
       },
       fontFamily: {
         sans: ['IBM Plex Sans', ...fontFamily.sans]

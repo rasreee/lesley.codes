@@ -3,6 +3,7 @@ import { IPost } from 'models/post'
 import { useState } from 'react'
 import Page from 'ui/Page'
 import PostPreview from 'ui/post-preview'
+import { H1, H3 } from 'ui/typography'
 
 type Props = {
   allPosts: IPost[]
@@ -20,7 +21,7 @@ export default function Blog({ allPosts }: Props) {
     >
       <div className="flex flex-col items-start justify-center max-w-2xl mx-auto mb-16">
         <div className="mb-4">
-          <h1 className="mb-4 text-3xl font-bold tracking-tight text-black md:text-5xl dark:text-white">Blog</h1>
+          <H1>Blog</H1>
         </div>
         <div className="mb-4">
           <p className="mb-4 text-gray-600 dark:text-gray-400 text-body">
@@ -55,15 +56,11 @@ export default function Blog({ allPosts }: Props) {
         </div>
         {!searchValue && (
           <>
-            <h3 className="mt-8 mb-4 text-2xl font-bold tracking-tight text-black md:text-4xl dark:text-white">
-              Most Popular
-            </h3>
+            <H3>Most Popular</H3>
             <PostPreview {...filteredBlogPosts[0]} />
           </>
         )}
-        <h3 className="mt-8 mb-4 text-2xl font-bold tracking-tight text-black md:text-4xl dark:text-white">
-          All Posts
-        </h3>
+        <H3>All Posts</H3>
         {!filteredBlogPosts.length && <p className="mb-4 text-gray-600 dark:text-gray-400">No posts found.</p>}
         {filteredBlogPosts.map((post) => (
           <PostPreview key={post.title} {...post} />

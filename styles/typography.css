@@ -15,7 +15,7 @@
 }
   
 .markdown {
-  @apply text-lg leading-relaxed text-gray-900 dark:text-gray-50;
+  @apply text-lg leading-relaxed;
 }
   
 .markdown p,
