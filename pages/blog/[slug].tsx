@@ -6,9 +6,7 @@ import { IPost } from 'models/post'
 import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 import Page from 'ui/Page'
-import PostBody from 'ui/post-body'
-import PostHeader from 'ui/post-header'
-import PostTitle from 'ui/post-title'
+import { Post } from 'ui/post'
 
 type Props = {
   post: IPost
@@ -16,7 +14,7 @@ type Props = {
   preview?: boolean
 }
 
-export default function Post({ post }: Props) {
+export default function PostRoute({ post }: Props) {
   const router = useRouter()
 
   let param = 'slug' in router.query ? router.query['slug'] : null
@@ -28,23 +26,18 @@ export default function Post({ post }: Props) {
   }
 
   if (!views) {
-    return <div>LOADING!!!</div>
+    return null
   }
 
   return (
     <Page title={post.title} description={post.excerpt}>
       {router.isFallback ? (
-        <PostTitle>Loading…</PostTitle>
+        <Post.Title>Loading…</Post.Title>
       ) : (
         <>
           <article className="mb-32">
-            <PostHeader
-              title={post.title}
-              image={post.image}
-              publishedAt={post.publishedAt}
-              author={{ name: 'Lesley Chang', picture: 'avatar.png' }}
-            />
-            <PostBody content={post.content} />
+            <Post.Header title={post.title} excerpt={post.excerpt} image={post.image} publishedAt={post.publishedAt} />
+            <Post.Body content={post.content} />
           </article>
         </>
       )}

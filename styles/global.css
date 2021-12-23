@@ -225,3 +225,6 @@ table {
   overflow-x: auto;
   white-space: nowrap;
 }
+
+
+@import "./typography.css";

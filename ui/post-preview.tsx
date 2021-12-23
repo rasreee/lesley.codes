@@ -18,7 +18,7 @@ import DateFormatter from './DateFormatter'
 
 export default function PostPreview({ title, excerpt, publishedAt, image, slug }: Props) {
   const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher)
-  const views = data?.total
+  const views = data?.count
 
   return (
     <Link href={`/blog/${slug}`}>
@@ -41,7 +41,7 @@ export default function PostPreview({ title, excerpt, publishedAt, image, slug }
             </p>
           </div>
           <div className="e">
-            <p className="text-gray-600 dark:text-gray-400 overflow-ellipsis line-clamp-3">{excerpt}</p>
+            <p className={'text overflow-ellipsis line-clamp-3'}>{excerpt}</p>
           </div>
         </div>
       </a>
