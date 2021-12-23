@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { ReactNode } from 'react'
 
+import Callout from './Callout'
 import DateFormatter from './DateFormatter'
 
 type PostHeaderProps = {
@@ -34,17 +35,6 @@ const PostHeader = ({ title, image, publishedAt }: PostHeaderProps) => {
   )
 }
 
-const PostCallout = ({ children }) => {
-  return (
-    <div className="bg-cultured dark:bg-gray-800 rounded w-full px-4 py-4 max-w-2xl mx-auto">
-      <div className="flex items-start gap-3">
-        <span className="text-2xl">{'💡'}</span>
-        <div className="text markdown align-middle">{children}</div>
-      </div>
-    </div>
-  )
-}
-
 type PostBodyProps = {
   content: string
 }
@@ -63,5 +53,5 @@ export const Post = ({ children }) => {
 
 Post.Header = PostHeader
 Post.Title = PostTitle
-Post.Callout = PostCallout
+Post.Callout = Callout
 Post.Body = PostBody
