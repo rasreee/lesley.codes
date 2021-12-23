@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+@import "./typography.css";
+
+
+@layer utilities {
+	.app-bg {
+		@apply bg-gray-50 bg-opacity-60 dark:bg-onyx-700;
+	}
+
+	.highlight-bg {
+		@apply bg-cultured dark:bg-onyx-600;
+	}
+}
+
+
 @font-face {
   font-family: 'IBM Plex Sans';
   font-style: normal;
@@ -29,7 +45,7 @@ html {
 }
 
 #__next {
-  @apply bg-gray-50 dark:bg-gray-900;
+  @apply app-bg;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -225,7 +241,3 @@ table {
   overflow-x: auto;
   white-space: nowrap;
 }
-
-
-@import "./typography.css";
-@import "./colors.css";
