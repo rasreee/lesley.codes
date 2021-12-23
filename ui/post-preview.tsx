@@ -32,13 +32,17 @@ export default function PostPreview({ title, excerpt, publishedAt, image, slug }
           })}
         />
         <div className="w-full ml-6 h-full min-h-full flex flex-col justify-between  gap-2">
-          <div className="flex flex-col justify-between md:flex-row">
-            <h4 className="w-full text-lg font-medium text-gray-900 md:text-xl dark:text-gray-100">{title}</h4>
-            <DateFormatter dateString={publishedAt} />
-            <p className="w-32 text-left text-gray-500 md:text-right">{`${views?.count ?? '...'} views`}</p>
+          <div className="flex flex-col gap-2">
+            <div className="flex items-start relative">
+              <h4 className="w-full text-lg font-medium text-gray-900 md:text-xl dark:text-gray-100">{title}</h4>
+              <p className="py-1 text-right w-32 text-gray-500 text-base">{`${views?.count ?? 0} views`}</p>
+            </div>
+            <div className="flex items-center justify-between">
+              <DateFormatter size="xs" pattern="LLL d" dateString={publishedAt} />
+            </div>
           </div>
-          <div className="e">
-            <p className={'text overflow-ellipsis line-clamp-3'}>{excerpt}</p>
+          <div className="">
+            <p className={'text overflow-ellipsis line-clamp-2 pr-3'}>{excerpt}</p>
           </div>
         </div>
       </a>

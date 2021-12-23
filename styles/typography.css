@@ -1,5 +1,9 @@
 
 
+.text-xs {
+  font-size: 12px;
+}
+
 .text {
   @apply text-gray-900 dark:text-gray-200;
 }
@@ -30,3 +34,5 @@
 .markdown h3 {
   @apply text-2xl mt-8 mb-4 leading-snug;
 }
+
+
