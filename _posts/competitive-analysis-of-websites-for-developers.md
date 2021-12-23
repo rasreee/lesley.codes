@@ -6,7 +6,7 @@ excerpt:
   data from 20 different developer-niche websites and made interesting and helpful conclusions to help anyone drive
   their website traffic up and generate more passive income and more consistently.'
 image: '/unsplash/pattern-1.jpg'
-publishedAt: 2021-12-24
+publishedAt: Fri Dec 24 2021 00:00:00 GMT-0500 (Eastern Standard Time)
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna

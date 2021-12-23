@@ -70,7 +70,7 @@ export default function Blog({ allPosts }: Props) {
 }
 
 export const getStaticProps = async () => {
-  const allPosts = getAllPosts(['title', 'publishedAt', 'slug', 'image', 'excerpt'])
+  const allPosts = getAllPosts()
 
   return {
     props: { allPosts }

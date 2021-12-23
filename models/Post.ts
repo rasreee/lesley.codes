@@ -1,11 +1,10 @@
-export interface PostMetaData {
+export interface IPost {
   slug: string
   image: string
   title: string
   excerpt: string
   publishedAt: string
-}
-
-export interface IPost extends PostMetaData {
   content: string
 }
+
+export const allPostFields = ['slug', 'image', 'title', 'excerpt', 'publishedAt', 'content']

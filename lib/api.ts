@@ -1,6 +1,6 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import { IPost } from 'models/post'
+import { allPostFields, IPost } from 'models/post'
 import { join, resolve } from 'path'
 
 const postsDirectory = join(process.cwd(), '_posts')
@@ -11,7 +11,7 @@ export function getPostSlugs() {
 
 export const DEBUG_LOG = resolve(__dirname, '../debug.log')
 
-export function getPostBySlug(slug: string, fields: string[] = []): IPost {
+export function getPostBySlug(slug: string, fields: string[] = allPostFields): IPost {
   console.log(`👋 getPostBySlug():\nslug=${slug}\nfields=${fields.join(', ')}`)
 
   const realSlug = slug.replace(/\.md$/, '')
@@ -34,6 +34,7 @@ export function getPostBySlug(slug: string, fields: string[] = []): IPost {
       }
 
       if (typeof data[field] !== 'undefined') {
+        console.log(`\n💜 ${field} = ${data[field]}`)
         post[field] = data[field]
       }
     })
@@ -49,13 +50,6 @@ export function getPostBySlug(slug: string, fields: string[] = []): IPost {
   }
 }
 
-export function getAllPosts(fields: string[] = []): IPost[] {
-  const slugs = getPostSlugs()
-
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug, fields))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.publishedAt > post2.publishedAt ? -1 : 1))
-
-  return posts
+export function getAllPosts(fields: string[] = allPostFields): IPost[] {
+  return getPostSlugs().map((slug) => getPostBySlug(slug, fields))
 }
