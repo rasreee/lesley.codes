@@ -15,6 +15,7 @@ import Image from 'next/image'
 import useSWR from 'swr'
 
 import DateFormatter from './DateFormatter'
+import { H4, P } from './typography'
 
 export default function PostPreview({ title, excerpt, publishedAt, image, slug }: Props) {
   const { data: views } = useSWR<Views>(`/api/views/${slug}`, fetcher)
@@ -31,19 +32,16 @@ export default function PostPreview({ title, excerpt, publishedAt, image, slug }
             'hover:shadow-lg transition-shadow duration-200': slug
           })}
         />
-        <div className="w-full ml-6 h-full min-h-full flex flex-col justify-between  gap-2">
-          <div className="flex flex-col gap-2">
-            <div className="flex items-start relative">
-              <h4 className="w-full text-lg font-medium text-gray-900 md:text-xl dark:text-gray-100">{title}</h4>
-              <p className="py-1 text-right w-32 text-gray-500 text-base">{`${views?.count ?? 0} views`}</p>
-            </div>
-            <div className="flex items-center justify-between">
-              <DateFormatter size="xs" pattern="LLL d" dateString={publishedAt} />
+        <div className="w-full ml-6 h-full min-h-full flex flex-col items-start gap-2">
+          <div>
+            <div className="flex items-start">
+              <H4 className="w-full text-lg align-top">{title}</H4>
+              <P className="text-right w-32 text-base text-hint leading-tight pt-1">{`${views?.count ?? 0} views`}</P>
             </div>
           </div>
-          <div className="">
-            <p className={'text overflow-ellipsis line-clamp-2 pr-3'}>{excerpt}</p>
-          </div>
+
+          <DateFormatter size="sm" pattern="LLL d" dateString={publishedAt} className="text-hint" />
+          <p className={'text overflow-ellipsis line-clamp-2 pr-3'}>{excerpt}</p>
         </div>
       </a>
     </Link>
