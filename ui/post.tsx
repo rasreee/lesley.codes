@@ -48,5 +48,6 @@ export const Post = ({ children }) => {
 }
 
 Post.Header = PostHeader
+Post.Title = H1
 Post.Callout = Callout
 Post.Body = PostBody
