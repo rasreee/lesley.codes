@@ -23,13 +23,6 @@ export default function Blog({ allPosts }: Props) {
         <div className="mb-4">
           <H1>Blog</H1>
         </div>
-        <div className="mb-4">
-          <p className="mb-4 text-gray-600 dark:text-gray-400 text-body">
-            {`I've been writing online since 2014, mostly about web development and tech careers.
-            In total, I've written ${allPosts.length} articles on my blog.
-            Use the search below to filter by title.`}
-          </p>
-        </div>
         <div className="relative w-full mb-4">
           <input
             aria-label="Search articles"
