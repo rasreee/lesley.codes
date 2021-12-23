@@ -43,11 +43,11 @@ const PostBody = ({ content }: PostBodyProps) => {
   )
 }
 
-export const Post = ({ children }) => {
+export const PostPage = ({ children }) => {
   return <div className="flex flex-col items-center gap-4">{children}</div>
 }
 
-Post.Header = PostHeader
-Post.Title = H1
-Post.Callout = Callout
-Post.Body = PostBody
+PostPage.Header = PostHeader
+PostPage.Title = H1
+PostPage.Callout = Callout
+PostPage.Body = PostBody

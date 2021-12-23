@@ -1,4 +1,4 @@
-import { PostType } from 'models/post'
+import { Post } from 'modules/post/Post'
 import Image from 'next/image'
 import type { PropsWithChildren } from 'react'
 import Page from 'ui/Page'
@@ -9,7 +9,7 @@ const editUrl = (slug) => `https://github.com/rasreee/lesley.codes/edit/main/dat
 const discussUrl = (slug) =>
   `https://mobile.twitter.com/search?q=${encodeURIComponent(`https://lesley.codes/blog/${slug}`)}`
 
-export default function BlogLayout({ children, post }: PropsWithChildren<{ post: PostType }>) {
+export default function BlogLayout({ children, post }: PropsWithChildren<{ post: Post }>) {
   return (
     <Page
       title={`${post.title} – Lee Robinson`}

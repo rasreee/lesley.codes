@@ -2,15 +2,15 @@ import { getAllPosts, getPostBySlug } from 'lib/api'
 import markdownToHtml from 'lib/markdownToHtml'
 import { normalizeQueryParam } from 'lib/query'
 import { useViews } from 'lib/viewsApi'
-import { PostType } from 'models/post'
+import { Post } from 'modules/post/Post'
 import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 import Page from 'ui/Page'
-import { Post } from 'ui/Post'
+import { PostPage } from 'ui/PostPage'
 
 type Props = {
-  post: PostType
-  morePosts: PostType[]
+  post: Post
+  morePosts: Post[]
   preview?: boolean
 }
 
@@ -33,15 +33,15 @@ export default function PostRoute({ post }: Props) {
     <Page title={post.title} description={post.excerpt}>
       <>
         {router.isFallback ? (
-          <Post.Title>Loading…</Post.Title>
+          <PostPage.Title>Loading…</PostPage.Title>
         ) : (
           <>
             <article className="mb-32">
-              <Post>
-                <Post.Header title={post.title} image={post.image} publishedAt={post.publishedAt} />
-                <Post.Callout>{post.excerpt}</Post.Callout>
-                <Post.Body content={post.content} />
-              </Post>
+              <PostPage>
+                <PostPage.Header title={post.title} image={post.image} publishedAt={post.publishedAt} />
+                <PostPage.Callout>{post.excerpt}</PostPage.Callout>
+                <PostPage.Body content={post.content} />
+              </PostPage>
             </article>
           </>
         )}

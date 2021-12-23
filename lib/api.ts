@@ -1,6 +1,7 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import { allPostFields, PostType } from 'models/post'
+import { allPostFields } from 'modules/post/allPostFields'
+import { Post } from 'modules/post/Post'
 import { join, resolve } from 'path'
 
 const postsDirectory = join(process.cwd(), '_posts')
@@ -11,7 +12,7 @@ export function getPostSlugs() {
 
 export const DEBUG_LOG = resolve(__dirname, '../debug.log')
 
-export function getPostBySlug(slug: string, fields: string[] = allPostFields): PostType {
+export function getPostBySlug(slug: string, fields: string[] = allPostFields): Post {
   console.log(`👋 getPostBySlug():\nslug=${slug}\nfields=${fields.join(', ')}`)
 
   const realSlug = slug.replace(/\.md$/, '')
@@ -21,7 +22,7 @@ export function getPostBySlug(slug: string, fields: string[] = allPostFields): P
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
     const { data, content } = matter(fileContents)
-    const post = {} as PostType
+    const post = {} as Post
 
     // Ensure only the minimal needed data is exposed
     fields.forEach((field) => {
@@ -50,6 +51,6 @@ export function getPostBySlug(slug: string, fields: string[] = allPostFields): P
   }
 }
 
-export function getAllPosts(fields: string[] = allPostFields): PostType[] {
+export function getAllPosts(fields: string[] = allPostFields): Post[] {
   return getPostSlugs().map((slug) => getPostBySlug(slug, fields))
 }
