@@ -8,11 +8,25 @@ type PostHeaderProps = {
   publishedAt: string
 }
 
+const CalendarIcon = (props: React.SVGAttributes<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+    />
+  </svg>
+)
+
 const PostHeader = ({ title, image, publishedAt }: PostHeaderProps) => {
   return (
     <div className="max-w-2xl mx-auto flex flex-col gap-6">
       <H1>{title}</H1>
-      <DateFormatter className="text-cerulean-500" pattern="LLLL d, yyyy" dateString={publishedAt} />
+      <div className="flex items-center gap-1.5 text-cerulean-500 dark:text-cerulean-500">
+        <CalendarIcon height={18} width={18} className="text-cerulean-500 text-opacity-40" />
+        <DateFormatter pattern="LLLL d, yyyy" dateString={publishedAt} />
+      </div>
     </div>
   )
 }
