@@ -7,7 +7,10 @@ import { useSupabase } from './supabase'
 export const getViews = (slug: string) => {
   return async (supabase: SupabaseClient): Promise<Views> => {
     const { data, error } = await supabase.from<Views>('views').select('*').match({ slug }).single()
+    console.log('getViews response:\n\n', JSON.stringify({ data, error }))
+
     if (error) throw error
+
     if (!data) throw new Error('Views response data was null when error was null')
 
     return data
@@ -25,7 +28,7 @@ export const useViews = (slug: string | null) => {
     }
   }
 
-  const { data, ...rest } = useSWR<Views, Error>(slug ? `/api/views/${slug}` : null, viewsFetcher(slug!))
+  const { data, error, ...rest } = useSWR<Views, Error>(slug ? `/api/views/${slug}` : null, viewsFetcher(slug!))
 
-  return { views: data, ...rest }
+  return { views: data, error, ...rest }
 }

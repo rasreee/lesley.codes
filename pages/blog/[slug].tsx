@@ -28,8 +28,6 @@ export default function Post({ post }: Props) {
   }
 
   if (error) {
-    console.log(`/api/views/${slug} returned error: `, error)
-
     return <ErrorPage statusCode={404} />
   }
 

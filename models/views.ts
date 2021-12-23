@@ -1,3 +1,4 @@
 export type Views = {
-  total: number
+  slug: string
+  count: number
 }

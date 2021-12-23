@@ -54,13 +54,7 @@ export default function Blog({ allPosts }: Props) {
             <h3 className="mt-8 mb-4 text-2xl font-bold tracking-tight text-black md:text-4xl dark:text-white">
               Most Popular
             </h3>
-            <PostPreview
-              title="Learn How to Pre-render Pages Using Static Generation with Next.js"
-              excerpt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus."
-              slug="hello-world"
-              publishedAt="2021-12-24"
-              image="/unsplash/pattern-1.jpg"
-            />
+            <PostPreview {...filteredBlogPosts[0]} />
           </>
         )}
         <h3 className="mt-8 mb-4 text-2xl font-bold tracking-tight text-black md:text-4xl dark:text-white">
