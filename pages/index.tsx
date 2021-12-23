@@ -8,20 +8,20 @@ export default function HomeRoute() {
   return (
     <Page>
       <div className="flex flex-col justify-center items-start max-w-2xl border-gray-200 dark:border-gray-700 mx-auto pb-16">
-        <div className="flex flex-col-reverse sm:flex-row items-start">
-          <div className="flex flex-col pr-8">
+        <div className="flex flex-col-reverse sm:flex-row items-start gap-6">
+          <div className="flex flex-col gap-5 w-[60%]">
             <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-1 text-black dark:text-white">
               {AppConfig.title}
             </h1>
             <p className="text-gray-600 dark:text-gray-400 mb-16">{AppConfig.description}</p>
           </div>
-          <div className="w-[80px] sm:w-[176px] relative mb-8 sm:mb-0 mr-auto">
+          <div className="relative mb-8 sm:mb-0">
             <Image
               alt="Lesley Chang"
-              height={176}
-              width={176}
+              height={200}
+              width={200}
               src="/avatar.png"
-              className="rounded-full filter grayscale"
+              className="rounded-full filter grayscale !min-h-[10rem] !min-w-[10rem]"
             />
           </div>
         </div>
