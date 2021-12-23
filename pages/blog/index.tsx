@@ -1,12 +1,12 @@
 import { getAllPosts } from 'lib/api'
-import { IPost } from 'models/post'
+import { PostType } from 'models/post'
 import { useState } from 'react'
 import Page from 'ui/Page'
 import PostPreview from 'ui/post-preview'
 import { H1, H3 } from 'ui/typography'
 
 type Props = {
-  allPosts: IPost[]
+  allPosts: PostType[]
 }
 
 export default function Blog({ allPosts }: Props) {

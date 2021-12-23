@@ -2,15 +2,15 @@ import { getAllPosts, getPostBySlug } from 'lib/api'
 import markdownToHtml from 'lib/markdownToHtml'
 import { normalizeQueryParam } from 'lib/query'
 import { useViews } from 'lib/viewsApi'
-import { IPost } from 'models/post'
+import { PostType } from 'models/post'
 import ErrorPage from 'next/error'
 import { useRouter } from 'next/router'
 import Page from 'ui/Page'
 import { Post } from 'ui/Post'
 
 type Props = {
-  post: IPost
-  morePosts: IPost[]
+  post: PostType
+  morePosts: PostType[]
   preview?: boolean
 }
 
