@@ -36,7 +36,7 @@ const PostHeader = ({ title, image, publishedAt }: PostHeaderProps) => {
 
 const PostCallout = ({ children }) => {
   return (
-    <div className="bg-gray-800 rounded-lg w-full p-6 max-w-2xl mx-auto">
+    <div className="bg-cultured dark:bg-gray-800 rounded-lg w-full p-6 max-w-2xl mx-auto">
       <div className="text markdown align-middle">{children}</div>
     </div>
   )

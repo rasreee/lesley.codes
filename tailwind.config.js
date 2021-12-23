@@ -19,7 +19,8 @@ module.exports = {
           700: '#333333',
           800: '#222222',
           900: '#111111'
-        }
+        },
+        'cultured': '#F1F1EF'
       },
       fontFamily: {
         sans: ['IBM Plex Sans', ...fontFamily.sans]
