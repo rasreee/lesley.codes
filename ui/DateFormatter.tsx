@@ -8,7 +8,7 @@ type Props = {
   className?: string
 }
 
-const DateFormatter = ({ dateString, className = 'text-hin', size = 'base', pattern = 'LLL d, yyyy' }: Props) => {
+const DateFormatter = ({ dateString, className = 'text-hint', size = 'base', pattern = 'LLL d, yyyy' }: Props) => {
   const date = new Date(dateString)
 
   return (

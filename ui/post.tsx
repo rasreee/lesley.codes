@@ -30,7 +30,7 @@ const PostHeader = ({ title, image, publishedAt }: PostHeaderProps) => {
   return (
     <div className="max-w-2xl mx-auto flex flex-col gap-6">
       <PostTitle>{title}</PostTitle>
-      <DateFormatter className="text-cerulean" dateString={publishedAt} />
+      <DateFormatter className="text-cerulean" pattern="LLLL d, yyyy" dateString={publishedAt} />
     </div>
   )
 }
