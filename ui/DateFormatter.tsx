@@ -3,11 +3,7 @@ type Props = {
 }
 
 const DateFormatter = ({ dateString }: Props) => {
-  return (
-    <time className="text-hint" dateTime={dateString}>
-      {dateString}
-    </time>
-  )
+  return <div className="text-hint">{dateString}</div>
 }
 
 export default DateFormatter

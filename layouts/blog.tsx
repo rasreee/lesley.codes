@@ -1,4 +1,3 @@
-import { format, parseISO } from 'date-fns'
 import { IPost } from 'models/post'
 import Image from 'next/image'
 import type { PropsWithChildren } from 'react'
@@ -16,7 +15,7 @@ export default function BlogLayout({ children, post }: PropsWithChildren<{ post:
       title={`${post.title} – Lee Robinson`}
       description={post.excerpt}
       image={`https://lesley.io${post.image}`}
-      publishedAt={new Date(post.publishedAt).toISOString()}
+      publishedAt={post.publishedAt}
       type="article"
     >
       <article className="flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16">
@@ -25,8 +24,8 @@ export default function BlogLayout({ children, post }: PropsWithChildren<{ post:
           <div className="flex items-center">
             <Image alt="Lee Robinson" height={24} width={24} src="/avatar.jpg" className="rounded-full" />
             <p className="ml-2 text-sm text-gray-700 dark:text-gray-300">
-              {'Lee Robinson / '}
-              {format(parseISO(post.publishedAt), 'MMMM dd, yyyy')}
+              {'Lesley Chang / '}
+              {post.publishedAt}
             </p>
           </div>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 min-w-32 md:mt-0">

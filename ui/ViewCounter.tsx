@@ -4,8 +4,7 @@ import { useEffect } from 'react'
 import useSWR from 'swr'
 
 export default function ViewCounter({ slug }) {
-  const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher)
-  const views = new Number(data?.total)
+  const { data: views } = useSWR<Views>(`/api/views/${slug}`, fetcher)
 
   useEffect(() => {
     const registerView = () =>
@@ -16,5 +15,5 @@ export default function ViewCounter({ slug }) {
     registerView()
   }, [slug])
 
-  return <span>{`${views > 0 ? views.toLocaleString() : '–––'} views`}</span>
+  return <span> {`${views?.count ?? '...'} views`}</span>
 }

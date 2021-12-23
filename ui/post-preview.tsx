@@ -17,8 +17,7 @@ import useSWR from 'swr'
 import DateFormatter from './DateFormatter'
 
 export default function PostPreview({ title, excerpt, publishedAt, image, slug }: Props) {
-  const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher)
-  const views = data?.count
+  const { data: views } = useSWR<Views>(`/api/views/${slug}`, fetcher)
 
   return (
     <Link href={`/blog/${slug}`}>
@@ -36,9 +35,7 @@ export default function PostPreview({ title, excerpt, publishedAt, image, slug }
           <div className="flex flex-col justify-between md:flex-row">
             <h4 className="w-full text-lg font-medium text-gray-900 md:text-xl dark:text-gray-100">{title}</h4>
             <DateFormatter dateString={publishedAt} />
-            <p className="w-32 text-left text-gray-500 md:text-right">
-              {`${views ? new Number(views).toLocaleString() : '–––'} views`}
-            </p>
+            <p className="w-32 text-left text-gray-500 md:text-right">{`${views?.count ?? '...'} views`}</p>
           </div>
           <div className="e">
             <p className={'text overflow-ellipsis line-clamp-3'}>{excerpt}</p>
