@@ -1,3 +1,12 @@
+---
+slug: build-a-search-modal-using-react-typescript-and-emotion
+title: 'Build a Search Modal using React, Typescript, and Emotion'
+excerpt:
+  'I'm going to walk you through building a Search Modal with hotkeys similar to the one on Tailwind's website. We'll be using React, Typescript, and Emotion for this tutorial.'
+image: '/unsplash/pattern-1.jpg'
+publishedAt: Thu Dec 23 2021 00:00:00 GMT-0500 (Eastern Standard Time)
+---
+
 # Build a Search Modal using React, Typescript, and Emotion
 
 <aside>
@@ -64,6 +73,7 @@ yarn install && yarn start
 - listens for cmd+k and opens the modal
 - clicking the button opens the modal as well
 - **Finished SearchPrompt Code**
+
   ```tsx
   import { css } from '@emotion/react'
   import React from 'react'
@@ -211,6 +221,7 @@ For the search icon, I just copied and pasted from **[heroicons.com](https://her
 2. Copy its JSX and paste it into your code to create a React function component called SearchSVG
 
    - See full code for `SearchIcon` in `src/components/SearchIcon.tsx`
+
      ```tsx
      const SearchSvg: FunctionComponent<SVGAttributes<SVGSVGElement>> = (props) => {
        return (
@@ -282,6 +293,7 @@ single KeyboardEvent passes the event object through a callback.
 
 - Using `useKeyboardEvent`, I created a custom hook called `useKeyCombo` to listen for multiple KeyboardEvents and
   detect the target sequence of events.
+
   ```tsx
   import { useEffect, useMemo, useState } from 'react'
 
@@ -317,8 +329,8 @@ single KeyboardEvent passes the event object through a callback.
     }, [keysPressed])
   }
   ```
-  Basically, this is how the hook works:
-  -
+
+  ## Basically, this is how the hook works:
 
 Now you can use it to detect the `CMD+K` hotkey and open the SearchModal, like so:
 
