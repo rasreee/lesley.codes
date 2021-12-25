@@ -1,0 +1,103 @@
+---
+title: Build a ⌘K Search Modal (Part 1)
+description: 'Part 1 of the tutorial for building a ⌘K Search Modal. We will be using React, Typescript, and Emotion.'
+publishedAt: '2021-12-24'
+tags: 'typescript,react,emotion'
+image: '/images/cmd-k-menu.png'
+---
+
+<Image
+  alt={`CMD K Menu`}
+  src={`/images/cmd-k-menu.png`}
+  width={1440}
+  height={960}
+  priority
+/>
+
+View the [demo](https://react-search-modal-tutorial.vercel.app/).
+
+## Introduction
+
+In this tutorial, we will build a ⌘K Search Modal, which is what it sounds like - a modal for searching content that can be opened by the ⌘K keyboard shortcut. It will be comprised of two parts:
+
+- Part 1: The Assignment (the one you're reading)
+- Part 2: My Implementation & Walkthrough
+
+Part 2 will be released to the public on December 31st, one week from when Part 1 (this article) is published.
+
+If you are reading this after both have been released already but want to practice building from scratch according to a list of requirements, try to force yourself to spend at least a week on Part 1 before looking at Part 2.
+
+Otherwise, feel free to skip ahead to Part 2 to read the walkthrough of how I built this ⌘K Search Modal.
+
+## What we're building
+
+For reference, here are some ⌘K Search Modals built by others:
+
+- [TailwindCSS Documentation](https://tailwindcss.com/)
+- [uiwtf](https://uiw.tf/cmdk)
+
+We're going to be building a simple version of the ⌘K Search Modal with the following requirements:
+
+- Clicking the toggle button or pressing `⌘K` keyboard shortcut opens the modal
+- Clicking outside or one of the search results hides the modal
+- Changing the search input text automatically updates the search results
+
+## Assignment
+
+The end goal is a module that exports components SearchModalProvider and SearchModalToggle that clients can use to render a ⌘K Search Modal. Internally, it will render a component called SearchModal.
+
+Clients (apps that depend this module) can use these components by:
+
+1. Wrap their app with SearchModalProvider
+2. Render SearchModalToggle wherever they want to display it
+
+### Project Setup
+
+Clone or fork the [Github repo](https://github.com/rasreee/cmdk-search-tutorial-skeleton) for the skeleton code.
+
+```bash
+git clone https://github.com/rasreee/cmdk-search-tutorial-skeleton.git
+```
+
+From project root, install the dependencies, and run the app.
+
+```bash
+yarn install && yarn start
+```
+
+### Action Items
+
+Given the skeleton code, implement SearchModalProvider, SearchModalToggle, and SearchModal.
+
+#### SearchModalProvider
+
+Edit SearchModalProvider.tsx to implement SearchModalProvider according to the following requirements:
+
+- Uses React Context API
+- Holds state of the SearchModal
+- Renders SearchModal
+
+#### SearchModalToggle
+
+Edit SearchModalToggle.tsx to implement the toggle button component according to the following requirements:
+
+- Toggles the modal open when either:
+  - `⌘K` keyboard shortcut is pressed
+  - Button is clicked
+- When hovered, the background color is darkened by 20%
+- When clicked, the background color is darkened by 40%
+
+For the left-most icon, you can use any icon you like. Otherwise, use the `search` icon from [heroicons.com](http://heroicons.com).
+
+#### SearchModal
+
+Edit SearchModal.tsx to implement the search modal according to the following requirements:
+
+- Changes to the input automatically updates the search results
+- Clicking outside or selecting a search result hides the modal
+- Users can press Tab to focus on the search result
+- When a search result is focused, users can press Enter to select it
+
+## Questions?
+
+If you run into any issues with the tutorial, please feel free to open an issue against the [Github repo](https://github.com/rasreee/cmdk-search-tutorial-skeleton).
