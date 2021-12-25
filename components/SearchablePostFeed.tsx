@@ -1,7 +1,7 @@
 import { isPast, parseISO } from 'date-fns';
 import { cn } from 'lib/classnames';
 import { BlogFrontmatterWithSlug } from 'lib/frontmatter';
-import React, { ChangeEventHandler, useState } from 'react';
+import React, { useState } from 'react';
 
 import { PostFeed } from './PostFeed';
 import { SearchInput } from './SearchInput';
@@ -23,13 +23,10 @@ export const SearchablePostFeed: React.FunctionComponent<
     )
     .filter((post) => isPast(parseISO(post.publishedAt)));
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>
-    setSearchValue(e.currentTarget.value);
-
   return (
     <>
       <Section className="relative w-full">
-        <SearchInput value={searchValue} onChange={handleChange} />
+        <SearchInput value={searchValue} onChange={setSearchValue} />
         <SearchIcon />
       </Section>
       {!filteredBlogPosts.length && <P>No posts found.</P>}

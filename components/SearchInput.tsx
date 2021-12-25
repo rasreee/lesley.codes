@@ -4,7 +4,7 @@ import React, { ChangeEventHandler, useRef } from 'react';
 
 export interface SearchInputProps {
   value: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  onChange: (value: string) => void;
 }
 
 export const SearchInput: React.FunctionComponent<SearchInputProps> = ({
@@ -15,13 +15,16 @@ export const SearchInput: React.FunctionComponent<SearchInputProps> = ({
 
   useAutoFocus(inputRef);
 
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>
+    onChange(e.currentTarget.value);
+
   return (
     <input
       ref={inputRef}
       aria-label="Search articles"
       type="text"
       value={value}
-      onChange={onChange}
+      onChange={handleChange}
       placeholder="Search articles"
       className={cn(
         'bg-white dark:bg-gray-800',
