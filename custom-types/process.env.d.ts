@@ -14,6 +14,7 @@ declare global {
       NEXT_PUBLIC_SUPABASE_URL: string;
       NEXT_PUBLIC_SUPABASE_API_KEY: string;
       NEXT_PUBLIC_REGISTER_VIEWS: string;
+      NEXT_PUBLIC_REGISTER_SEARCHES: string;
     }
   }
 }

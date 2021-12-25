@@ -1,5 +1,5 @@
 import { SupabaseClient } from '@supabase/supabase-js';
-import { isRegisterViewsEnabled } from 'lib/environment';
+import { isRegisterViewEnabled } from 'lib/environment';
 import { fetcher } from 'lib/fetcher';
 import { useEffect } from 'react';
 import useSWR, { SWRResponse } from 'swr';
@@ -46,7 +46,7 @@ export const useContentMeta = (
 
 export const useRegisterPostView = (slug: string) => {
   useEffect(() => {
-    if (!isRegisterViewsEnabled()) {
+    if (!isRegisterViewEnabled()) {
       console.log(
         'Registering views disabled due to NEXT_PUBLIC_REGISTER_VIEWS env variable'
       );

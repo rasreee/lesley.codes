@@ -1,3 +1,4 @@
+import { isRegisterSearchEnabled } from 'lib/environment';
 import { supabase } from 'lib/supabase';
 
 export type Search = {
@@ -6,6 +7,14 @@ export type Search = {
 };
 
 export const registerSearch = async (query: string) => {
+  if (!isRegisterSearchEnabled()) {
+    console.log(
+      'Registering search disabled due to NEXT_PUBLIC_REGISTER_SEARCHES env variable'
+    );
+
+    return;
+  }
+
   console.log('Registering search query: ', query);
 
   /* Check if search entry exists for query */
