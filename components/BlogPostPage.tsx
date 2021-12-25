@@ -1,4 +1,4 @@
-import { useIncrementPostView } from 'db/contents';
+import { useRegisterPostView } from 'db/contents';
 import { WEBSITE_HOST_URL } from 'lib/appConfig';
 import { BlogFrontmatterWithSlug } from 'lib/frontmatter';
 import { MetaProps } from 'lib/layout';
@@ -28,8 +28,7 @@ export const BlogPostPage: React.FunctionComponent<BlogPostPageProps> = ({
   source,
 }) => {
   const router = useRouter();
-  const slug = getSlug(router.query);
-  useIncrementPostView(slug);
+  useRegisterPostView(getSlug(router.query));
 
   const customMeta: MetaProps = {
     title: `${frontMatter.title} - Lesley Chang`,
