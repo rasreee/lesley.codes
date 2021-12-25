@@ -19,11 +19,9 @@ export const registerSearch = async (query: string) => {
 
   if (data) {
     await supabase.from<Search>('searches').update({ count: data.count + 1 });
-    console.log(`✅ Incremented search query ${query}`);
 
     return;
   }
 
   await supabase.from<Search>('searches').upsert({ query });
-  console.log(`✅ Created search query ${query}`);
 };
