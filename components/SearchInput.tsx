@@ -2,6 +2,10 @@ import { useAutoFocus } from 'hooks/useAutoFocus';
 import { cn } from 'lib/classnames';
 import React, { ChangeEventHandler, useRef } from 'react';
 
+export const registerSearch = (query: string) => {
+  console.log('Registering search query: ', query);
+};
+
 export interface SearchInputProps {
   value: string;
   onChange: (value: string) => void;
@@ -15,8 +19,15 @@ export const SearchInput: React.FunctionComponent<SearchInputProps> = ({
 
   useAutoFocus(inputRef);
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>
-    onChange(e.currentTarget.value);
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const newValue = event.currentTarget.value;
+
+    if (newValue.length >= 5) {
+      registerSearch(newValue);
+    }
+
+    onChange(newValue);
+  };
 
   return (
     <input
