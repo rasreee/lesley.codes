@@ -1,6 +1,8 @@
 import { useAutoFocus } from 'hooks/useAutoFocus';
 import { cn } from 'lib/classnames';
-import React, { ChangeEventHandler, useRef } from 'react';
+import React, { ChangeEventHandler, useRef, useState } from 'react';
+
+export const MIN_SEARCH_QUERY_LENGTH = 4;
 
 export const registerSearch = (query: string) => {
   console.log('Registering search query: ', query);
@@ -15,14 +17,17 @@ export const SearchInput: React.FunctionComponent<SearchInputProps> = ({
   value,
   onChange,
 }) => {
+  const [localValue, setLocalValue] = useState(value);
+
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useAutoFocus(inputRef);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const newValue = event.currentTarget.value;
+    setLocalValue(newValue);
 
-    if (newValue.length >= 5) {
+    if (newValue.length >= MIN_SEARCH_QUERY_LENGTH) {
       registerSearch(newValue);
     }
 
@@ -34,7 +39,7 @@ export const SearchInput: React.FunctionComponent<SearchInputProps> = ({
       ref={inputRef}
       aria-label="Search articles"
       type="text"
-      value={value}
+      value={localValue}
       onChange={handleChange}
       placeholder="Search articles"
       className={cn(

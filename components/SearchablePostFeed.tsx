@@ -1,4 +1,5 @@
 import { isPast, parseISO } from 'date-fns';
+import { useDebouncedState } from 'hooks/useDebouncedState';
 import { cn } from 'lib/classnames';
 import { BlogFrontmatterWithSlug } from 'lib/frontmatter';
 import React, { useState } from 'react';
@@ -15,7 +16,7 @@ export interface SearchablePostFeedProps {
 export const SearchablePostFeed: React.FunctionComponent<
   SearchablePostFeedProps
 > = ({ posts }) => {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useDebouncedState('', 300);
 
   const filteredBlogPosts = posts
     .filter((post) =>
