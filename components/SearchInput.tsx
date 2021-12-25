@@ -1,12 +1,9 @@
+import { registerSearch } from 'db/searches';
 import { useAutoFocus } from 'hooks/useAutoFocus';
 import { cn } from 'lib/classnames';
 import React, { ChangeEventHandler, useRef, useState } from 'react';
 
 export const MIN_SEARCH_QUERY_LENGTH = 4;
-
-export const registerSearch = (query: string) => {
-  console.log('Registering search query: ', query);
-};
 
 export interface SearchInputProps {
   value: string;
