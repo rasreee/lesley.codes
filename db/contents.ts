@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import useSWR, { SWRResponse } from 'swr';
 
 export type ContentMeta = {
-  slug: string;
+  slug: UniqueId;
   views: number;
   likes: number;
 };

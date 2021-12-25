@@ -1,6 +1,6 @@
-import { useKeyPress } from 'hooks/useKeyPress';
+import { useAutoFocus } from 'hooks/useAutoFocus';
 import { cn } from 'lib/classnames';
-import React, { ChangeEventHandler, useEffect, useRef } from 'react';
+import React, { ChangeEventHandler, useRef } from 'react';
 
 export interface SearchInputProps {
   value: string;
@@ -13,13 +13,7 @@ export const SearchInput: React.FunctionComponent<SearchInputProps> = ({
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
-
-  useKeyPress('Escape', () => {
-    inputRef.current?.blur();
-  });
+  useAutoFocus(inputRef);
 
   return (
     <input
