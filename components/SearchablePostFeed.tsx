@@ -1,10 +1,10 @@
 import { isPast, parseISO } from 'date-fns';
-import { useKeyPress } from 'hooks/useKeyPress';
 import { cn } from 'lib/classnames';
 import { BlogFrontmatterWithSlug } from 'lib/frontmatter';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ChangeEventHandler, useState } from 'react';
 
 import { PostFeed } from './PostFeed';
+import { SearchInput } from './SearchInput';
 import { Section } from './Section';
 import { P } from './Typography';
 
@@ -15,16 +15,6 @@ export interface SearchablePostFeedProps {
 export const SearchablePostFeed: React.FunctionComponent<
   SearchablePostFeedProps
 > = ({ posts }) => {
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
-
-  useKeyPress('Escape', () => {
-    inputRef.current?.blur();
-  });
-
   const [searchValue, setSearchValue] = useState('');
 
   const filteredBlogPosts = posts
@@ -33,20 +23,13 @@ export const SearchablePostFeed: React.FunctionComponent<
     )
     .filter((post) => isPast(parseISO(post.publishedAt)));
 
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>
+    setSearchValue(e.currentTarget.value);
+
   return (
     <>
       <Section className="relative w-full">
-        <input
-          ref={inputRef}
-          aria-label="Search articles"
-          type="text"
-          onChange={(e) => setSearchValue(e.target.value)}
-          placeholder="Search articles"
-          className={cn(
-            'bg-white dark:bg-gray-800',
-            'block w-full px-4 py-2 text-gray-900 border border-gray-200 rounded-md dark:border-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:text-gray-100'
-          )}
-        />
+        <SearchInput value={searchValue} onChange={handleChange} />
         <SearchIcon />
       </Section>
       {!filteredBlogPosts.length && <P>No posts found.</P>}
