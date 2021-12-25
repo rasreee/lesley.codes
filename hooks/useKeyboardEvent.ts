@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { isBrowser } from 'lib/environment';
 import { DependencyList, RefObject, useMemo } from 'react';
 
-import { isBrowser } from '../lib/env';
 import { useEventListener } from './useEventListener';
 import { useSyncedRef } from './useSyncedRef';
 

@@ -37,9 +37,6 @@ const BlogRoute = (props: PostPageProps): JSX.Element => {
   return <BlogPostPage {...props} />;
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-type EmptyObject = {};
-
 /**
  * Params must be either an empty object or of type { slugs: string[] }
  * where slugs has exactly one item.

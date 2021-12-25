@@ -1,3 +1,4 @@
+import { useIsMounted } from 'hooks/useIsMounted';
 import { useTheme } from 'next-themes';
 import React from 'react';
 
@@ -6,16 +7,11 @@ import React from 'react';
  * https://github.com/narative/gatsby-theme-novela/blob/master/%40narative/gatsby-theme-novela/src/components/Navigation/Navigation.Header.tsx
  */
 
-const ThemeSwitch = () => {
-  const [mounted, setMounted] = React.useState(false);
+export const ThemeSwitch = () => {
+  const isMounted = useIsMounted();
   const { theme, setTheme } = useTheme();
 
-  // After mounting, we have access to the theme
-  React.useEffect(() => setMounted(true), []);
-
-  if (!mounted) {
-    return null;
-  }
+  if (!isMounted) return null;
 
   const isDark = theme === 'dark';
   const color = isDark ? '#fff' : '#000';
@@ -103,5 +99,3 @@ const ThemeSwitch = () => {
     </button>
   );
 };
-
-export default ThemeSwitch;

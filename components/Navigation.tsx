@@ -28,7 +28,7 @@ export interface NavItemProps {
   children: ReactNode;
 }
 
-function NavItem({ href, children }: NavItemProps) {
+export function NavItem({ href, children }: NavItemProps) {
   const router = useRouter();
   const routeName = getRouteName(href);
   const navName = getRouteName(router.pathname);
@@ -59,7 +59,7 @@ export interface NavigationProps {
 /**
  * Renders the top navigation bar given a list of NavItemProps.
  */
-const Navigation = ({
+export const Navigation = ({
   navItemProps = defaultNavItemProps,
 }: NavigationProps) => {
   return (
@@ -70,5 +70,3 @@ const Navigation = ({
     </nav>
   );
 };
-
-export default Navigation;

@@ -3,8 +3,8 @@ import { MetaProps } from 'lib/layout';
 import React from 'react';
 
 import Head from './Head';
-import Navigation from './Navigation';
-import ThemeSwitch from './ThemeSwitch';
+import { Navigation } from './Navigation';
+import { ThemeSwitch } from './ThemeSwitch';
 
 type LayoutProps = {
   children: React.ReactNode;

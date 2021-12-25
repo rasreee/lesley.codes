@@ -3,7 +3,7 @@ import { useAutoFocus } from 'hooks/useAutoFocus';
 import { cn } from 'lib/classnames';
 import React, { ChangeEventHandler, useRef, useState } from 'react';
 
-export const MIN_SEARCH_QUERY_LENGTH = 4;
+const MIN_SEARCH_QUERY_LENGTH = 4;
 
 export interface SearchInputProps {
   value: string;
@@ -41,7 +41,11 @@ export const SearchInput: React.FunctionComponent<SearchInputProps> = ({
       placeholder="Search articles"
       className={cn(
         'bg-white dark:bg-gray-800',
-        'block w-full px-4 py-2 text-gray-900 border border-gray-200 rounded-md dark:border-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:text-gray-100'
+        'border border-gray-200 dark:border-gray-900 focus:ring-blue-500 focus:border-blue-500',
+        'w-full',
+        'text',
+        'rounded-md',
+        'px-4 py-2'
       )}
     />
   );

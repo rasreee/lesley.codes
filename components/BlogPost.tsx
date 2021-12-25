@@ -45,10 +45,6 @@ export const BlogPost: React.FunctionComponent<BlogPostProps> = ({
           <DateFormatter dateString={frontMatter.publishedAt} />
         </P>
         <Tags tags={frontMatter.tags} />
-        {/* TODO: Implement reading time */}
-        {/* <P>{frontMatter.readingTime.minutes.toString()}</P> */}
-        {/* TODO: Implement post views */}
-        {/* <P>{views.count}{' views'}</P> */}
       </section>
       <section className="prose dark:prose-dark mt-8">
         <MDXRemote {...source} components={components} />

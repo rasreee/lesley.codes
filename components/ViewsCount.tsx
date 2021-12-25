@@ -1,7 +1,7 @@
 import { useContentMeta } from 'db/contents';
 import { useEffect } from 'react';
 
-export const ViewsCounter = ({ slug }: { slug: string }) => {
+export const ViewsCount = ({ slug }: { slug: string }) => {
   const { data, error, loading } = useContentMeta(slug);
 
   useEffect(() => {

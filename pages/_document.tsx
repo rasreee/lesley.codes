@@ -7,7 +7,7 @@ class MyDocument extends Document {
         <Head>
           <script
             src="https://magic-dance-super.lesley.codes/script.js"
-            data-site="RHTPRGTN"
+            data-site={process.env.NEXT_PUBLIC_FATHOM_SITE_ID}
             data-canonical="false"
             defer
           ></script>

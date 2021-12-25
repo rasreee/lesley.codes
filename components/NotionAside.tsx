@@ -1,16 +1,13 @@
 import { cn } from 'lib/classnames';
+import { Emojis } from 'lib/emojis';
 import React from 'react';
-
-export const Emojis = {
-  Exclamation: '💡',
-};
 
 export interface NotionAsideProps {
   children: string;
 }
 
 /**
- * TODO: Fix Notion block rendering of children (i.e. links in text)
+ * TODO: Fix Notion block parsing & rendering of children (i.e. links in text)
  */
 export const NotionAside: React.FunctionComponent<NotionAsideProps> = ({
   children,
@@ -26,7 +23,7 @@ export const NotionAside: React.FunctionComponent<NotionAsideProps> = ({
       )}
     >
       {Emojis.Exclamation}
-      <div className={cn('pr-2')}>{children}</div>
+      <div className="pr-2">{children}</div>
     </aside>
   );
 };
