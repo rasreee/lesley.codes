@@ -1,9 +1,10 @@
 import { mockSearchHits } from './mocks';
 import { SearchHit } from './SearchHit';
 
-const allData = mockSearchHits;
-
-export function getSearchHitsForQuery(query: string): Promise<SearchHit[]> {
+export function getSearchHitsForQuery(
+  query: string,
+  allData = mockSearchHits
+): Promise<SearchHit[]> {
   if (!query) return Promise.resolve([]);
 
   let hits = [] as SearchHit[];
