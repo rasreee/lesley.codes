@@ -139,17 +139,122 @@ interface ModalProps {
 ... and here's the initial implementation of the React component:
 
 ```tsx
-const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
+export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return <div>{children}</div>;
 };
-
-export default Modal;
 ```
 
-Let's create another component that uses this Modal component and render it as one of the children for SearchModalProvider:
-
+Let's create another component that uses Modal called SearchModal. SearchModal can just require the same props as ModalProps except for children.
 ```tsx
+type SearchModalProps = Omit<ModalProps, 'children'>;
 
+const SearchModal = (props: SearchModalProps) => {
+  return (
+    <Modal {...props}>
+      <h1>Search Modal</h1>
+    </Modal>
+  );
+};
 ```
+Now, we can render SearchModal as one of the children for SearchModalProvider, like so:
+```tsx
+<SearchModalContext.Provider value={{ isOpen, open, close }}>
+  {children}
+  <SearchModal isOpen={isOpen} onClose={close} />
+</SearchModalContext.Provider>
+```
+
+SearchModalProvider will now handle rendering of the search modal based on its visibility state.
+
+### Modal: Basic Functionality
+
+Let's implement some more basic functionality for the Modal before moving onto the Search-related components.
+
+We want the Modal to be hidden when the user clicks outside of the modal while it is open. We can do this easily with react hooks and refs.
+There are various NPM packages to choose from to listen to "click outside" DOM events using React hooks. My current favorite package for this is the @react-hookz/web package due to its bundle size and extensibility.
+Feel free to install it or fork its implementation like I did by taking the necessary source code for the useClickOutside hook.
+
+Add the following logic to the Modal:
+```tsx
+const ref = useRef<HTMLDivElement | null>(null);
+
+useClickOutside(ref, onClose);
+
+return <div ref={ref}>{children}</div>;
+```
+
+Make sure and test whether clicking outside the opened Modal component triggers the modal hidden. Before moving on.
+
+Finally, we want the modal to be hidden when pressing the Escape key. We can follow a similar approach as before with a useKeyPress hook which wraps @react-hookz/web's useKeyboardEvent hook and listens for a given keyboard events.
+```ts
+export enum EventKeys {
+  ARROW_DOWN = 'ArrowDown',
+  ARROW_UP = 'ArrowUp',
+  ARROW_RIGHT = 'ArrowRight',
+  ENTER = 'Enter',
+  SPACE = 'Space',
+  TAB = 'Tab',
+  BACKSPACE = 'Backspace',
+  CONTROL = 'Control',
+  META = 'Meta',
+  HOME = 'Home',
+  END = 'End',
+  PAGE_DOWN = 'PageDown',
+  DELETE = 'Delete',
+  ESCAPE = 'Escape',
+  SHIFT = 'Shift',
+}
+
+export function useKeyPress(key: EventKeys, callback: () => void) {
+  useKeyboardEvent(
+    true,
+    (e) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      e.key === key && callback();
+    },
+    [],
+    {
+      eventOptions: {
+        passive: true,
+      },
+    }
+  );
+}
+```
+
+The EventKeys enum can be imported by the useKeyPress's client to make sure the correct key event is specified, like so:
+```ts
+useKeyPress(EventKeys.ESCAPE, onClose);
+```
+(You can add this to our Modal component to wrap up this section).
+
+### Modal: Basic Styling
+
+Let's add some basic styling to the Modal component using Emotion. I recommend referring to Emotion's documentation if you aren't familiar with styled JSX syntax. If you have used Styled Components before, styling with Emotion should feel straightforward.
+
+One common practice when using a styling framework like Emotion/Styled Components is to keep all the styles in one file and the React component in another where those styles will be imported.
+
+Here's how I did it:
+```tsx
+import * as S from './styles';
+
+export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
+
+  return (
+    <S.Backdrop>
+      <S.Container ref={ref}>{children}</S.Container>
+    </S.Backdrop>
+  );
+};
+```
+
+### SearchModal: ⌘K Hotkey
+Let's implement the hotkey logic for opening the modal when ⌘K is pressed.
+
+### SearchModal: Basic Composition
+
+Let's scaffold the search bar and search dropdown components within SearchModal.
+
+

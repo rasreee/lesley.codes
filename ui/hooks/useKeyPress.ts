@@ -1,24 +1,22 @@
 import { useKeyboardEvent } from './useKeyboardEvent';
 
-export type EventKeys =
-  | 'ArrowDown'
-  | 'ArrowUp'
-  | 'ArrowLeft'
-  | 'ArrowRight'
-  | 'Enter'
-  | 'Space'
-  | 'Tab'
-  | 'Backspace'
-  | 'Control'
-  | 'Meta'
-  | 'Home'
-  | 'End'
-  | 'PageDown'
-  | 'PageUp'
-  | 'Delete'
-  | 'Escape'
-  | ' '
-  | 'Shift';
+export enum EventKeys {
+  ARROW_DOWN = 'ArrowDown',
+  ARROW_UP = 'ArrowUp',
+  ARROW_RIGHT = 'ArrowRight',
+  ENTER = 'Enter',
+  SPACE = 'Space',
+  TAB = 'Tab',
+  BACKSPACE = 'Backspace',
+  CONTROL = 'Control',
+  META = 'Meta',
+  HOME = 'Home',
+  END = 'End',
+  PAGE_DOWN = 'PageDown',
+  DELETE = 'Delete',
+  ESCAPE = 'Escape',
+  SHIFT = 'Shift',
+}
 
 export function useKeyPress(key: EventKeys, callback: () => void) {
   useKeyboardEvent(

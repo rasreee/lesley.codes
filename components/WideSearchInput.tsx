@@ -5,12 +5,12 @@ import React, { ChangeEventHandler, useEffect, useRef } from 'react';
 
 const MIN_QUERY_LENGTH = 3;
 
-export interface SearchInputProps {
+export interface WideSearchInputProps {
   query: string;
   onChange: (value: string) => void;
 }
 
-export const SearchInput = (props: SearchInputProps) => {
+export const WideSearchInput = (props: WideSearchInputProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useAutoFocus(inputRef);

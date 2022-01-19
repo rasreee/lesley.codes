@@ -1,5 +1,8 @@
 import { useClickOutside } from '@ui/hooks/useClickOutside';
+import { EventKeys, useKeyPress } from '@ui/hooks/useKeyPress';
 import React, { FC, ReactNode, useRef } from 'react';
+
+import * as S from './styles';
 
 export interface ModalProps {
   /**
@@ -19,12 +22,15 @@ export interface ModalProps {
 export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
-  useClickOutside(ref, () => {
-    console.log('👈 clicked outside');
-    onClose();
-  });
+  useClickOutside(ref, onClose);
+
+  useKeyPress(EventKeys.ESCAPE, onClose);
 
   if (!isOpen) return null;
 
-  return <div ref={ref}>{children}</div>;
+  return (
+    <S.Backdrop>
+      <S.Container ref={ref}>{children}</S.Container>
+    </S.Backdrop>
+  );
 };
