@@ -15,7 +15,7 @@ export function PostsSearch() {
 
   const { hits, query, setQuery } = useSearch({ allData: allPosts ?? [] });
 
-  if (typeof error !== 'undefined') return <ErrorMessage>{error.message}</ErrorMessage>;
+  if (error) return <ErrorMessage>{error.message}</ErrorMessage>;
 
   if (typeof allPosts === 'undefined') return <div>Loading...</div>;
 
