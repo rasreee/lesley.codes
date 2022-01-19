@@ -1,25 +1,29 @@
-import { isProduction } from './environment';
-
-const DefaultRoutes = [
-  {
-    title: 'Home',
-    path: '/'
-  },
-  {
-    title: 'Blog',
-    path: '/posts'
-  }
-];
-
-const DevRoutes = [...DefaultRoutes];
-
-export const routes = isProduction() ? DefaultRoutes : DevRoutes;
-
 export const Routes = {
   HOME: '/',
-  BLOG: '/posts',
+  POSTS: '/posts',
   POST: '/post/[slug]'
-};
+} as const;
+
+export const RouteNames = {
+  HOME: 'Home',
+  POSTS: 'Blog',
+  POST: 'Blog'
+} as const;
+
+export const routes = [
+  {
+    title: RouteNames.HOME,
+    path: Routes.HOME
+  },
+  {
+    title: RouteNames.POSTS,
+    path: Routes.POSTS
+  },
+  {
+    title: RouteNames.POST,
+    path: Routes.POST
+  }
+];
 
 export const ApiRoutes = {
   CONTENTS: '/api/contents',
