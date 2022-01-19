@@ -1,5 +1,5 @@
+import { generateMockSearchHit } from './generateMockSearchHit';
 import { getSearchHitsForQuery } from './getSearchHitsForQuery';
-import { generateMockSearchHit } from './mocks';
 import { SearchHit } from './SearchHit';
 
 /**

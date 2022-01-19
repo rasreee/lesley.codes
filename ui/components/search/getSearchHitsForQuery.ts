@@ -1,9 +1,9 @@
-import { mockSearchHits } from './mocks';
+import searchDataFixture from './searchDataFixture';
 import { SearchHit } from './SearchHit';
 
 export function getSearchHitsForQuery(
   query: string,
-  allData = mockSearchHits
+  allData = searchDataFixture
 ): Promise<SearchHit[]> {
   if (!query) return Promise.resolve([]);
 
