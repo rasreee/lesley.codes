@@ -1,5 +1,6 @@
+import { getOrCreateContentMeta } from '@db/contents/getOrCreateContentMeta';
 import { supabase } from '@lib/supabase';
-import { ContentMeta, getContentMeta } from 'db/contents';
+import { ContentMeta } from '@models/contents';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -10,7 +11,7 @@ export default async function handler(
     const slug = req.query.slug.toString();
 
     if (req.method === 'POST') {
-      const contentMeta = await getContentMeta(slug)(supabase);
+      const contentMeta = await getOrCreateContentMeta(slug)(supabase);
 
       if (!contentMeta) {
         return res
@@ -38,7 +39,7 @@ export default async function handler(
 
     if (req.method === 'GET') {
       try {
-        const contentMeta = await getContentMeta(slug)(supabase);
+        const contentMeta = await getOrCreateContentMeta(slug)(supabase);
 
         return res.status(200).json({ contentMeta });
       } catch (err) {

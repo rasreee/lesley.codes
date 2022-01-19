@@ -1,7 +1,7 @@
+import { useRegisterPostView } from '@db/contents/useRegisterPostView';
 import { WEBSITE_HOST_URL } from '@lib/appConfig';
 import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
 import { MetaProps } from '@lib/layout';
-import { useRegisterPostView } from 'db/contents';
 import { useRouter } from 'next/router';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { ParsedUrlQuery } from 'querystring';
