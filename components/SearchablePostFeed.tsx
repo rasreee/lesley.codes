@@ -2,13 +2,14 @@ import { isPast, parseISO } from 'date-fns';
 import { useAutoFocus } from 'hooks/useAutoFocus';
 import { useDebouncedState } from 'hooks/useDebouncedState';
 import { BlogFrontmatterWithSlug } from 'lib/frontmatter';
-import React, { ChangeEventHandler, useEffect, useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 
 import { PostFeed } from './PostFeed';
 import { SearchIcon } from './SearchIcon';
 import { SearchInput } from './SearchInput';
 import { Section } from './Section';
 import { P } from './Typography';
+
 interface SearchablePostFeedProps {
   posts: BlogFrontmatterWithSlug[];
 }
@@ -28,23 +29,14 @@ export const SearchablePostFeed: React.FunctionComponent<
     [posts, query]
   );
 
-  useEffect(() => {
-    console.log(`Query: `, query);
-  }, [query]);
-
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useAutoFocus(inputRef);
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const newValue = event.currentTarget.value;
-    setQuery(newValue);
-  };
-
   return (
     <>
       <Section className="relative w-full">
-        <SearchInput ref={inputRef} onChange={handleChange} />
+        <SearchInput ref={inputRef} query={query} onChange={setQuery} />
         <SearchIcon className="absolute right-3 top-[1.125rem]" />
       </Section>
       {!filteredBlogPosts.length && <P>No posts found.</P>}

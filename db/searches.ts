@@ -5,23 +5,49 @@ export type Search = {
   count: number;
 };
 
-export const registerSearch = async (query: string) => {
+export const registerSearch = async (query: string): Promise<Search> => {
   console.log('Registering search query: ', query);
 
   /* Check if search entry exists for query */
-  const { data, error } = await supabase
+  const { error: findError, count } = await supabase
     .from<Search>('searches')
     .select('*')
     .eq('query', query)
-    .maybeSingle();
+    .limit(1);
 
-  if (error) throw error;
+  if (findError) throw findError;
 
-  if (data) {
-    await supabase.from<Search>('searches').update({ count: data.count + 1 });
+  /* Update existing data if found */
+  if (count) {
+    const { data: updateData, error: updateError } = await supabase
+      .from<Search>('searches')
+      .update({ count: count + 1 })
+      .maybeSingle();
 
-    return;
+    if (updateError) throw updateError;
+
+    if (!updateData) {
+      throw new Error(
+        'Expected data to be defined after upserting search data with no error'
+      );
+    }
+
+    return updateData;
   }
 
-  await supabase.from<Search>('searches').upsert({ query });
+  /* Create new search entry row */
+  const { data: upsertData, error: upsertError } = await supabase
+    .from<Search>('searches')
+    .upsert({ query })
+    .maybeSingle();
+
+  if (upsertError) throw upsertError;
+
+  if (!upsertData) {
+    throw new Error(
+      'Expected data to be defined after upserting search data with no error'
+    );
+  }
+
+  return upsertData;
 };

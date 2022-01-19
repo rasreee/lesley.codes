@@ -1,19 +1,35 @@
+import { registerSearch } from 'db/searches';
 import { cn } from 'lib/classnames';
-import React, { forwardRef, InputHTMLAttributes, Ref } from 'react';
+import React, { ChangeEventHandler, forwardRef, Ref, useEffect } from 'react';
+
+const MIN_QUERY_LENGTH = 3;
 
 export interface SearchInputProps {
-  value: string;
+  query: string;
   onChange: (value: string) => void;
 }
 
 export const SearchInput = forwardRef(
-  (
-    props: InputHTMLAttributes<HTMLInputElement>,
-    ref: Ref<HTMLInputElement>
-  ) => {
+  (props: SearchInputProps, ref: Ref<HTMLInputElement>) => {
+    const { query, onChange } = props;
+
+    useEffect(() => {
+      if (query.length < MIN_QUERY_LENGTH) return;
+
+      registerSearch(query).then((response) =>
+        console.log('🔍 Registered search: ', response)
+      );
+    }, [query]);
+
+    const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+      const newValue = event.currentTarget.value;
+      onChange(newValue);
+    };
+
     return (
       <input
         ref={ref}
+        onChange={handleChange}
         aria-label="Search articles"
         type="text"
         placeholder="Search articles"
@@ -25,7 +41,6 @@ export const SearchInput = forwardRef(
           'rounded-md',
           'px-4 py-2'
         )}
-        {...props}
       />
     );
   }
