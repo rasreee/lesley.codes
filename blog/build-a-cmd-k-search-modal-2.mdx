@@ -297,10 +297,11 @@ Now all that's left is the core search functionality for when the modal is visib
 
 Let's scaffold the search bar and search dropdown components within SearchModal.
 SearchBar will render the input field UI, and SearchDropdown will render the search results UI.
+
 Compose SearchModal with these two components like so:
 ```tsx
 <Modal {...props}>
-  <SearchBar />
-  <SearchDropdown />
+  <SearchBar query={query} onQueryChange={setQuery} />
+  <SearchDropdown data={mockSearchHits} />
 </Modal>
 ```
