@@ -16,7 +16,6 @@ const Providers = ({ children }) => {
 };
 
 const customRender = (ui, options = {}) =>
-  //@ts-expect-error
   render(ui, { wrapper: Providers, ...options });
 
 // re-export everything
