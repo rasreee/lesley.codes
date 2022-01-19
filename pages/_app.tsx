@@ -3,26 +3,17 @@ import '@styles/global.css';
 import Layout from '@components/Layout';
 import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import { useAnalytics } from '@lib/analytics';
-import { fetcher } from '@lib/fetcher';
 import GlobalStyles from '@styles/GlobalStyles';
 import { theme } from '@styles/theme';
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
-import { SWRConfig, SWRConfiguration } from 'swr';
-
-const defaultSWRConfig: SWRConfiguration = {
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false
-};
 
 const Shell = ({ children }) => {
   return (
     <ThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">
       <EmotionThemeProvider theme={theme}>
         <GlobalStyles />
-        <Layout>
-          <SWRConfig value={{ fetcher, ...defaultSWRConfig }}>{children}</SWRConfig>
-        </Layout>
+        <Layout>{children}</Layout>
       </EmotionThemeProvider>
     </ThemeProvider>
   );

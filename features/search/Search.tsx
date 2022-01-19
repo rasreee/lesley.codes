@@ -10,10 +10,9 @@ export interface SearchProps extends Omit<SearchComponentProps, 'allData'> {
 function Search({ apiEndpoint, renderHit, onHitClick }: SearchProps) {
   const allDataQuery = useQuery<SearchData[]>(`${apiEndpoint}`);
 
-  if (allDataQuery.status === 'error')
-    return <ErrorMessage>{allDataQuery.error.message}</ErrorMessage>;
+  if (allDataQuery.isLoading) return <div>Loading...</div>;
 
-  if (allDataQuery.status === 'loading') return <div>Loading...</div>;
+  if (allDataQuery.error) return <ErrorMessage>{allDataQuery.error.message}</ErrorMessage>;
 
   const allData: SearchData[] = allDataQuery.data;
 

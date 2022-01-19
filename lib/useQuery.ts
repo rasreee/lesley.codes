@@ -1,15 +1,16 @@
-import useSWR, { SWRResponse } from 'swr';
+import useSWR, { SWRConfiguration, SWRResponse } from 'swr';
+
+import { fetcher } from './fetcher';
 
 export type QueryStatus = 'loading' | 'error' | 'success';
 
-interface BaseQueryResult<TData, TError> extends SWRResponse<TData | null, TError | null> {
-  isLoading: boolean;
-  status: QueryStatus;
+interface BaseQueryResult<TData, TError> {
+  mutate: SWRResponse<TData, TError>['mutate'];
 }
 
 export interface UseQueryLoadingResult<TData, TError> extends BaseQueryResult<TData, TError> {
   data: undefined;
-  error: null;
+  error: undefined;
   isLoading: true;
   status: 'loading';
 }
@@ -37,23 +38,39 @@ export interface IQueryError {
   message: string;
 }
 
+const defaultSWRConfig: SWRConfiguration = {
+  revalidateOnFocus: false,
+  revalidateOnReconnect: false
+};
+
+const isSWRLoading = ({ data, error }: SWRResponse) =>
+  typeof data === 'undefined' && typeof error === 'undefined';
+
 export function useQuery<TData, TError extends IQueryError = IQueryError>(
   query: string | Falsy
 ): UseQueryResult<TData, TError> {
-  const swr = useSWR<TData | null, TError | null>(query);
-  const { data, error } = swr;
+  const swr = useSWR<TData, TError>(query, fetcher, defaultSWRConfig);
 
-  const isLoading = typeof data === 'undefined' && typeof error === 'undefined';
+  const { data, error, mutate } = swr;
 
-  let status: QueryStatus = 'success';
+  let state: Pick<
+    UseQueryResult<TData, TError>,
+    'data' | 'error' | 'mutate' | 'isLoading' | 'status'
+  > = {
+    data: undefined,
+    error: undefined,
+    mutate,
+    isLoading: true,
+    status: 'loading'
+  };
 
-  if (typeof error !== 'undefined') {
-    status = 'error';
+  if (!isSWRLoading(swr)) {
+    if (error) {
+      state = { data: null, error, mutate, isLoading: false, status: 'error' };
+    } else if (data) {
+      state = { data, error: null, mutate, isLoading: false, status: 'success' };
+    }
   }
 
-  if (typeof data === 'undefined') {
-    status = 'loading';
-  }
-
-  return { isLoading, status, ...swr } as UseQueryResult<TData, TError>;
+  return { ...swr, ...state } as UseQueryResult<TData, TError>;
 }
