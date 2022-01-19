@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import { ReactNode } from 'react';
 
 export interface SearchResultsProps {
@@ -11,7 +10,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ items, renderHit, 
   const handleHitClick = (item: SearchData) => () => onHitClick(item);
 
   return (
-    <div className={classNames('flex gap-3 py-2 w-full relative', 'flex-col')}>
+    <div className={'flex flex-col gap-3 w-full relative my-3'}>
       <ul className={'flex flex-col gap-10'}>
         {items.map((item) => (
           <button
