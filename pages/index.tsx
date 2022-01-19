@@ -1,4 +1,3 @@
-import Layout from '@components/Layout';
 import { SearchablePostFeed } from '@components/SearchablePostFeed';
 import { Section } from '@components/Section';
 import { H1, P } from '@components/Typography';
@@ -15,7 +14,7 @@ type IndexProps = {
 
 const Index = ({ posts }: IndexProps): JSX.Element => {
   return (
-    <Layout>
+    <>
       <Section>
         <H1>{AppConfig.meta.title}</H1>
         <P>{AppConfig.meta.description}</P>
@@ -29,7 +28,7 @@ const Index = ({ posts }: IndexProps): JSX.Element => {
           <RightArrowIcon />
         </NextLink>
       </Section>
-    </Layout>
+    </>
   );
 };
 

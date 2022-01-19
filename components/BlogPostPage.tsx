@@ -7,7 +7,6 @@ import { ParsedUrlQuery } from 'querystring';
 import React from 'react';
 
 import { BlogPost } from './BlogPost';
-import Layout from './Layout';
 import Meta, { MetaProps } from './Meta';
 
 const getSlug = (query: ParsedUrlQuery) => {
@@ -39,9 +38,9 @@ export const BlogPostPage: React.FunctionComponent<BlogPostPageProps> = ({
   };
 
   return (
-    <Layout>
+    <>
       <Meta {...customMeta} />
       <BlogPost source={source} frontMatter={frontMatter} />
-    </Layout>
+    </>
   );
 };
