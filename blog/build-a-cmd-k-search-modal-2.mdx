@@ -277,7 +277,7 @@ const inputRef = useRef<HTMLInputElement | null>(null);
 
 /* Auto-focus input upon mounting */
 useEffect(() => {
-    inputRef.current?.focus();
+  inputRef.current?.focus();
 }, []);
 ```
 
@@ -298,7 +298,7 @@ export interface SearchHit {
 }
 ```
 
-#### Mocking Data using Faker
+#### Mocking Data Using Faker
 
 Now, let's mock search hit data based on this definition. I often use `faker` and `lodash.times` to generate mock data during development instead of using a pre-defined fixture to make things a bit more realistic. Don't forget to install @types/faker and @types/lodash.times for the type definitions if you want your IDE to help you out with autocompletion and whatnot.
 
@@ -310,7 +310,7 @@ yarn add -D faker@5.5.3 @types/faker@5.5.3 lodash.times @types/lodash.times
 
 **IMPORTANT** Make sure to keep the faker@5.5.3 versionings because the author pulled a big petty and destroyed the versions after 5.5.3, so yeah.
 
-For now, you can generate any number of mocks; I created a function `generateMockSearchHits` that handles this:
+For now, you can generate any number of mocks; I created a function `generateMockSearchHits` that handles this for us:
 
 ```ts
 export const generateMockSearchHit = (index: number): SearchHit => ({
@@ -326,3 +326,4 @@ export const mockSearchHits = generateMockSearchHits();
 ```
 
 
+### Rendering Array of Search Hits
