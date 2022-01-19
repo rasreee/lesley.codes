@@ -15,7 +15,7 @@ type IndexProps = {
 
 const Index = ({ posts }: IndexProps): JSX.Element => {
   return (
-    <Layout meta={AppConfig.meta}>
+    <Layout>
       <Section>
         <H1>{AppConfig.meta.title}</H1>
         <P>{AppConfig.meta.description}</P>

@@ -2,6 +2,7 @@ import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
 import React from 'react';
 
 import Layout from './Layout';
+import Meta from './Meta';
 import { SearchablePostFeed } from './SearchablePostFeed';
 import { Section } from './Section';
 import { H1, P } from './Typography';
@@ -14,7 +15,8 @@ export const AllPostsPage: React.FunctionComponent<AllPostsPageProps> = ({
   posts,
 }) => {
   return (
-    <Layout meta={{ title: 'Blog' }}>
+    <Layout>
+      <Meta title="Blog" />
       <Section>
         <H1>{'Blog'}</H1>
         <P>

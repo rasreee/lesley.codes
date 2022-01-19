@@ -1,14 +1,7 @@
 import { isProduction } from './environment';
 import { getBasePath } from './utils/getBasePath';
 
-const DevOnlyRoutes = [
-  {
-    title: 'Playground',
-    path: '/playground',
-  },
-];
-
-const Routes = [
+const DefaultRoutes = [
   {
     title: 'Home',
     path: '/',
@@ -17,8 +10,17 @@ const Routes = [
     title: 'Blog',
     path: '/blog',
   },
-  ...(!isProduction() ? DevOnlyRoutes : []),
 ];
+
+const DevRoutes = [
+  ...DefaultRoutes,
+  {
+    title: 'Playground',
+    path: '/playground',
+  },
+];
+
+const Routes = isProduction() ? DefaultRoutes : DevRoutes;
 
 export { Routes };
 

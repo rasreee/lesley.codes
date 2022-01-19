@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import React from 'react';
 
-import Seo from './Layout/Seo';
+import Meta from './Meta';
 import { Tags } from './Tags';
 import { H2, P } from './Typography';
 
@@ -18,7 +18,7 @@ const components = {
   Head,
   Image,
   NotionAside,
-  Seo,
+  Meta,
 };
 
 export interface BlogPostProps {

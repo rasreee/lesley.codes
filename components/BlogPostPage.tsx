@@ -1,7 +1,6 @@
 import { useRegisterPostView } from '@db/contents/useRegisterPostView';
 import { WEBSITE_HOST_URL } from '@lib/appConfig';
 import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
-import { MetaProps } from '@lib/layout';
 import { useRouter } from 'next/router';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { ParsedUrlQuery } from 'querystring';
@@ -9,6 +8,7 @@ import React from 'react';
 
 import { BlogPost } from './BlogPost';
 import Layout from './Layout';
+import Meta, { MetaProps } from './Meta';
 
 const getSlug = (query: ParsedUrlQuery) => {
   if ('slug' in query) {
@@ -39,7 +39,8 @@ export const BlogPostPage: React.FunctionComponent<BlogPostPageProps> = ({
   };
 
   return (
-    <Layout meta={customMeta}>
+    <Layout>
+      <Meta {...customMeta} />
       <BlogPost source={source} frontMatter={frontMatter} />
     </Layout>
   );
