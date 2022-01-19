@@ -270,18 +270,15 @@ Compose SearchModal with these two components like so:
 
 ### Input Autofocus
 
-Let's make the input field autofocus upon mounting. Again, we can utilize React hooks in combination with a ref instance for the <input> HTML element, like so:
-```tsx
+Let's make the input field autofocus upon mounting. Again, we can utilize React hooks in combination with a ref instance for the input HTML element, like so:
+```ts
+/* Ref to pass to input element */
 const inputRef = useRef<HTMLInputElement | null>(null);
 
 /* Auto-focus input upon mounting */
 useEffect(() => {
     inputRef.current?.focus();
 }, []);
-
-return (
-  <input ref={inputRef} />
-)
 ```
 
 ### SearchDropdown: Rendering Search Results and Mocking Data

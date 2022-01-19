@@ -1,6 +1,6 @@
 import { MutableRefObject, useEffect } from 'react';
 
-import { useKeyPress } from './useKeyPress';
+import { EventKeys, useKeyPress } from './useKeyPress';
 
 export const useAutoFocus = (
   ref: MutableRefObject<HTMLInputElement | null>
@@ -9,7 +9,7 @@ export const useAutoFocus = (
     ref.current?.focus();
   }, []);
 
-  useKeyPress('Escape', () => {
+  useKeyPress(EventKeys.ESCAPE, () => {
     ref.current?.blur();
   });
 };
