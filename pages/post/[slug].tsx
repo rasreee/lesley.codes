@@ -8,13 +8,21 @@ import { usePostForSlug } from '@db/posts/usePost';
 import { AppConfig, WEBSITE_HOST_URL } from '@lib/appConfig';
 import { getSlugQueryParam } from '@ui/utils/getSlugQueryParam';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 const BlogPost = () => {
   const router = useRouter();
 
-  const { data: post, error } = usePostForSlug(getSlugQueryParam(router.query));
+  const [slug, setSlug] = useState('');
 
-  useRegisterPostView(getSlugQueryParam(router.query));
+  useEffect(() => {
+    if (!router.isReady) return;
+    setSlug(getSlugQueryParam(router.query));
+  }, [router.isReady, router.query]);
+
+  const { data: post, error } = usePostForSlug(slug);
+
+  useRegisterPostView(slug);
 
   const customMeta: MetaProps | undefined = post
     ? {

@@ -36,7 +36,7 @@ const createKeyPredicate = (keyFilter: IKeyboardEventFilter): IKeyboardEventPred
   return keyFilter ? yieldTrue : yieldFalse;
 };
 
-const WINDOW_OR_NULL = isBrowser ? window : null;
+const WINDOW_OR_NULL = isBrowser() ? window : null;
 
 /**
  * Executes callback when keyboard event occurred on target (window by default).
