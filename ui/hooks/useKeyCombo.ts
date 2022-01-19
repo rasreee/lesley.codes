@@ -3,7 +3,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { useKeyboardEvent } from './useKeyboardEvent';
 import { EventKeys } from './useKeyPress';
 
-export function useKeyCombo(combo: EventKeys[], callback: () => void) {
+export function useKeyCombo(
+  combo: (EventKeys | string)[],
+  callback: () => void
+) {
   const [keysPressed, setKeysPressed] = useState<string[]>([]);
 
   const pressedCombo = useMemo(

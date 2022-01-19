@@ -97,7 +97,7 @@ yarn add -D faker@5.5.3 @types/faker@5.5.3 lodash.times @types/lodash.times
 For now, you can generate any number of mocks; I created a function `generateMockSearchHits` that handles this:
 
 ```ts
-export const generateMockSearchHit = (index: number): SearchHitData => ({
+export const generateMockSearchHit = (index: number): SearchHit => ({
   id: index,
   title: faker.lorem.words(3),
   sourceUrl: faker.lorem.slug(),
@@ -251,10 +251,56 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
 ```
 
 ### SearchModal: ⌘K Hotkey
-Let's implement the hotkey logic for opening the modal when ⌘K is pressed.
+Let's implement the hotkey logic for opening the modal when ⌘K is pressed by creating a new hook called useKeyCombo to listen for sequences of keyboard events.
+```ts
+export function useKeyCombo(
+  combo: (EventKeys | string)[],
+  callback: () => void
+) {
+  const [keysPressed, setKeysPressed] = useState<string[]>([]);
+
+  const pressedCombo = useMemo(
+    () => (keysPressed.length ? keysPressed.join('+') : ''),
+    [keysPressed]
+  );
+
+  useKeyboardEvent(
+    true,
+    (e) => {
+      setKeysPressed((prev) => prev.slice(-5).concat([e.key]));
+    },
+    [],
+    {
+      eventOptions: {
+        passive: true,
+      },
+    }
+  );
+
+  useEffect(() => {
+    if (pressedCombo.includes(combo.join('+'))) {
+      callback();
+      setKeysPressed([]);
+    }
+  }, [keysPressed]);
+}
+```
+
+Then we can use the hook in SearchModal like so:
+```ts
+useKeyCombo([EventKeys.META, 'k'], onClose)
+```
+
+Now all that's left is the core search functionality for when the modal is visible.
 
 ### SearchModal: Basic Composition
 
 Let's scaffold the search bar and search dropdown components within SearchModal.
-
-
+SearchBar will render the input field UI, and SearchDropdown will render the search results UI.
+Compose SearchModal with these two components like so:
+```tsx
+<Modal {...props}>
+  <SearchBar />
+  <SearchDropdown />
+</Modal>
+```
