@@ -1,11 +1,11 @@
 import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
 import { useDebouncedState } from '@ui/hooks/useDebouncedState';
+import SearchIcon from '@ui/icons/SearchIcon';
 import isPast from 'date-fns/isPast';
 import parseISO from 'date-fns/parseISO';
 import React, { useMemo } from 'react';
 
 import { PostFeed } from './PostFeed';
-import { SearchIcon } from './SearchIcon';
 import { SearchInput } from './SearchInput';
 import { Section } from './Section';
 import { P } from './Typography';

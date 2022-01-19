@@ -1,11 +1,11 @@
 import Layout from '@components/Layout';
-import { NavLink } from '@components/NavLink';
 import { SearchablePostFeed } from '@components/SearchablePostFeed';
 import { Section } from '@components/Section';
 import { H1, P } from '@components/Typography';
 import { getAllPosts } from '@lib/api';
 import { AppConfig } from '@lib/appConfig';
 import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
+import NextLink from '@ui/components/NextLink';
 import RightArrowIcon from '@ui/icons/RightArrowIcon';
 import { GetStaticProps } from 'next';
 
@@ -24,10 +24,10 @@ const Index = ({ posts }: IndexProps): JSX.Element => {
         <SearchablePostFeed posts={posts} />
       </Section>
       <Section>
-        <NavLink href="/blog" className="flex mt-8">
+        <NextLink href="/blog" className="flex mt-8">
           Read all posts
           <RightArrowIcon />
-        </NavLink>
+        </NextLink>
       </Section>
     </Layout>
   );

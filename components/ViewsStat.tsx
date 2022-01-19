@@ -1,4 +1,5 @@
-import { EyeIcon } from './EyeIcon';
+import EyeIcon from '@ui/icons/EyeIcon';
+
 import { P } from './Typography';
 import { ViewsCount } from './ViewsCount';
 

@@ -1,8 +1,8 @@
 import { cn } from '@lib/classnames';
 import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
 import DateFormatter from '@ui/components/DateFormatter';
+import NextLink from '@ui/components/NextLink';
 
-import { NavLink } from './NavLink';
 import { Tags } from './Tags';
 import { H3, P } from './Typography';
 import { ViewsStat } from './ViewsStat';
@@ -11,7 +11,7 @@ export const BlogPostCard: React.FC<
   BlogFrontmatterWithSlug & { slug: string }
 > = ({ publishedAt, slug, title, description, tags }) => {
   return (
-    <NavLink href={`/blog/${slug}`}>
+    <NextLink href={`/blog/${slug}`}>
       <article
         className={cn('cursor-pointer', 'flex flex-col gap-3 justify-center')}
       >
@@ -29,6 +29,6 @@ export const BlogPostCard: React.FC<
           <ViewsStat slug={slug} />
         </section>
       </article>
-    </NavLink>
+    </NextLink>
   );
 };

@@ -1,9 +1,8 @@
 import { cn } from '@lib/classnames';
 import { RouteNames, Routes } from '@lib/navigation';
+import NextLink from '@ui/components/NextLink';
 import { useRouter } from 'next/router';
-import React, { ReactNode } from 'react';
-
-import { NavLink } from '../NavLink';
+import { ReactNode } from 'react';
 
 const capitalizeFirstLetter = (text: string): string => {
   const firstLetter = text[0];
@@ -23,12 +22,12 @@ const getRouteName = (pathname: string) => {
   );
 };
 
-export interface NavItemProps {
+interface NavItemProps {
   href: string;
   children: ReactNode;
 }
 
-export function NavItem({ href, children }: NavItemProps) {
+function NavItem({ href, children }: NavItemProps) {
   const router = useRouter();
   const routeName = getRouteName(href);
   const navName = getRouteName(router.pathname);
@@ -36,9 +35,9 @@ export function NavItem({ href, children }: NavItemProps) {
   const isActive = routeName === navName;
 
   return (
-    <NavLink href={href} className={cn(isActive ? 'text' : 'text-hint')}>
+    <NextLink href={href} className={cn(isActive ? 'text' : 'text-hint')}>
       <span className="capsize">{children}</span>
-    </NavLink>
+    </NextLink>
   );
 }
 
@@ -49,7 +48,7 @@ const defaultNavItemProps: NavItemProps[] = Object.keys(RouteNames).map(
   })
 );
 
-export interface NavigationProps {
+interface NavigationProps {
   /**
    * Optional list of NavItem props to map over.
    */

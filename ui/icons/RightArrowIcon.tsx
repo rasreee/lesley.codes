@@ -1,10 +1,13 @@
-const RightArrowIcon = () => {
+import { SVGProps } from 'react';
+
+const RightArrowIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      className="h-6 w-6 ml-1"
+      className={[className, ''].join(' ')}
+      {...props}
     >
       <path
         stroke="currentColor"

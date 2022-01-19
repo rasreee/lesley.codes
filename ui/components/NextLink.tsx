@@ -1,13 +1,12 @@
 import Link from 'next/link';
-import React from 'react';
 
-import { Anchor, AnchorProps } from './Anchor';
+import Anchor, { AnchorProps } from './Anchor';
 
-export interface NavLinkProps extends AnchorProps {
+interface NextLinkProps extends AnchorProps {
   href: string;
 }
 
-export const NavLink: React.FunctionComponent<NavLinkProps> = ({
+const NextLink: React.FunctionComponent<NextLinkProps> = ({
   href,
   children,
   ...props
@@ -18,3 +17,5 @@ export const NavLink: React.FunctionComponent<NavLinkProps> = ({
     </Link>
   );
 };
+
+export default NextLink;
