@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { SVGProps } from 'react';
 
 const EyeIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => {
@@ -8,7 +9,7 @@ const EyeIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      className={[className, 'h-[1.25em] w-[1.25em]'].join(' ')}
+      className={classNames(className, 'h-[1.25rem] w-[1.25rem]')}
     >
       <path
         strokeLinecap="round"

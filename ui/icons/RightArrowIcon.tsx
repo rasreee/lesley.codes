@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { SVGProps } from 'react';
 
 const RightArrowIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => {
@@ -6,7 +7,7 @@ const RightArrowIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      className={[className, ''].join(' ')}
+      className={classNames(className, 'h-[1.25rem] w-[1.25rem]')}
       {...props}
     >
       <path

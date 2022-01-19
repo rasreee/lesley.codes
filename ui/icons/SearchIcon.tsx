@@ -1,12 +1,11 @@
+import classNames from 'classnames';
 import { SVGProps } from 'react';
 
 const SearchIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       {...props}
-      className={[className, 'w-5 h-5 text-gray-400 dark:text-gray-300'].join(
-        ' '
-      )}
+      className={classNames(className, 'h-[1.25rem] w-[1.25rem]')}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
