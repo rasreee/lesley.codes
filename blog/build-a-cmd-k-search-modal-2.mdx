@@ -258,13 +258,13 @@ Now all that's left is the core search functionality for when the modal is visib
 ## 🌙 SearchModal: Composition
 
 Let's scaffold the search bar and search dropdown components within SearchModal.
-SearchBar will render the input field UI, and SearchDropdown will render the search results UI.
+SearchBar will render the input field UI, and SearchResults will render the search results UI.
 
 Compose SearchModal with these two components like so:
 ```tsx
 <Modal {...props}>
   <SearchBar query={query} onQueryChange={setQuery} />
-  <SearchDropdown data={mockSearchHits} />
+  <SearchResults data={mockSearchResultDatas} />
 </Modal>
 ```
 
@@ -283,14 +283,14 @@ useEffect(() => {
 }, []);
 ```
 
-### 🥞 SearchDropdown
+### 🥞 SearchResults
 
 #### Data Model
 
 At some point we will want to know what the data looks like for the search results. Let's define a typescript interface that represents the data for a search hit:
 
 ```ts
-export interface SearchHit {
+export interface SearchResultData {
   /* Unique integer ID */
   id: number;
   /* Title for the search hit to present to the user */
@@ -312,19 +312,19 @@ yarn add -D faker@5.5.3 @types/faker@5.5.3 lodash.times @types/lodash.times
 
 **IMPORTANT** Make sure to keep the faker@5.5.3 versionings because the author pulled a big petty and destroyed the versions after 5.5.3, so yeah.
 
-For now, you can generate any number of mocks; I created a function `generateMockSearchHits` that handles this for us:
+For now, you can generate any number of mocks; I created a function `generateMockSearchResultDatas` that handles this for us:
 
 ```ts
-export const generateMockSearchHit = (index: number): SearchHit => ({
+export const generateMockSearchResultData = (index: number): SearchResultData => ({
   id: index,
   title: faker.lorem.words(3),
   sourceUrl: faker.lorem.slug(),
 });
 
-export const generateMockSearchHits = (n = 30) =>
-  times(n, generateMockSearchHit);
+export const generateMockSearchResultDatas = (n = 30) =>
+  times(n, generateMockSearchResultData);
 
-export const mockSearchHits = generateMockSearchHits();
+export const mockSearchResultDatas = generateMockSearchResultDatas();
 ```
 
 #### Rendering Array of Data in React
@@ -333,7 +333,7 @@ When mapping over an array to render elements in React, you must pass a key prop
 
 ```tsx
 <ul>
-  {data.map((searchHit: SearchHit) => (
+  {data.map((searchHit: SearchResultData) => (
     <li key={searchHit.id}><a href={searchHit.sourceUrl}>{searchHit.title}</a></li>
   ))}
 </ul>
@@ -343,7 +343,7 @@ When mapping over an array to render elements in React, you must pass a key prop
 
 For the final step, we'll be implementing logic for updating the UI as soon as the query state changes and basic filtering of the data for a given query.
 
-Let's define a function called getSearchHitsForQuery which will be passed a `query` string argument and return a `Promise` of an array of SearchHit's, and implement it so that it filters the list of search hits for the given query string. I implemented a naive filtering algorithm for this to maintain focus in this blog post, but you can replace this logic with any logic you'd like.
+Let's define a function called getSearchResultsForQuery which will be passed a `query` string argument and return a `Promise` of an array of SearchResultData's, and implement it so that it filters the list of search hits for the given query string. I implemented a naive filtering algorithm for this to maintain focus in this blog post, but you can replace this logic with any logic you'd like.
 
 ## Conclusion
 

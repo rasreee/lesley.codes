@@ -1,11 +1,11 @@
 import faker from 'faker';
 
-import { SearchHit } from '../search/SearchHit';
+import { SearchResultData } from '../search/SearchResultData';
 
-export const generateMockSearchHit = (
+export const generateMockSearchResultData = (
   index: number,
-  _initialData?: Partial<SearchHit>
-): SearchHit => {
+  _initialData?: Partial<SearchResultData>
+): SearchResultData => {
   const initialData = _initialData ?? {};
   return {
     id: index,

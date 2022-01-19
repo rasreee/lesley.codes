@@ -1,25 +1,25 @@
 import { Modal, ModalProps } from '@ui/components/Modal';
 import { useEffect, useState } from 'react';
 
-import { getSearchHitsForQuery } from './getSearchHitsForQuery';
+import { getSearchResultsForQuery } from './getSearchResultsForQuery';
 import SearchBar from './SearchBar';
-import SearchDropdown from './SearchDropdown';
-import { SearchHit } from './SearchHit';
+import { SearchResultData } from './SearchResultData';
+import SearchResults from './SearchResults';
 
 type SearchModalProps = Omit<ModalProps, 'children'>;
 
 const SearchModal = (props: SearchModalProps) => {
   const [query, setQuery] = useState('');
-  const [hits, setHits] = useState<SearchHit[]>([]);
+  const [hits, setHits] = useState<SearchResultData[]>([]);
 
   useEffect(() => {
-    getSearchHitsForQuery(query).then(setHits);
+    getSearchResultsForQuery(query).then(setHits);
   }, [query]);
 
   return (
     <Modal {...props}>
       <SearchBar query={query} onQueryChange={setQuery} />
-      <SearchDropdown data={hits} />
+      <SearchResults data={hits} />
     </Modal>
   );
 };

@@ -1,4 +1,4 @@
-export interface SearchHit {
+export interface SearchResultData {
   /* Unique integer ID */
   id: number;
   /* Title for the search hit to present to the user */

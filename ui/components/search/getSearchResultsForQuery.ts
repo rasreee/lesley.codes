@@ -1,13 +1,13 @@
 import searchDataFixture from './searchDataFixture';
-import { SearchHit } from './SearchHit';
+import { SearchResultData } from './SearchResultData';
 
-export function getSearchHitsForQuery(
+export function getSearchResultsForQuery(
   query: string,
   allData = searchDataFixture
-): Promise<SearchHit[]> {
+): Promise<SearchResultData[]> {
   if (!query) return Promise.resolve([]);
 
-  let hits = [] as SearchHit[];
+  let hits = [] as SearchResultData[];
 
   const a = query.toLowerCase();
 
