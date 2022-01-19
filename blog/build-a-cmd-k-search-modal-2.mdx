@@ -16,7 +16,7 @@ image: '/images/cmd-k-menu.png'
 
 View the [demo](https://react-search-modal-tutorial.vercel.app/).
 
-## Project Setup
+## 🌙 Project Setup
 
 Clone or fork the [Github repo](https://github.com/rasreee/cmdk-search-tutorial-skeleton) to follow along:
 
@@ -30,7 +30,7 @@ To run the app, run the following command from the root of the project:
 yarn install && yarn start
 ```
 
-## Implementation Walkthrough
+## 🌙 Implementation Walkthrough
 
 Review the tutorial instructions [here](http://localhost:3000/blog/build-a-cmd-k-search-modal-1) if you need to, but I'm going to dive straight into the tutorial and explain my solution as best as possible.
 
@@ -67,7 +67,7 @@ Let's write another example where the user gets no results for their query.
 
 Later, we will exchange Step 2 for both example flows with the pressing of ⌘K to test for the hotkey implementation for opening the search modal, but for now let's ignore that to keep things focused and simple.
 
-### Generic Modal Component
+### 🥞 Generic Modal Component
 
 Let's implement a generic Modal component which will be used by SearchModal to wrap its children.
 
@@ -106,7 +106,7 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
 };
 ```
 
-### SearchModal
+### 🥞 SearchModal
 
 Let's create another component that uses Modal called SearchModal. SearchModal can just require the same props as ModalProps except for children.
 ```tsx
@@ -130,7 +130,7 @@ Now, we can render SearchModal as one of the children for SearchModalProvider, l
 
 SearchModalProvider will now handle rendering of the search modal based on its visibility state.
 
-### Modal: Basic Functionality
+### 🥞 Modal: Basic Functionality
 
 Let's implement some more basic functionality for the Modal before moving onto the Search-related components.
 
@@ -192,7 +192,7 @@ useKeyPress(EventKeys.ESCAPE, onClose);
 ```
 (You can add this to our Modal component to wrap up this section).
 
-### Modal: Basic Styling
+### 🥞 Modal: Basic Styling
 
 Let's add some basic styling to the Modal component using Emotion. I recommend referring to Emotion's documentation if you aren't familiar with styled JSX syntax. If you have used Styled Components before, styling with Emotion should feel straightforward.
 
@@ -212,7 +212,7 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
 };
 ```
 
-### ⌘K Hotkey
+### 🥞 ⌘K Hotkey
 Let's implement the hotkey logic for opening the modal when ⌘K is pressed by creating a new hook called useKeyCombo to listen for sequences of keyboard events.
 ```ts
 export function useKeyCombo(
@@ -255,7 +255,7 @@ useKeyCombo([EventKeys.META, 'k'], onClose)
 
 Now all that's left is the core search functionality for when the modal is visible.
 
-### Basic Composition of SearchModal
+### 🥞 SearchModal Composition
 
 Let's scaffold the search bar and search dropdown components within SearchModal.
 SearchBar will render the input field UI, and SearchDropdown will render the search results UI.
@@ -268,7 +268,7 @@ Compose SearchModal with these two components like so:
 </Modal>
 ```
 
-### Input Autofocus
+#### Input Autofocus
 
 Let's make the input field autofocus upon mounting. Again, we can utilize React hooks in combination with a ref instance for the input HTML element, like so:
 ```ts
@@ -281,7 +281,7 @@ useEffect(() => {
 }, []);
 ```
 
-### SearchDropdown: Rendering Search Results and Mocking Data
+### 🥞 Rendering Search Results and Mocking Data
 
 #### Data Model
 
@@ -325,7 +325,7 @@ export const generateMockSearchHits = (n = 30) =>
 export const mockSearchHits = generateMockSearchHits();
 ```
 
-### Rendering Array of Data in React
+#### Rendering Array of Data in React
 
 When mapping over an array to render elements in React, you must pass a key prop to each list item. Since our data model has a unique `id` property, we can use that for the key:
 
