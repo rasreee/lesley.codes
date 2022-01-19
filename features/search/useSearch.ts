@@ -1,9 +1,20 @@
-import { useContext } from 'react';
+import { useDebouncedState } from '@ui/hooks/useDebouncedState';
+import isBefore from 'date-fns/isBefore';
+import isPast from 'date-fns/isPast';
+import parseISO from 'date-fns/parseISO';
+import { useMemo } from 'react';
 
-import { SearchContext } from './SearchContext';
+export function useSearch({ allData }: { allData: SearchData[] }) {
+  const [query, setQuery] = useDebouncedState(``, 300);
 
-export function useSearch() {
-  const context = useContext(SearchContext);
-  if (!context) throw new Error('SearchContext must be defined to use useSearch');
-  return context;
+  const hits: SearchData[] = useMemo(() => {
+    if (!allData.length) return [];
+
+    return allData
+      .filter((data) => data.title.toLowerCase().includes(query.toLowerCase()))
+      .filter((data) => isPast(parseISO(data.createdAt)))
+      .sort((a, b) => (isBefore(parseISO(a.createdAt), parseISO(b.createdAt)) ? 1 : -1));
+  }, [allData, query]);
+
+  return { query, setQuery, hits };
 }
