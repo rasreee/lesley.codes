@@ -1,4 +1,4 @@
-import { SearchField } from '@components/SearchField';
+import { SearchField } from '@features/search/SearchField';
 import { useDebouncedState } from '@ui/hooks/useDebouncedState';
 import { isBefore, isPast, parseISO } from 'date-fns';
 import { useMemo } from 'react';
