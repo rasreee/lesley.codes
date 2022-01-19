@@ -1,4 +1,4 @@
-import { useAllPosts } from '@db/posts/useAllPosts';
+import { useAllPosts } from '@db/posts/usePost';
 import SearchProvider from '@features/search/SearchProvider';
 import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
 import { useRouter } from 'next/router';

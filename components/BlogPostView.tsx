@@ -1,9 +1,9 @@
-import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
+import { GetPostApiResponse } from '@db/posts/getPost';
 import DateFormatter from '@ui/components/DateFormatter';
 import NotionAside from '@ui/components/NotionAside';
 import Head from 'next/head';
 import Image from 'next/image';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { MDXRemote } from 'next-mdx-remote';
 import React from 'react';
 
 import Meta from './Meta';
@@ -21,18 +21,10 @@ const components = {
   Meta
 };
 
-export interface BlogPostProps {
-  /**
-   * Frontmatter of the post
-   */
-  frontMatter: BlogFrontmatterWithSlug;
-  /**
-   * Serialized MDX data
-   */
-  source: MDXRemoteSerializeResult<Record<string, unknown>>;
-}
-
-export const BlogPost: React.FunctionComponent<BlogPostProps> = ({ frontMatter, source }) => {
+export const BlogPostView: React.FunctionComponent<GetPostApiResponse> = ({
+  frontMatter,
+  source
+}) => {
   return (
     <article>
       <section className="flex flex-col gap-3 max-w-3xl">

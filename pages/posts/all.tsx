@@ -2,14 +2,15 @@ import { BlogSearch } from '@components/BlogSearch';
 import Meta from '@components/Meta';
 import { Section } from '@components/Section';
 import { H1, P } from '@components/Typography';
+import { AppConfig } from '@lib/appConfig';
 
-const Blog = () => {
+const AllPosts = () => {
   return (
     <>
-      <Meta title="Blog" />
+      <Meta />
       <Section>
-        <H1>{'Blog'}</H1>
-        <P>{'Thoughts and tutorials about web development, product validation, and Solana.'}</P>
+        <H1>{AppConfig.meta.title}</H1>
+        <P>{AppConfig.meta.description}</P>
       </Section>
       <Section>
         <BlogSearch />
@@ -18,4 +19,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default AllPosts;
