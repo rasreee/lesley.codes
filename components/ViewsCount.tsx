@@ -1,9 +1,9 @@
-import { useContentMetaApi } from '@db/contents/useContentMetaApi';
+import { useContentMeta } from '@db/contents/useContentMeta';
 import { isRequesting } from '@lib/isRequesting';
 import { useEffect } from 'react';
 
 export const ViewsCount = ({ slug }: { slug: string }) => {
-  const { data, error } = useContentMetaApi(slug);
+  const { data, error } = useContentMeta(slug);
 
   useEffect(() => {
     if (isRequesting(data, error)) return;
