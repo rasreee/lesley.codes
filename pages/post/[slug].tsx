@@ -4,7 +4,7 @@ import { Section } from '@components/Section';
 import { H1, P } from '@components/Typography';
 import { PostApiResponse } from '@db/posts/getPost';
 import { AppConfig } from '@lib/appConfig';
-import { ApiRoutes } from '@lib/routes';
+import { getPostApiRoute } from '@lib/routes';
 import { useQuery } from '@lib/useQuery';
 import { getSlugQueryParam } from '@ui/utils/getSlugQueryParam';
 import { useRouter } from 'next/router';
@@ -20,9 +20,7 @@ const PostRoute = () => {
     setSlug(getSlugQueryParam(router.query));
   }, [router.isReady, router.query]);
 
-  const { data: post, error } = useQuery<PostApiResponse>(
-    slug ? `${ApiRoutes.POST}/${slug}` : null
-  );
+  const { data: post, error } = useQuery<PostApiResponse>(slug ? getPostApiRoute(slug) : null);
 
   return (
     <>

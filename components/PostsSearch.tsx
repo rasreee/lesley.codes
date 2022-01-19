@@ -1,6 +1,6 @@
 import PostCard from '@components/PostCard';
 import Search from '@features/search/Search';
-import { ApiRoutes, RouteKeys, Routes } from '@lib/routes';
+import { getPostRoute, getPostsRoute } from '@lib/routes';
 import { useRouter } from 'next/router';
 
 export function PostsSearch() {
@@ -8,10 +8,10 @@ export function PostsSearch() {
 
   const handleHitClick = (item: SearchData) => {
     console.log('Selected post: ', item.slug);
-    router.push(Routes.POST.replace(RouteKeys.SLUG, item.slug));
+    router.push(getPostRoute(item.slug));
   };
 
   const renderHit = (item: SearchData) => <PostCard {...item} />;
 
-  return <Search apiEndpoint={ApiRoutes.POSTS} renderHit={renderHit} onHitClick={handleHitClick} />;
+  return <Search apiEndpoint={getPostsRoute()} renderHit={renderHit} onHitClick={handleHitClick} />;
 }
