@@ -14,17 +14,13 @@ interface SearchablePostFeedProps {
   posts: BlogFrontmatterWithSlug[];
 }
 
-export const SearchablePostFeed: React.FunctionComponent<
-  SearchablePostFeedProps
-> = ({ posts }) => {
+export const SearchablePostFeed: React.FunctionComponent<SearchablePostFeedProps> = ({ posts }) => {
   const [query, setQuery] = useDebouncedState(``, 300);
 
   const filteredBlogPosts = useMemo(
     () =>
       posts
-        .filter((post) =>
-          post.title.toLowerCase().includes(query.toLowerCase())
-        )
+        .filter((post) => post.title.toLowerCase().includes(query.toLowerCase()))
         .filter((post) => isPast(parseISO(post.publishedAt))),
     [posts, query]
   );

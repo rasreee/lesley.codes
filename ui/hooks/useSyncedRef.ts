@@ -15,7 +15,7 @@ export function useSyncedRef<T>(value: T): { readonly current: T } {
       Object.freeze({
         get current() {
           return _ref.current;
-        },
+        }
       }),
     []
   );

@@ -11,16 +11,11 @@ export function useHotKeys(combo: string, callback: () => void) {
     [keysPressed]
   );
 
-  useKeyboardEvent(
-    true,
-    (e) => setKeysPressed((prev) => prev.slice(-5).concat([e.key])),
-    [],
-    {
-      eventOptions: {
-        passive: true,
-      },
+  useKeyboardEvent(true, (e) => setKeysPressed((prev) => prev.slice(-5).concat([e.key])), [], {
+    eventOptions: {
+      passive: true
     }
-  );
+  });
 
   useEffect(() => {
     if (currentSequence.includes(combo)) {

@@ -11,6 +11,6 @@ export const generateMockSearchResultData = (
     id: index,
     title: faker.lorem.words(3),
     sourceUrl: faker.lorem.slug(),
-    ...initialData,
+    ...initialData
   };
 };

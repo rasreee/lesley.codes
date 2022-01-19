@@ -6,13 +6,7 @@ tags: 'typescript,react,emotion'
 image: '/images/cmd-k-menu.png'
 ---
 
-<Image
-  alt={`CMD K Menu`}
-  src={`/images/cmd-k-menu.png`}
-  width={1440}
-  height={960}
-  priority
-/>
+<Image alt={`CMD K Menu`} src={`/images/cmd-k-menu.png`} width={1440} height={960} priority />
 
 View the [demo](https://react-search-modal-tutorial.vercel.app/).
 
@@ -49,10 +43,9 @@ Here's a somewhat end-to-end example where the user gets non-empty search result
 7. The search modal is hidden, and the app navigates Bob to the search hit's URL.
 
 <NotionAside>
-  It's useful to write UI flow examples not only because it helps you understand
-  the scenarios better, but also because you can then use it with a
-  behavior-driven testing tool like [Cucumber](https://cucumber.io/) to write
-  tests.
+  It's useful to write UI flow examples not only because it helps you understand the scenarios
+  better, but also because you can then use it with a behavior-driven testing tool like
+  [Cucumber](https://cucumber.io/) to write tests.
 </NotionAside>
 
 Let's write another example where the user gets no results for their query.
@@ -109,6 +102,7 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
 ### 🥞 SearchModal
 
 Let's create another component that uses Modal called SearchModal. SearchModal can just require the same props as ModalProps except for children.
+
 ```tsx
 type SearchModalProps = Omit<ModalProps, 'children'>;
 
@@ -120,7 +114,9 @@ const SearchModal = (props: SearchModalProps) => {
   );
 };
 ```
+
 Now, we can render SearchModal as one of the children for SearchModalProvider, like so:
+
 ```tsx
 <SearchModalContext.Provider value={{ isOpen, open, close }}>
   {children}
@@ -139,6 +135,7 @@ There are various NPM packages to choose from to listen to "click outside" DOM e
 Feel free to install it or fork its implementation like I did by taking the necessary source code for the useClickOutside hook.
 
 Add the following logic to the Modal:
+
 ```tsx
 const ref = useRef<HTMLDivElement | null>(null);
 
@@ -150,6 +147,7 @@ return <div ref={ref}>{children}</div>;
 Make sure and test whether clicking outside the opened Modal component triggers the modal hidden. Before moving on.
 
 Finally, we want the modal to be hidden when pressing the Escape key. We can follow a similar approach as before with a useKeyPress hook which wraps @react-hookz/web's useKeyboardEvent hook and listens for a given keyboard events.
+
 ```ts
 export enum EventKeys {
   ARROW_DOWN = 'ArrowDown',
@@ -166,7 +164,7 @@ export enum EventKeys {
   PAGE_DOWN = 'PageDown',
   DELETE = 'Delete',
   ESCAPE = 'Escape',
-  SHIFT = 'Shift',
+  SHIFT = 'Shift'
 }
 
 export function useKeyPress(key: EventKeys, callback: () => void) {
@@ -179,17 +177,19 @@ export function useKeyPress(key: EventKeys, callback: () => void) {
     [],
     {
       eventOptions: {
-        passive: true,
-      },
+        passive: true
+      }
     }
   );
 }
 ```
 
 The EventKeys enum can be imported by the useKeyPress's client to make sure the correct key event is specified, like so:
+
 ```ts
 useKeyPress(EventKeys.ESCAPE, onClose);
 ```
+
 (You can add this to our Modal component to wrap up this section).
 
 ### 🥞 Modal: Basic Styling
@@ -199,11 +199,11 @@ Let's add some basic styling to the Modal component using Emotion. I recommend r
 One common practice when using a styling framework like Emotion/Styled Components is to keep all the styles in one file and the React component in another where those styles will be imported.
 
 Here's how I did it:
+
 ```tsx
 import * as S from './styles';
 
 export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
-
   return (
     <S.Backdrop>
       <S.Container ref={ref}>{children}</S.Container>
@@ -213,12 +213,11 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
 ```
 
 ### 🥞 ⌘K Hotkey
+
 Let's implement the hotkey logic for opening the modal when ⌘K is pressed by creating a new hook called useKeyCombo to listen for sequences of keyboard events.
+
 ```ts
-export function useKeyCombo(
-  combo: (EventKeys | string)[],
-  callback: () => void
-) {
+export function useKeyCombo(combo: (EventKeys | string)[], callback: () => void) {
   const [keysPressed, setKeysPressed] = useState<string[]>([]);
 
   const pressedCombo = useMemo(
@@ -234,8 +233,8 @@ export function useKeyCombo(
     [],
     {
       eventOptions: {
-        passive: true,
-      },
+        passive: true
+      }
     }
   );
 
@@ -249,8 +248,9 @@ export function useKeyCombo(
 ```
 
 Then we can use the hook in SearchModal like so:
+
 ```ts
-useKeyCombo([EventKeys.META, 'k'], onClose)
+useKeyCombo([EventKeys.META, 'k'], onClose);
 ```
 
 Now all that's left is the core search functionality for when the modal is visible.
@@ -261,6 +261,7 @@ Let's scaffold the search bar and search dropdown components within SearchModal.
 SearchBar will render the input field UI, and SearchResults will render the search results UI.
 
 Compose SearchModal with these two components like so:
+
 ```tsx
 <Modal {...props}>
   <SearchBar query={query} onQueryChange={setQuery} />
@@ -273,6 +274,7 @@ Compose SearchModal with these two components like so:
 #### Input Autofocus
 
 Let's make the input field autofocus upon mounting. Again, we can utilize React hooks in combination with a ref instance for the input HTML element, like so:
+
 ```ts
 /* Ref to pass to input element */
 const inputRef = useRef<HTMLInputElement | null>(null);
@@ -318,11 +320,10 @@ For now, you can generate any number of mocks; I created a function `generateMoc
 export const generateMockSearchResultData = (index: number): SearchResultData => ({
   id: index,
   title: faker.lorem.words(3),
-  sourceUrl: faker.lorem.slug(),
+  sourceUrl: faker.lorem.slug()
 });
 
-export const generateMockSearchResultDatas = (n = 30) =>
-  times(n, generateMockSearchResultData);
+export const generateMockSearchResultDatas = (n = 30) => times(n, generateMockSearchResultData);
 
 export const mockSearchResultDatas = generateMockSearchResultDatas();
 ```
@@ -334,7 +335,9 @@ When mapping over an array to render elements in React, you must pass a key prop
 ```tsx
 <ul>
   {data.map((searchHit: SearchResultData) => (
-    <li key={searchHit.id}><a href={searchHit.sourceUrl}>{searchHit.title}</a></li>
+    <li key={searchHit.id}>
+      <a href={searchHit.sourceUrl}>{searchHit.title}</a>
+    </li>
   ))}
 </ul>
 ```
@@ -347,9 +350,8 @@ Let's define a function called getSearchResultsForQuery which will be passed a `
 
 ## Conclusion
 
-Feel free to look at my solution source code for inspiration for styling the React components. I left the explanations/snippets out for the styling portion of the tutorial because I wasn't sure people wanted to see it. 
+Feel free to look at my solution source code for inspiration for styling the React components. I left the explanations/snippets out for the styling portion of the tutorial because I wasn't sure people wanted to see it.
 
-If you *do* want to see explanations for how I went about the styling (or have any feedback/questions about this), please leave me a message or open an issue against the [Github repo](https://github.com/rasreee/cmdk-search-tutorial-skeleton).
+If you _do_ want to see explanations for how I went about the styling (or have any feedback/questions about this), please leave me a message or open an issue against the [Github repo](https://github.com/rasreee/cmdk-search-tutorial-skeleton).
 
 Otherwise, thanks for reading my blog post!!!
-

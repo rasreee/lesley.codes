@@ -18,7 +18,7 @@ const components = {
   Head,
   Image,
   NotionAside,
-  Meta,
+  Meta
 };
 
 export interface BlogPostProps {
@@ -32,10 +32,7 @@ export interface BlogPostProps {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
 }
 
-export const BlogPost: React.FunctionComponent<BlogPostProps> = ({
-  frontMatter,
-  source,
-}) => {
+export const BlogPost: React.FunctionComponent<BlogPostProps> = ({ frontMatter, source }) => {
   return (
     <article>
       <section className="flex flex-col gap-3 max-w-3xl">

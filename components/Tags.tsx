@@ -6,10 +6,7 @@ import { Span } from './Typography';
 type TagsProps = { tags: string; className?: string };
 
 export const Tags: React.FC<TagsProps> = ({ tags, className }) => {
-  const parsedTags = useMemo(
-    () => tags.replace('{', '').replace('}', '').split(','),
-    [tags]
-  );
+  const parsedTags = useMemo(() => tags.replace('{', '').replace('}', '').split(','), [tags]);
 
   return (
     <ul className={cn(className, 'flex gap-2 items-center', 'overflow-auto')}>

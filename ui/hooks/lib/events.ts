@@ -6,9 +6,7 @@ export function on<T extends EventTarget>(
     | [string, EventListenerOrEventListenerObject | CallableFunction, ...any]
 ): void {
   if (obj && obj.addEventListener) {
-    obj.addEventListener(
-      ...(args as Parameters<HTMLElement['addEventListener']>)
-    );
+    obj.addEventListener(...(args as Parameters<HTMLElement['addEventListener']>));
   }
 }
 
@@ -20,8 +18,6 @@ export function off<T extends EventTarget>(
     | [string, EventListenerOrEventListenerObject | CallableFunction, ...any]
 ): void {
   if (obj && obj.removeEventListener) {
-    obj.removeEventListener(
-      ...(args as Parameters<HTMLElement['removeEventListener']>)
-    );
+    obj.removeEventListener(...(args as Parameters<HTMLElement['removeEventListener']>));
   }
 }

@@ -41,14 +41,14 @@ const BlogRoute = (props: PostPageProps): JSX.Element => {
  * Params must be either an empty object or of type { slugs: string[] }
  * where slugs has exactly one item.
  */
-export const getStaticProps: GetStaticProps<
-  { slug: string } | EmptyObject
-> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<{ slug: string } | EmptyObject> = async ({
+  params
+}) => {
   if (!params || !('slug' in params)) {
     const posts = getAllPosts();
 
     return {
-      props: { posts },
+      props: { posts }
     };
   }
 
@@ -63,16 +63,16 @@ export const getStaticProps: GetStaticProps<
     // Optionally pass remark/rehype plugins
     mdxOptions: {
       remarkPlugins: [require('remark-code-titles')],
-      rehypePlugins: [mdxPrism, rehypeSlug, rehypeAutolinkHeadings],
+      rehypePlugins: [mdxPrism, rehypeSlug, rehypeAutolinkHeadings]
     },
-    scope: data,
+    scope: data
   });
 
   return {
     props: {
       source: mdxSource,
-      frontMatter: data,
-    },
+      frontMatter: data
+    }
   };
 };
 
@@ -85,7 +85,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: false
   };
 };
 

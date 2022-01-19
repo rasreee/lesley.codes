@@ -20,9 +20,7 @@ export const WideSearchInput = (props: WideSearchInputProps) => {
   useEffect(() => {
     if (query.length < MIN_QUERY_LENGTH) return;
 
-    registerSearch(query).then((response) =>
-      console.log('🔍 Registered search: ', response)
-    );
+    registerSearch(query).then((response) => console.log('🔍 Registered search: ', response));
   }, [query]);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {

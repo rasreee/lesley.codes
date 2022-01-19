@@ -16,9 +16,7 @@ describe('@ui/components/search/getSearchResultsForQuery', () => {
 
   it('should return a non-empty array given a matching query', async () => {
     const query = 'doge';
-    const testData: SearchResultData[] = [
-      generateMockSearchResultData(0, { title: 'doge' }),
-    ];
+    const testData: SearchResultData[] = [generateMockSearchResultData(0, { title: 'doge' })];
     const result = await getSearchResultsForQuery(query, testData);
     expect(result).toHaveLength(1);
     expect(result[0].title).toEqual('doge');

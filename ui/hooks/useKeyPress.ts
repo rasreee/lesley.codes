@@ -15,7 +15,7 @@ export enum EventKeys {
   PAGE_DOWN = 'PageDown',
   DELETE = 'Delete',
   ESCAPE = 'Escape',
-  SHIFT = 'Shift',
+  SHIFT = 'Shift'
 }
 
 export function useKeyPress(key: EventKeys, callback: () => void) {
@@ -28,8 +28,8 @@ export function useKeyPress(key: EventKeys, callback: () => void) {
     [],
     {
       eventOptions: {
-        passive: true,
-      },
+        passive: true
+      }
     }
   );
 }

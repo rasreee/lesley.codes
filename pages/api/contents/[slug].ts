@@ -3,10 +3,7 @@ import { supabase } from '@lib/supabase';
 import { ContentMeta } from '@models/contents';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const slug = req.query.slug.toString();
 
@@ -14,9 +11,7 @@ export default async function handler(
       const contentMeta = await getOrCreateContentMeta(slug)(supabase);
 
       if (!contentMeta) {
-        return res
-          .status(500)
-          .json({ message: `No contentMeta found for slug=${slug}` });
+        return res.status(500).json({ message: `No contentMeta found for slug=${slug}` });
       }
 
       const { data, error } = await supabase
@@ -30,7 +25,7 @@ export default async function handler(
 
       if (!data) {
         return res.status(500).json({
-          message: `Unexpected return type NULL after updating views for slug=${slug}`,
+          message: `Unexpected return type NULL after updating views for slug=${slug}`
         });
       }
 

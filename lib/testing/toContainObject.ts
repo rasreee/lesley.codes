@@ -2,10 +2,7 @@
 // @ts-ignore
 expect.extend({
   toContainObject(received, argument) {
-    const pass = this.equals(
-      received,
-      expect.arrayContaining([expect.objectContaining(argument)])
-    );
+    const pass = this.equals(received, expect.arrayContaining([expect.objectContaining(argument)]));
 
     if (pass) {
       return {
@@ -13,7 +10,7 @@ expect.extend({
           `expected ${this.utils.printReceived(
             received
           )} not to contain object ${this.utils.printExpected(argument)}`,
-        pass: true,
+        pass: true
       };
     } else {
       return {
@@ -21,8 +18,8 @@ expect.extend({
           `expected ${this.utils.printReceived(
             received
           )} to contain object ${this.utils.printExpected(argument)}`,
-        pass: false,
+        pass: false
       };
     }
-  },
+  }
 });

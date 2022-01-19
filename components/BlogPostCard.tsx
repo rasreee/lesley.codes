@@ -7,14 +7,16 @@ import { Tags } from './Tags';
 import { H3, P } from './Typography';
 import { ViewsStat } from './ViewsStat';
 
-export const BlogPostCard: React.FC<
-  BlogFrontmatterWithSlug & { slug: string }
-> = ({ publishedAt, slug, title, description, tags }) => {
+export const BlogPostCard: React.FC<BlogFrontmatterWithSlug & { slug: string }> = ({
+  publishedAt,
+  slug,
+  title,
+  description,
+  tags
+}) => {
   return (
     <NextLink href={`/blog/${slug}`}>
-      <article
-        className={cn('cursor-pointer', 'flex flex-col gap-3 justify-center')}
-      >
+      <article className={cn('cursor-pointer', 'flex flex-col gap-3 justify-center')}>
         <section className="flex flex-col gap-2">
           <H3>{title}</H3>
         </section>

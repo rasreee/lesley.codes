@@ -27,9 +27,7 @@ export const registerSearch = async (query: string): Promise<Search> => {
     if (updateError) throw updateError;
 
     if (!updateData) {
-      throw new Error(
-        'Expected data to be defined after upserting search data with no error'
-      );
+      throw new Error('Expected data to be defined after upserting search data with no error');
     }
 
     return updateData;
@@ -44,9 +42,7 @@ export const registerSearch = async (query: string): Promise<Search> => {
   if (upsertError) throw upsertError;
 
   if (!upsertData) {
-    throw new Error(
-      'Expected data to be defined after upserting search data with no error'
-    );
+    throw new Error('Expected data to be defined after upserting search data with no error');
   }
 
   return upsertData;

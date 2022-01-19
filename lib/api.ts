@@ -11,7 +11,7 @@ export const ALL_POST_FIELDS = [
   'description',
   'slug',
   'title',
-  'tags',
+  'tags'
 ] as const;
 
 export function getPostSlugs(): string[] {
@@ -22,10 +22,7 @@ type PostItems = {
   [key: string]: string;
 };
 
-export function getPostBySlug(
-  slug: string,
-  fields: Fields = ALL_POST_FIELDS
-): PostItems {
+export function getPostBySlug(slug: string, fields: Fields = ALL_POST_FIELDS): PostItems {
   const realSlug = slug.replace(/\.mdx$/, '');
   const fullPath = join(POSTS_PATH, `${realSlug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');

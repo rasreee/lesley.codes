@@ -7,10 +7,7 @@ export const baseAnchorStyles =
 export type AnchorProps = AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const Anchor = forwardRef(
-  (
-    { children, className, ...props }: AnchorProps,
-    ref: Ref<HTMLAnchorElement>
-  ) => {
+  ({ children, className, ...props }: AnchorProps, ref: Ref<HTMLAnchorElement>) => {
     return (
       <a {...props} ref={ref} className={cn(className, baseAnchorStyles)}>
         {children}

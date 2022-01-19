@@ -8,8 +8,8 @@ module.exports = {
     //  can see this setting in tsconfig.jest.json -> "jsx": "react"
     //  See https://github.com/vercel/next.js/issues/8663
     'ts-jest': {
-      tsconfig: 'tsconfig.json',
-    },
+      tsconfig: 'tsconfig.json'
+    }
   },
   /**
    * Map our module path aliases, so that Jest can understand modules loaded using "@modules" and load the proper file.
@@ -26,7 +26,7 @@ module.exports = {
     '^@models/(.*)$': '<rootDir>/models/$1',
     '^@lib/(.*)$': '<rootDir>/lib/$1',
     '^@ui/(.*)$': '<rootDir>/ui/$1',
-    '^@styles/(.*)$': '<rootDir>/styles/$1',
+    '^@styles/(.*)$': '<rootDir>/styles/$1'
   },
   modulePathIgnorePatterns: ['.next/'],
   runner: 'groups', // Allow to use jest-runner-groups - See https://github.com/eugene-manuilov/jest-runner-groups#update-jest-config
@@ -34,6 +34,6 @@ module.exports = {
     'jest-extended', // Extends native "expect" abilities - See https://github.com/jest-community/jest-extended
     'jest-expect-message', // Allows to add additional message when test fails - See https://github.com/mattphillips/jest-expect-message
     './jest.setup.js',
-    './jest.extends.ts',
-  ],
+    './jest.extends.ts'
+  ]
 };

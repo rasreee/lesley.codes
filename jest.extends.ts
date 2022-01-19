@@ -7,5 +7,5 @@ import { toMatchOneOf, toMatchShapeOf } from 'jest-to-match-shape-of'; // See ht
 // Extend Jest "expect" function
 expect.extend({
   toMatchOneOf,
-  toMatchShapeOf,
+  toMatchShapeOf
 });

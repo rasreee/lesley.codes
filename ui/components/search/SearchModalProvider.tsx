@@ -10,14 +10,11 @@ interface ISearchModalContext {
   close: () => void;
 }
 
-const SearchModalContext = createContext<ISearchModalContext | undefined>(
-  undefined
-);
+const SearchModalContext = createContext<ISearchModalContext | undefined>(undefined);
 
 export function useSearchModal() {
   const context = useContext(SearchModalContext);
-  if (!context)
-    throw new Error('SearchModalContext must be defined to use useSearchModal');
+  if (!context) throw new Error('SearchModalContext must be defined to use useSearchModal');
   return context;
 }
 

@@ -7,11 +7,7 @@ export function useEventListener<T extends EventTarget>(
   target: RefObject<T> | T | null,
   ...params:
     | Parameters<T['addEventListener']>
-    | [
-        string,
-        EventListenerOrEventListenerObject | ((...args: any[]) => any),
-        ...any
-      ]
+    | [string, EventListenerOrEventListenerObject | ((...args: any[]) => any), ...any]
 ): void {
   const isMounted = useIsMounted();
 
@@ -34,15 +30,9 @@ export function useEventListener<T extends EventTarget>(
         /* istanbul ignore else */
         if (typeof listenerRef.current === 'function') {
           listenerRef.current.apply(this, args);
-        } else if (
-          typeof (listenerRef.current as EventListenerObject).handleEvent ===
-          'function'
-        ) {
+        } else if (typeof (listenerRef.current as EventListenerObject).handleEvent === 'function') {
           // eslint-disable-next-line prettier/prettier
-          (listenerRef.current as EventListenerObject).handleEvent.apply(
-            this,
-            args
-          );
+          (listenerRef.current as EventListenerObject).handleEvent.apply(this, args);
         }
       },
 
@@ -57,7 +47,6 @@ export function useEventListener<T extends EventTarget>(
 
     tgt.addEventListener(params[0], eventListener, ...restParams);
 
-    return () =>
-      tgt.removeEventListener(params[0], eventListener, ...restParams);
+    return () => tgt.removeEventListener(params[0], eventListener, ...restParams);
   }, [target, params[0]]);
 }

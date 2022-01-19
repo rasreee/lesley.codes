@@ -6,16 +6,8 @@ import { useEventListener } from './useEventListener';
 import { useSyncedRef } from './useSyncedRef';
 
 export type IKeyboardEventPredicate = (event: KeyboardEvent) => boolean;
-export type IKeyboardEventFilter =
-  | null
-  | undefined
-  | string
-  | boolean
-  | IKeyboardEventPredicate;
-export type IKeyboardEventHandler<T extends EventTarget> = (
-  this: T,
-  event: KeyboardEvent
-) => void;
+export type IKeyboardEventFilter = null | undefined | string | boolean | IKeyboardEventPredicate;
+export type IKeyboardEventHandler<T extends EventTarget> = (this: T, event: KeyboardEvent) => void;
 
 export type IUseKeyboardEventOptions<T extends EventTarget> = {
   /**
@@ -37,9 +29,7 @@ export type IUseKeyboardEventOptions<T extends EventTarget> = {
 const yieldTrue = () => true as const;
 const yieldFalse = () => false as const;
 
-const createKeyPredicate = (
-  keyFilter: IKeyboardEventFilter
-): IKeyboardEventPredicate => {
+const createKeyPredicate = (keyFilter: IKeyboardEventFilter): IKeyboardEventPredicate => {
   if (typeof keyFilter === 'function') return keyFilter;
   if (typeof keyFilter === 'string') return (ev) => ev.key === keyFilter;
 

@@ -24,7 +24,7 @@ export interface BlogPostPageProps {
 
 export const BlogPostPage: React.FunctionComponent<BlogPostPageProps> = ({
   frontMatter,
-  source,
+  source
 }) => {
   const router = useRouter();
   useRegisterPostView(getSlug(router.query));
@@ -34,7 +34,7 @@ export const BlogPostPage: React.FunctionComponent<BlogPostPageProps> = ({
     description: frontMatter.description,
     image: `${WEBSITE_HOST_URL}${frontMatter.image}`,
     publishedAt: frontMatter.publishedAt,
-    type: 'article',
+    type: 'article'
   };
 
   return (

@@ -10,19 +10,13 @@ export interface AllPostsPageProps {
   posts: BlogFrontmatterWithSlug[];
 }
 
-export const AllPostsPage: React.FunctionComponent<AllPostsPageProps> = ({
-  posts,
-}) => {
+export const AllPostsPage: React.FunctionComponent<AllPostsPageProps> = ({ posts }) => {
   return (
     <>
       <Meta title="Blog" />
       <Section>
         <H1>{'Blog'}</H1>
-        <P>
-          {
-            'Thoughts and tutorials about web development, product validation, and Solana.'
-          }
-        </P>
+        <P>{'Thoughts and tutorials about web development, product validation, and Solana.'}</P>
       </Section>
       <Section>
         <SearchablePostFeed posts={posts} />

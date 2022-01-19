@@ -9,9 +9,7 @@ interface NotionAsideProps {
 /**
  * TODO: Fix Notion block parsing & rendering of children (i.e. links in text)
  */
-const NotionAside: React.FunctionComponent<NotionAsideProps> = ({
-  children,
-}) => {
+const NotionAside: React.FunctionComponent<NotionAsideProps> = ({ children }) => {
   return (
     <aside
       className={cn(

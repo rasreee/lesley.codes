@@ -28,10 +28,7 @@ export function useClickOutside<T extends HTMLElement>(
       const { target: evtTarget } = event;
       const cb = cbRef.current;
 
-      if (
-        !evtTarget ||
-        (!!evtTarget && !refRef.current.current.contains(evtTarget as Node))
-      ) {
+      if (!evtTarget || (!!evtTarget && !refRef.current.current.contains(evtTarget as Node))) {
         cb.call(this, event);
       }
     }

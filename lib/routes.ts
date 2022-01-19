@@ -3,20 +3,20 @@ import { isProduction } from './environment';
 const DefaultRoutes = [
   {
     title: 'Home',
-    path: '/',
+    path: '/'
   },
   {
     title: 'Blog',
-    path: '/blog',
-  },
+    path: '/blog'
+  }
 ];
 
 const DevRoutes = [
   ...DefaultRoutes,
   {
     title: 'Playground',
-    path: '/playground',
-  },
+    path: '/playground'
+  }
 ];
 
 export const Routes = isProduction() ? DefaultRoutes : DevRoutes;

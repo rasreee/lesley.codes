@@ -9,7 +9,7 @@ const colors = {
     600: '#4b5563',
     700: '#374151',
     800: '#1f2937',
-    900: '#111827',
+    900: '#111827'
   },
   green: {
     50: '#f0fdf4',
@@ -21,7 +21,7 @@ const colors = {
     600: '#16a34a',
     700: '#15803d',
     800: '#166534',
-    900: '#14532d',
+    900: '#14532d'
   },
   blue: {
     50: '#eff6ff',
@@ -33,9 +33,9 @@ const colors = {
     600: '#2563eb',
     700: '#1d4ed8',
     800: '#1e40af',
-    900: '#1e3a8a',
+    900: '#1e3a8a'
   },
-  tailwindPrimary: '#0ea5e9',
+  tailwindPrimary: '#0ea5e9'
 };
 
 const spacing = {
@@ -73,7 +73,7 @@ const spacing = {
   64: '16rem',
   72: '18rem',
   80: '20rem',
-  96: '24rem',
+  96: '24rem'
 };
 
 const sizes = {
@@ -91,7 +91,7 @@ const sizes = {
   full: '100%',
   min: 'min-content',
   max: 'max-content',
-  ...spacing,
+  ...spacing
 };
 
 const fontWeights = {
@@ -99,7 +99,7 @@ const fontWeights = {
   normal: 400,
   medium: 500,
   semibold: 600,
-  bold: 700,
+  bold: 700
 };
 
 const fontSizes = {
@@ -114,7 +114,7 @@ const fontSizes = {
   '5xl': '3rem',
   '6xl': '3.75rem',
   '7xl': '4.5rem',
-  '8xl': '6rem',
+  '8xl': '6rem'
 };
 
 const shadows = {
@@ -122,7 +122,7 @@ const shadows = {
   sm: '0px 0px 1px rgba(12, 26, 75, 0.24), 0px 3px 8px -1px rgba(50, 50, 71, 0.05)',
   md: '0px 0px 1px rgba(12, 26, 75, 0.1), 0px 4px 20px -2px rgba(50, 50, 71, 0.08)',
   lg: '0px 0px 1px rgba(12, 26, 75, 0.1), 0px 10px 16px rgba(20, 37, 63, 0.06)',
-  xl: '0px 0px 1px rgba(12, 26, 75, 0.1), 0px 30px 40px rgba(20, 37, 63, 0.08)',
+  xl: '0px 0px 1px rgba(12, 26, 75, 0.1), 0px 30px 40px rgba(20, 37, 63, 0.08)'
 };
 
 const radii = {
@@ -134,7 +134,7 @@ const radii = {
   xl: '0.75rem',
   '2xl': '1rem',
   '3xl': '1.5rem',
-  full: '9999px',
+  full: '9999px'
 };
 
 const zIndex = {
@@ -144,7 +144,7 @@ const zIndex = {
   20: '20',
   30: '30',
   40: '40',
-  50: '50',
+  50: '50'
 };
 
 export const theme = {
@@ -155,7 +155,7 @@ export const theme = {
   fontSizes,
   radii,
   shadows,
-  zIndex,
+  zIndex
 };
 
 export type Theme = typeof theme;
