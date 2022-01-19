@@ -12,7 +12,7 @@ import { SWRConfig, SWRConfiguration } from 'swr';
 
 const defaultSWRConfig: SWRConfiguration = {
   revalidateOnFocus: false,
-  revalidateOnMount: false
+  revalidateOnReconnect: false
 };
 
 const Shell = ({ children }) => {
