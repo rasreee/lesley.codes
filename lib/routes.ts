@@ -22,12 +22,7 @@ const Routes = [
 if (isDevelopment()) {
   Routes.push(...DevOnlyRoutes);
 }
-
-export const RoutePaths = Routes.map((route) => route.path);
-
-const RouteTitles = Routes.map((route) => route.title);
-
-export { Routes, RouteTitles };
+export { Routes };
 
 export const getRouteTitle = (pathname: string): string => {
   const basePath = getBasePath(pathname);
