@@ -1,3 +1,5 @@
+import { useKeyCombo } from '@ui/hooks/useKeyCombo';
+import { EventKeys } from '@ui/hooks/useKeyPress';
 import { createContext, ReactNode, useContext, useState } from 'react';
 
 import SearchModal from './SearchModal';
@@ -26,6 +28,8 @@ const SearchModalProvider = ({ children }: SearchModalProviderProps) => {
 
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
+
+  useKeyCombo([EventKeys.META, 'k'], open);
 
   return (
     <SearchModalContext.Provider value={{ isOpen, open, close }}>
