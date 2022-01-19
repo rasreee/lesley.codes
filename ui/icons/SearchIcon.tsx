@@ -4,7 +4,6 @@ import { SVGProps } from 'react';
 const SearchIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <Svg
-      {...props}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -24,6 +23,7 @@ const SearchIcon = (props: SVGProps<SVGSVGElement>) => {
 const Svg = styled.svg`
   height: 1.25rem;
   width: 1.25rem;
+  color: currentColor;
 `;
 
 export default SearchIcon;
