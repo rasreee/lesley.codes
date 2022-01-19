@@ -1,8 +1,7 @@
 import { isPast, parseISO } from 'date-fns';
-import { useAutoFocus } from 'hooks/useAutoFocus';
 import { useDebouncedState } from 'hooks/useDebouncedState';
 import { BlogFrontmatterWithSlug } from 'lib/frontmatter';
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo } from 'react';
 
 import { PostFeed } from './PostFeed';
 import { SearchIcon } from './SearchIcon';
