@@ -1,5 +1,5 @@
-import { Modal, ModalProps } from '@ui/components/Modal';
 import { useEffect, useState } from 'react';
+import { Modal, ModalProps } from 'ui/components/Modal';
 
 import { getSearchResultsForQuery } from './getSearchResultsForQuery';
 import SearchBar from './SearchBar';
