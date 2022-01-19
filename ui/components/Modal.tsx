@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 
-interface IModalProps {
+export interface ModalProps {
   /**
    * Indicates whether modal is visible or not
    */
@@ -15,10 +15,8 @@ interface IModalProps {
   children: ReactNode;
 }
 
-const Modal: FC<IModalProps> = ({ isOpen, onClose, children }) => {
+export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return <div>{children}</div>;
 };
-
-export default Modal;

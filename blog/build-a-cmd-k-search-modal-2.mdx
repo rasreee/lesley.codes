@@ -120,7 +120,7 @@ The Modal component should take care of the basic functionality of modals:
 Based on the above requirements, here's a basic typescript definition for its props:
 
 ```ts
-interface IModalProps {
+interface ModalProps {
   /**
    * Indicates whether modal is visible or not
    */
@@ -139,7 +139,7 @@ interface IModalProps {
 ... and here's the initial implementation of the React component:
 
 ```tsx
-const Modal: FC<IModalProps> = ({ isOpen, onClose, children }) => {
+const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return <div>{children}</div>;

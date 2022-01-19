@@ -1,5 +1,6 @@
-import Modal from '@ui/components/Modal';
 import { createContext, ReactNode, useContext, useState } from 'react';
+
+import SearchModal from './SearchModal';
 
 interface ISearchModalContext {
   isOpen: boolean;
@@ -29,9 +30,7 @@ const SearchModalProvider = ({ children }: SearchModalProviderProps) => {
   return (
     <SearchModalContext.Provider value={{ isOpen, open, close }}>
       {children}
-      <Modal isOpen={isOpen} onClose={close}>
-        <h1>Search Modal</h1>
-      </Modal>
+      <SearchModal isOpen={isOpen} onClose={close} />
     </SearchModalContext.Provider>
   );
 };
