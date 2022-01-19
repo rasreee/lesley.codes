@@ -1,4 +1,4 @@
-import { isDevelopment } from './environment';
+import { isProduction } from './environment';
 import { getBasePath } from './utils/getBasePath';
 
 const DevOnlyRoutes = [
@@ -17,11 +17,9 @@ const Routes = [
     title: 'Blog',
     path: '/blog',
   },
+  ...(!isProduction() ? DevOnlyRoutes : []),
 ];
 
-if (isDevelopment()) {
-  Routes.push(...DevOnlyRoutes);
-}
 export { Routes };
 
 export const getRouteTitle = (pathname: string): string => {
