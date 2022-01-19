@@ -255,7 +255,7 @@ useKeyCombo([EventKeys.META, 'k'], onClose)
 
 Now all that's left is the core search functionality for when the modal is visible.
 
-## 🌙 SearchModal Composition
+## 🌙 SearchModal: Composition
 
 Let's scaffold the search bar and search dropdown components within SearchModal.
 SearchBar will render the input field UI, and SearchDropdown will render the search results UI.
@@ -338,6 +338,12 @@ When mapping over an array to render elements in React, you must pass a key prop
   ))}
 </ul>
 ```
+
+## 🌙 SearchModal: Updating Results Based On Query State
+
+For the final step, we'll be implementing logic for updating the UI as soon as the query state changes and basic filtering of the data for a given query.
+
+Let's define a function called getSearchHitsForQuery which will be passed a `query` string argument and return a `Promise` of an array of SearchHit's, and implement it so that it filters the list of search hits for the given query string. I implemented a naive filtering algorithm for this to maintain focus in this blog post, but you can replace this logic with any logic you'd like.
 
 ## Conclusion
 
