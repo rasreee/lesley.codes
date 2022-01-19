@@ -5,7 +5,7 @@ import { Navigation } from './Navigation';
 import { NavItemProps } from './NavItem';
 import { ThemeSwitch } from './ThemeSwitch';
 
-export const navItemProps: NavItemProps[] = Routes.map(({ title, path }) => ({
+const navItemProps: NavItemProps[] = Routes.map(({ title, path }) => ({
   href: path,
   children: title,
 }));
