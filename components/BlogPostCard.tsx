@@ -1,14 +1,15 @@
-import { cn } from '@lib/classnames';
 import { BlogFrontmatter } from '@lib/frontmatter';
 import DateFormatter from '@ui/components/DateFormatter';
+import classNames from 'classnames';
 import { useRouter } from 'next/router';
 
 import { Tags } from './Tags';
 import { H3, P } from './Typography';
 import { ViewsStat } from './ViewsStat';
 
-const buttonStyles =
-  'text-base font-semibold text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition-all';
+const buttonStyles = classNames(
+  'text-base font-semibold text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition-all'
+);
 
 export const BlogPostCard = ({ createdAt, slug, title, description, tags }: BlogFrontmatter) => {
   const router = useRouter();
@@ -20,14 +21,14 @@ export const BlogPostCard = ({ createdAt, slug, title, description, tags }: Blog
 
   return (
     <button className={buttonStyles} onClick={handleClick}>
-      <article className={cn('cursor-pointer', 'flex flex-col gap-3 justify-center')}>
-        <section className="flex flex-col gap-2">
+      <article className={classNames('cursor-pointer', 'flex flex-col gap-3 justify-center')}>
+        <div className="flex flex-col items-start gap-2">
           <H3>{title}</H3>
-        </section>
-        <section className="mb-1">
           <P>{description}</P>
-        </section>
-        <Tags tags={tags} />
+        </div>
+        <div className="pt-1">
+          <Tags tags={tags} />
+        </div>
         <section className="flex items-center justify-start gap-6">
           <P color="text-hint" size="text-sm">
             <DateFormatter date={createdAt} />
