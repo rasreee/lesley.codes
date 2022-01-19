@@ -1,5 +1,9 @@
+import { useSearchModal } from './SearchModalProvider';
+
 const SearchModalToggle = () => {
-  return <button>Quick search...</button>;
+  const searchModal = useSearchModal();
+
+  return <button onClick={searchModal.open}>Quick search...</button>;
 };
 
 export default SearchModalToggle;
