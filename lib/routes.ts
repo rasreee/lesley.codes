@@ -1,4 +1,5 @@
 import { isDevelopment } from './environment';
+import { getBasePath } from './utils/getBasePath';
 
 const DevOnlyRoutes = [
   {
@@ -29,9 +30,16 @@ const RouteTitles = Routes.map((route) => route.title);
 export { Routes, RouteTitles };
 
 export const getRouteTitle = (pathname: string): string => {
-  const basePath = pathname.split('/')[1];
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const pageTitle = Routes.find((route) => route.path === basePath)!.title;
+  const basePath = getBasePath(pathname);
+  const pageTitle = Routes.find((route) => route.path === basePath)?.title;
+  if (!pageTitle) {
+    const error = new Error(
+      `could not find route title for pathname=${pathname} and basePath=${basePath}`
+    );
+    console.error(error);
+    console.log('Routes: ', JSON.stringify(Routes, null, 4));
+    throw error;
+  }
 
   return pageTitle;
 };
