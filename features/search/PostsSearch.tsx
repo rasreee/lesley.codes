@@ -1,16 +1,20 @@
-import { BlogPostCard } from '@components/BlogPostCard';
 import { ErrorMessage } from '@components/ErrorMessage';
+import PostCard from '@components/PostCard';
 import { SearchField } from '@components/SearchField';
 import { useAllPosts } from '@db/posts/usePost';
-import classed from '@lib/classed';
+import { useRouter } from 'next/router';
 
+import { SearchResults } from './SearchResults';
 import { useSearch } from './useSearch';
 
-const sharedStyles = 'flex gap-3 py-2 w-full relative';
-
-const Results = classed('div', sharedStyles, 'flex-col');
-
 export function PostsSearch() {
+  const router = useRouter();
+
+  const handleItemClick = (item: SearchData) => {
+    console.log('Selected post: ', item.slug);
+    router.push(`/post/${item.slug}`);
+  };
+
   const { data: allPosts, error } = useAllPosts();
 
   const { hits, query, setQuery } = useSearch({ allData: allPosts ?? [] });
@@ -22,13 +26,11 @@ export function PostsSearch() {
   return (
     <>
       <SearchField query={query} onChange={setQuery} />
-      <Results>
-        <ul className={'flex flex-col gap-10'}>
-          {hits.map((post) => (
-            <BlogPostCard key={post.title} {...post} />
-          ))}
-        </ul>
-      </Results>
+      <SearchResults
+        items={hits}
+        renderItem={(item) => <PostCard {...item} />}
+        onItemClick={handleItemClick}
+      />
     </>
   );
 }
