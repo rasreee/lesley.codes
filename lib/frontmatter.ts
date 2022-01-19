@@ -16,3 +16,5 @@ export type BlogFrontmatter = {
 export interface BlogFrontmatterWithSlug extends BlogFrontmatter {
   slug: string;
 }
+
+type Foo = BlogFrontmatterWithSlug['createdAt'];
