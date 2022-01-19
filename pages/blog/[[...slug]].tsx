@@ -1,4 +1,4 @@
-import { AllPostsPage } from '@components/AllPostsPage';
+import { BlogPage } from '@components/BlogPage';
 import { BlogPostPage } from '@components/BlogPostPage';
 import { getAllPosts } from '@lib/api';
 import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
@@ -31,7 +31,7 @@ const isAllPostsRouteProps = (o: any): o is AllPostsRouteProps => {
 
 const BlogRoute = (props: PostPageProps): JSX.Element => {
   if (isAllPostsRouteProps(props)) {
-    return <AllPostsPage {...props} />;
+    return <BlogPage {...props} />;
   }
 
   return <BlogPostPage {...props} />;

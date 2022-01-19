@@ -6,11 +6,11 @@ import { SearchablePostFeed } from './SearchablePostFeed';
 import { Section } from './Section';
 import { H1, P } from './Typography';
 
-export interface AllPostsPageProps {
+export interface BlogPageProps {
   posts: BlogFrontmatterWithSlug[];
 }
 
-export const AllPostsPage: React.FunctionComponent<AllPostsPageProps> = ({ posts }) => {
+export const BlogPage: React.FunctionComponent<BlogPageProps> = ({ posts }) => {
   return (
     <>
       <Meta title="Blog" />
