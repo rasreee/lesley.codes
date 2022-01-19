@@ -36,8 +36,9 @@ Review the tutorial instructions [here](http://localhost:3000/blog/build-a-cmd-k
 
 Before coding anything, we should take a brief moment to get a better understanding of the architecture we want the implementation to take, keeping in mind that this may change as throughout development and doesn't have to be absolutely perfect from the start. In the real world, the most important thing is to ship features to users as fast as possible - something that can be easy to forget as a Software Engineer.
 
-We can outline a minimal example the of UI flow, specifically the sequence of user inputs and their outputs.
+We can outline an example the of UI flow, specifically the expected sequence of user inputs and outputs.
 
+Here's a somewhat end-to-end example where the user gets non-empty search results for their query:
 1. The search modal is in its default state (hidden).
 2. Bob clicks the "Quick search" button.
 3. The search modal is visible, and the top input field is automatically focused.
@@ -46,9 +47,24 @@ We can outline a minimal example the of UI flow, specifically the sequence of us
 7. Bob clicks the first search hit for "doge".
 8. The search modal is hidden, and the app navigates Bob to the search hit's URL.
 
+<NotionAside>
+	It's useful to write UI flow examples not only because it helps you understand the scenarios better, but also because you can then use it with a behavior-driven testing tool like [Cucumber](https://cucumber.io/) to write tests.
+</NotionAside>
+
+Let's write another example where the user gets no results for their query.
+1. The search modal is in its default state (hidden).
+2. Bob clicks the "Quick search" button.
+3. The search modal is visible, and the top input field is automatically focused.
+4. Bob types "asdf" into the input field.
+5. The search modal briefly shows a loading indicator before showing "No results found for 'asdf'".
+6. Bob presses the Escape key.
+7. The search modal is hidden.
+
+Later, we will exchange Step 2 for both example flows with the pressing of ⌘K to test for the hotkey implementation for opening the search modal, but for now let's ignore that to keep things focused and simple.
+
 ### Search Hit Data Model
 
-First, let's define a typescript interface that represents the data for a search hit:
+At some point we will want to know what the data looks like for the search results. Let's define a typescript interface that represents the data for a search hit:
 
 ```ts
 export interface SearchHit {
@@ -56,8 +72,8 @@ export interface SearchHit {
   id: number
   /* Title for the search hit to present to the user */
   title: string
-  /* Pathname of the search hit relative to the client app (i.e. /memes/doge which should take you to https://demo.app/memes/doge ) */
-  pathname: string
+  /* sourceUrl of the search hit relative to the client app (i.e. https://demo.app/memes/doge ) */
+  sourceUrl: string
 }
 ```
 
@@ -67,24 +83,62 @@ Now, let's mock search hit data based on this definition. I often use `faker` an
 
 Install faker & lodash.times with the following command:
 ```bash
-ya -D faker@5.5.3 @types/faker@5.5.3 lodash.times @types/lodash.times
+yarn add -D faker@5.5.3 @types/faker@5.5.3 lodash.times @types/lodash.times
 ```
 
 **IMPORTANT** Make sure to keep the faker@5.5.3 versionings because the author pulled a big petty and destroyed the versions after 5.5.3, so yeah.
 
-For now, you can generate any number of mocks; I created a function `generateMockSearchHits` that generates 30 by default:
+For now, you can generate any number of mocks; I created a function `generateMockSearchHits` that handles this:
 ```ts
 export const generateMockSearchHit = (index: number): SearchHitData => ({
   id: index,
   title: faker.lorem.words(3),
-  pathname: faker.lorem.slug()
+  sourceUrl: faker.lorem.slug()
 })
 
 export const generateMockSearchHits = (n = 30) => times(n, generateMockSearchHit)
 ```
 
+### SearchModal
 
+Let's implement the Modal component which will be used by SearchModal to wrap its children.
 
-## Questions?
+The Modal component should take care of the basic functionality of modals:
+1. It should render its children as its content (i.e. via a `children` prop)
+2. It should should notify whichever component is using it of when the modal should be closed, namely: (1) when the user clicks outside of it and (2) when the user presses the Escape key (i.e. via an `onClose` handler prop).
+3. Clients of the Modal should be able to tell the Modal whether to show or hide its children (i.e. via an `isOpen` boolean prop).
 
-If you run into any issues with the tutorial, please feel free to open an issue against the [Github repo](https://github.com/rasreee/cmdk-search-tutorial-skeleton).
+Based on the above requirements, here's a basic typescript definition for its props:
+```ts
+interface IModalProps {
+  /**
+   * Indicates whether modal is visible or not
+   */
+  isOpen: boolean
+  /**
+   * Handler to call when modal should be closed
+   */
+  onClose: () => void
+  /**
+   * Children of modal
+   */
+  children: ReactNode
+}
+```
+
+... and here's the initial implementation of the React component:
+```tsx
+const Modal: FC<IModalProps> = ({ isOpen, onClose, children }) => {
+  if (!isOpen) return null
+
+  return <div>{children}</div>
+}
+
+export default Modal
+```
+
+Let's create another component that uses this Modal component and render it as one of the children for SearchModalProvider:
+
+```tsx
+
+```
