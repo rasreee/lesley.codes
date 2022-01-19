@@ -1,8 +1,6 @@
 {
-  "name": "nextjs-typescript-mdx-blog",
-  "author": "@rasreee",
+  "name": "lesley.codes",
   "license": "MIT",
-  "version": "1.0.0",
   "scripts": {
     "clean:dist": "rimraf .next",
     "dev": "next dev",
