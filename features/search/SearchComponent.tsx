@@ -1,7 +1,9 @@
 import { SearchField } from '@components/SearchField';
+import { useDebouncedState } from '@ui/hooks/useDebouncedState';
+import { isBefore, isPast, parseISO } from 'date-fns';
+import { useMemo } from 'react';
 
 import { SearchResults } from './SearchResults';
-import { useSearch } from './useSearch';
 
 export interface SearchComponentProps {
   allData: SearchData[];
@@ -10,7 +12,16 @@ export interface SearchComponentProps {
 }
 
 function SearchComponent({ allData, renderHit, onHitClick }: SearchComponentProps) {
-  const { query, setQuery, hits } = useSearch(allData);
+  const [query, setQuery] = useDebouncedState(``, 300);
+
+  const hits: SearchData[] = useMemo(() => {
+    if (!allData) return [];
+
+    return allData
+      .filter((data) => data.title.toLowerCase().includes(query.toLowerCase()))
+      .filter((data) => isPast(parseISO(data.createdAt)))
+      .sort((a, b) => (isBefore(parseISO(a.createdAt), parseISO(b.createdAt)) ? 1 : -1));
+  }, [allData, query]);
 
   return (
     <>

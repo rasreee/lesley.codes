@@ -38,7 +38,7 @@ export interface IQueryError {
 }
 
 export function useQuery<TData, TError extends IQueryError = IQueryError>(
-  query: string
+  query: string | Falsy
 ): UseQueryResult<TData, TError> {
   const swr = useSWR<TData | null, TError | null>(query);
   const { data, error } = swr;

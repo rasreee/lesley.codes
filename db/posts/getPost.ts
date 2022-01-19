@@ -8,12 +8,12 @@ import path from 'path';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 
-export interface GetPostApiResponse {
+export interface PostApiResponse {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
   frontMatter: { [data: string]: any };
 }
 
-export const getPost = async (slug: string): Promise<GetPostApiResponse> => {
+export const getPost = async (slug: string): Promise<PostApiResponse> => {
   const postFilePath = path.join(POSTS_PATH, `${slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 

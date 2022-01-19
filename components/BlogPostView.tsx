@@ -1,5 +1,5 @@
 import { useRegisterPostView } from '@db/contents/useRegisterPostView';
-import { GetPostApiResponse } from '@db/posts/getPost';
+import { PostApiResponse } from '@db/posts/getPost';
 import { WEBSITE_HOST_URL } from '@lib/appConfig';
 import DateFormatter from '@ui/components/DateFormatter';
 import NotionAside from '@ui/components/NotionAside';
@@ -23,7 +23,7 @@ const components = {
   Meta
 };
 
-export const BlogPostView: React.FunctionComponent<{ post: GetPostApiResponse }> = ({ post }) => {
+export const BlogPostView: React.FunctionComponent<{ post: PostApiResponse }> = ({ post }) => {
   useRegisterPostView(post.frontMatter.slug);
 
   const customMeta: MetaProps = {

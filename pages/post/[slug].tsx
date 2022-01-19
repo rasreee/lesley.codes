@@ -2,8 +2,10 @@ import { BlogPostView } from '@components/BlogPostView';
 import { ErrorMessage } from '@components/ErrorMessage';
 import { Section } from '@components/Section';
 import { H1, P } from '@components/Typography';
-import { usePostForSlug } from '@db/posts/usePost';
+import { PostApiResponse } from '@db/posts/getPost';
+import { ApiRoutes } from '@lib/apiRoutes';
 import { AppConfig } from '@lib/appConfig';
+import { useQuery } from '@lib/useQuery';
 import { getSlugQueryParam } from '@ui/utils/getSlugQueryParam';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -18,7 +20,9 @@ const PostRoute = () => {
     setSlug(getSlugQueryParam(router.query));
   }, [router.isReady, router.query]);
 
-  const { data: post, error } = usePostForSlug(slug);
+  const { data: post, error } = useQuery<PostApiResponse>(
+    slug ? `${ApiRoutes.POST}/${slug}` : null
+  );
 
   return (
     <>
