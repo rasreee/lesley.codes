@@ -1,4 +1,4 @@
-import { BlogFrontmatterWithSlug } from 'lib/frontmatter';
+import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
 import React from 'react';
 
 import Layout from './Layout';
@@ -14,7 +14,7 @@ export const AllPostsPage: React.FunctionComponent<AllPostsPageProps> = ({
   posts,
 }) => {
   return (
-    <Layout customMeta={{ title: 'Blog' }}>
+    <Layout meta={{ title: 'Blog' }}>
       <Section>
         <H1>{'Blog'}</H1>
         <P>

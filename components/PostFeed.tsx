@@ -1,5 +1,5 @@
-import { cn } from 'lib/classnames';
-import { BlogFrontmatterWithSlug } from 'lib/frontmatter';
+import { cn } from '@lib/classnames';
+import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
 import React from 'react';
 
 import { BlogPostCard } from './BlogPostCard';

@@ -1,15 +1,15 @@
-import { cn } from 'lib/classnames';
-import { Emojis } from 'lib/emojis';
+import { cn } from '@lib/classnames';
+import { Emojis } from '@lib/emojis';
 import React from 'react';
 
-export interface NotionAsideProps {
+interface NotionAsideProps {
   children: string;
 }
 
 /**
  * TODO: Fix Notion block parsing & rendering of children (i.e. links in text)
  */
-export const NotionAside: React.FunctionComponent<NotionAsideProps> = ({
+const NotionAside: React.FunctionComponent<NotionAsideProps> = ({
   children,
 }) => {
   return (
@@ -27,3 +27,5 @@ export const NotionAside: React.FunctionComponent<NotionAsideProps> = ({
     </aside>
   );
 };
+
+export default NotionAside;

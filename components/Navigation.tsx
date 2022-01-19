@@ -1,5 +1,5 @@
-import { cn } from 'lib/classnames';
-import { RouteNames, Routes } from 'lib/navigation';
+import { cn } from '@lib/classnames';
+import { RouteNames, Routes } from '@lib/navigation';
 import { useRouter } from 'next/router';
 import React, { ReactNode } from 'react';
 

@@ -1,4 +1,4 @@
-import NextLink from 'next/link';
+import Link from 'next/link';
 import React from 'react';
 
 import { Anchor, AnchorProps } from './Anchor';
@@ -13,8 +13,8 @@ export const NavLink: React.FunctionComponent<NavLinkProps> = ({
   ...props
 }) => {
   return (
-    <NextLink href={href} passHref>
+    <Link href={href} passHref>
       <Anchor {...props}>{children}</Anchor>
-    </NextLink>
+    </Link>
   );
 };

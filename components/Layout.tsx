@@ -1,21 +1,20 @@
-import { cn } from 'lib/classnames';
-import { MetaProps } from 'lib/layout';
+import { cn } from '@lib/classnames';
+import { MetaProps } from '@lib/layout';
 import React from 'react';
 
-import Head from './Head';
 import { Navigation } from './Navigation';
+import Seo from './Seo';
 import { ThemeSwitch } from './ThemeSwitch';
 
 type LayoutProps = {
   children: React.ReactNode;
-  customMeta?: MetaProps;
+  meta?: MetaProps;
 };
 
-const Layout = ({ children, customMeta }: LayoutProps): JSX.Element => {
+const Layout = ({ children, meta }: LayoutProps): JSX.Element => {
   return (
     <>
-      <Head customMeta={customMeta} />
-
+      <Seo meta={meta} />
       <header
         className={cn(
           'flex items-center justify-between',

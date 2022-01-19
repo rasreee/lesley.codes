@@ -1,6 +1,6 @@
+import { isRegisterViewEnabled } from '@lib/environment';
+import { fetcher } from '@lib/fetcher';
 import { SupabaseClient } from '@supabase/supabase-js';
-import { isRegisterViewEnabled } from 'lib/environment';
-import { fetcher } from 'lib/fetcher';
 import { useEffect } from 'react';
 import useSWR, { SWRResponse } from 'swr';
 

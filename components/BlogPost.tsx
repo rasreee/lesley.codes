@@ -1,12 +1,12 @@
-import { BlogFrontmatterWithSlug } from 'lib/frontmatter';
+import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
+import DateFormatter from '@ui/components/DateFormatter';
+import NotionAside from '@ui/components/NotionAside';
+import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import React from 'react';
 
-import { DateFormatter } from './DateFormatter';
-import Head from './Head';
-import { NotionAside } from './NotionAside';
+import Seo from './Seo';
 import { Tags } from './Tags';
 import { H2, P } from './Typography';
 
@@ -15,10 +15,10 @@ import { H2, P } from './Typography';
 // to handle import statements. Instead, you must include components in scope
 // here.
 const components = {
-  NotionAside,
   Head,
   Image,
-  Link,
+  NotionAside,
+  Seo,
 };
 
 export interface BlogPostProps {
@@ -42,7 +42,7 @@ export const BlogPost: React.FunctionComponent<BlogPostProps> = ({
         <H2 size="md:text-4xl">{frontMatter.title}</H2>
         <P color="text-hint" size="text-base">
           {'Published on '}
-          <DateFormatter dateString={frontMatter.publishedAt} />
+          <DateFormatter date={frontMatter.publishedAt} />
         </P>
         <Tags tags={frontMatter.tags} />
       </section>

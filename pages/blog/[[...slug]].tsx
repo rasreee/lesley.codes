@@ -1,10 +1,10 @@
-import { AllPostsPage } from 'components/AllPostsPage';
-import { BlogPostPage } from 'components/BlogPostPage';
+import { AllPostsPage } from '@components/AllPostsPage';
+import { BlogPostPage } from '@components/BlogPostPage';
+import { getAllPosts } from '@lib/api';
+import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
+import { postFilePaths, POSTS_PATH } from '@lib/mdx';
 import fs from 'fs';
 import matter from 'gray-matter';
-import { getAllPosts } from 'lib/api';
-import { BlogFrontmatterWithSlug } from 'lib/frontmatter';
-import { postFilePaths, POSTS_PATH } from 'lib/mdx';
 import mdxPrism from 'mdx-prism';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';

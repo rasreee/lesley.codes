@@ -1,4 +1,4 @@
-import { cn } from 'lib/classnames';
+import { cn } from '@lib/classnames';
 import { SVGProps } from 'react';
 
 export const SearchIcon = ({

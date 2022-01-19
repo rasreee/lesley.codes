@@ -1,7 +1,7 @@
+import { WEBSITE_HOST_URL } from '@lib/appConfig';
+import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
+import { MetaProps } from '@lib/layout';
 import { useRegisterPostView } from 'db/contents';
-import { WEBSITE_HOST_URL } from 'lib/appConfig';
-import { BlogFrontmatterWithSlug } from 'lib/frontmatter';
-import { MetaProps } from 'lib/layout';
 import { useRouter } from 'next/router';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { ParsedUrlQuery } from 'querystring';
@@ -39,7 +39,7 @@ export const BlogPostPage: React.FunctionComponent<BlogPostPageProps> = ({
   };
 
   return (
-    <Layout customMeta={customMeta}>
+    <Layout meta={customMeta}>
       <BlogPost source={source} frontMatter={frontMatter} />
     </Layout>
   );

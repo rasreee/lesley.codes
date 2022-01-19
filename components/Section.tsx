@@ -1,4 +1,4 @@
-import { cn } from 'lib/classnames';
+import { cn } from '@lib/classnames';
 import React, { HTMLAttributes } from 'react';
 
 export type SectionProps = HTMLAttributes<HTMLElement>;

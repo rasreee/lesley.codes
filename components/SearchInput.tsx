@@ -1,6 +1,6 @@
+import { cn } from '@lib/classnames';
+import { useAutoFocus } from '@ui/hooks/useAutoFocus';
 import { registerSearch } from 'db/searches';
-import { useAutoFocus } from 'hooks/useAutoFocus';
-import { cn } from 'lib/classnames';
 import React, { ChangeEventHandler, useEffect, useRef } from 'react';
 
 const MIN_QUERY_LENGTH = 3;

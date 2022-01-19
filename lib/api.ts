@@ -1,6 +1,6 @@
+import { POSTS_PATH } from '@lib/mdx';
 import fs from 'fs';
 import matter from 'gray-matter';
-import { POSTS_PATH } from 'lib/mdx';
 import { join } from 'path';
 
 export type Fields = readonly string[];

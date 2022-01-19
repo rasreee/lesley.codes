@@ -1,5 +1,5 @@
+import { supabase } from '@lib/supabase';
 import { ContentMeta, getContentMeta } from 'db/contents';
-import { supabase } from 'lib/supabase';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(

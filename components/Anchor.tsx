@@ -1,4 +1,4 @@
-import { cn } from 'lib/classnames';
+import { cn } from '@lib/classnames';
 import React, { AnchorHTMLAttributes, forwardRef, Ref } from 'react';
 
 export const baseAnchorStyles =

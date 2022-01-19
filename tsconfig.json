@@ -15,7 +15,12 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@ui/*": ["./ui/*"],
+      "@lib/*": ["./lib/*"],
+      "@components/*": ["./components/*"],
+      "@db/*": ["./db/*"],
+    },
     "incremental": true
   },
   "exclude": ["node_modules", ".next", "out"],

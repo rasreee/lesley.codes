@@ -1,4 +1,4 @@
-import { useIsMounted } from 'hooks/useIsMounted';
+import { useIsMounted } from '@ui/hooks/useIsMounted';
 import { useTheme } from 'next-themes';
 import React from 'react';
 

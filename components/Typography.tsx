@@ -1,4 +1,4 @@
-import { cn } from 'lib/classnames';
+import { cn } from '@lib/classnames';
 import { HTMLAttributes, ReactNode } from 'react';
 
 export interface TextProps extends Omit<HTMLAttributes<HTMLElement>, 'color'> {

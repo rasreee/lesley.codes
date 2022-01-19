@@ -1,7 +1,7 @@
-import { cn } from 'lib/classnames';
-import { BlogFrontmatterWithSlug } from 'lib/frontmatter';
+import { cn } from '@lib/classnames';
+import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
+import DateFormatter from '@ui/components/DateFormatter';
 
-import { DateFormatter } from './DateFormatter';
 import { NavLink } from './NavLink';
 import { Tags } from './Tags';
 import { H3, P } from './Typography';
@@ -24,7 +24,7 @@ export const BlogPostCard: React.FC<
         <Tags tags={tags} />
         <section className="flex items-center justify-start gap-6">
           <P color="text-hint" size="text-sm">
-            <DateFormatter dateString={publishedAt} />
+            <DateFormatter date={publishedAt} />
           </P>
           <ViewsStat slug={slug} />
         </section>
