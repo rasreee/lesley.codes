@@ -1,7 +1,7 @@
 import Meta from '@components/Meta';
+import { PostsSearch } from '@components/PostsSearch';
 import { Section } from '@components/Section';
 import { H1, P } from '@components/Typography';
-import { PostsSearch } from '@features/search/PostsSearch';
 
 const Posts = () => {
   return (

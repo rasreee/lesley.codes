@@ -4,11 +4,11 @@ import isPast from 'date-fns/isPast';
 import parseISO from 'date-fns/parseISO';
 import { useMemo } from 'react';
 
-export function useSearch({ allData }: { allData: SearchData[] }) {
+export function useSearch(allData: SearchData[] | Falsy) {
   const [query, setQuery] = useDebouncedState(``, 300);
 
   const hits: SearchData[] = useMemo(() => {
-    if (!allData.length) return [];
+    if (!allData) return [];
 
     return allData
       .filter((data) => data.title.toLowerCase().includes(query.toLowerCase()))

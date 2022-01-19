@@ -3,12 +3,12 @@ import { ReactNode } from 'react';
 
 export interface SearchResultsProps {
   items: SearchData[];
-  renderItem: (item: SearchData) => ReactNode;
-  onItemClick: (item: SearchData) => void;
+  renderHit: (item: SearchData) => ReactNode;
+  onHitClick: (item: SearchData) => void;
 }
 
-export const SearchResults: React.FC<SearchResultsProps> = ({ items, renderItem, onItemClick }) => {
-  const handleItemClick = (item: SearchData) => () => onItemClick(item);
+export const SearchResults: React.FC<SearchResultsProps> = ({ items, renderHit, onHitClick }) => {
+  const handleHitClick = (item: SearchData) => () => onHitClick(item);
 
   return (
     <div className={classNames('flex gap-3 py-2 w-full relative', 'flex-col')}>
@@ -19,9 +19,9 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ items, renderItem,
             className={
               'text-base font-semibold text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition-all'
             }
-            onClick={handleItemClick(item)}
+            onClick={handleHitClick(item)}
           >
-            {renderItem(item)}
+            {renderHit(item)}
           </button>
         ))}
       </ul>
