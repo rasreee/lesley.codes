@@ -2,12 +2,12 @@ import { useDebouncedState } from '@ui/hooks/useDebouncedState';
 import { isBefore, isPast, parseISO } from 'date-fns';
 import { ReactNode, useMemo } from 'react';
 
-import { SearchContext } from './SearchContext';
+import { ISearchContext, SearchContext } from './SearchContext';
 import { SearchData } from './SearchData';
 
 type SearchProviderProps<Data extends SearchData = SearchData> = {
   children: ReactNode;
-  onSelect: (selectedSearchResult: Data) => void;
+  onSelect?: ISearchContext['onSelect'];
   allData: Data[];
 };
 

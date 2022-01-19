@@ -1,10 +1,12 @@
 import { createContext } from 'react';
 
-export interface ISearchContext<Data = any> {
+import { SearchData } from './SearchData';
+
+export interface ISearchContext<Data extends SearchData = SearchData> {
   query: string;
   setQuery: (query: string) => void;
   hits: Data[];
-  onSelect: (selectedItem: Data) => void;
+  onSelect: ((selectedSearchResult: Data) => void) | undefined;
 }
 
 export const SearchContext = createContext<ISearchContext | undefined>(undefined);
