@@ -11,6 +11,10 @@ export const RouteNames = {
   POST: 'Blog'
 } as const;
 
+export const RouteKeys = {
+  SLUG: '[slug]'
+} as const;
+
 export const routes = [
   {
     title: RouteNames.HOME,
@@ -25,10 +29,6 @@ export const routes = [
     path: Routes.POST
   }
 ];
-
-export const RouteKeys = {
-  SLUG: '[slug]'
-} as const;
 
 export const getPostsRoute = () => Routes.POSTS;
 

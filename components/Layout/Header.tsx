@@ -1,14 +1,24 @@
 import { cn } from '@lib/classnames';
-import { routes } from '@lib/routes';
+import { RouteNames, Routes } from '@lib/routes';
 
 import { Navigation } from './Navigation';
 import { NavItemProps } from './NavItem';
 import { ThemeSwitch } from './ThemeSwitch';
 
-const navItemProps: NavItemProps[] = routes.map(({ title, path }) => ({
-  href: path,
-  children: title
-}));
+const navItemProps: NavItemProps[] = [
+  {
+    children: RouteNames.HOME,
+    href: Routes.HOME
+  },
+  {
+    children: RouteNames.POSTS,
+    href: Routes.POSTS
+  },
+  {
+    children: RouteNames.POST,
+    href: Routes.POST
+  }
+];
 
 const Header = () => {
   return (
