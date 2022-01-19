@@ -11,7 +11,7 @@ export function getSearchHitsForQuery(query: string): Promise<SearchHit[]> {
   const a = query.toLowerCase();
 
   hits = allData.filter((item) => {
-    const b = item.title.toLowerCase().slice(0, query.length);
+    const b = item.title.toLowerCase();
 
     return a === b;
   });
