@@ -212,7 +212,7 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
 };
 ```
 
-### SearchModal: ⌘K Hotkey
+### ⌘K Hotkey
 Let's implement the hotkey logic for opening the modal when ⌘K is pressed by creating a new hook called useKeyCombo to listen for sequences of keyboard events.
 ```ts
 export function useKeyCombo(
@@ -255,7 +255,7 @@ useKeyCombo([EventKeys.META, 'k'], onClose)
 
 Now all that's left is the core search functionality for when the modal is visible.
 
-### SearchModal: Basic Composition
+### Basic Composition of SearchModal
 
 Let's scaffold the search bar and search dropdown components within SearchModal.
 SearchBar will render the input field UI, and SearchDropdown will render the search results UI.
@@ -325,8 +325,7 @@ export const generateMockSearchHits = (n = 30) =>
 export const mockSearchHits = generateMockSearchHits();
 ```
 
-
-### Rendering Array of Search Hits
+### Rendering Array of Data in React
 
 When mapping over an array to render elements in React, you must pass a key prop to each list item. Since our data model has a unique `id` property, we can use that for the key:
 
@@ -337,3 +336,4 @@ When mapping over an array to render elements in React, you must pass a key prop
   ))}
 </ul>
 ```
+
