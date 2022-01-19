@@ -255,7 +255,7 @@ useKeyCombo([EventKeys.META, 'k'], onClose)
 
 Now all that's left is the core search functionality for when the modal is visible.
 
-### 🥞 SearchModal Composition
+## 🌙 SearchModal Composition
 
 Let's scaffold the search bar and search dropdown components within SearchModal.
 SearchBar will render the input field UI, and SearchDropdown will render the search results UI.
@@ -267,6 +267,8 @@ Compose SearchModal with these two components like so:
   <SearchDropdown data={mockSearchHits} />
 </Modal>
 ```
+
+### 🥞 SearchBar
 
 #### Input Autofocus
 
@@ -281,7 +283,7 @@ useEffect(() => {
 }, []);
 ```
 
-### 🥞 Rendering Search Results and Mocking Data
+### 🥞 SearchDropdown
 
 #### Data Model
 
