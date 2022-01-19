@@ -1,15 +1,14 @@
-import classNames from 'classnames';
 import { SVGProps } from 'react';
 
-const SearchIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => {
+const SearchIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       {...props}
-      className={classNames(className, 'h-[1.25rem] w-[1.25rem]')}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
+      {...props}
     >
       <path
         strokeLinecap="round"
