@@ -1,12 +1,12 @@
 import { ContentMetaApiResponse } from '@db/contents/types';
-import { ApiRouteKeys, ApiRoutes } from '@lib/apiRoutes';
 import { isRequesting } from '@lib/isRequesting';
+import { ApiRoutes, RouteKeys } from '@lib/routes';
 import { useQuery } from '@lib/useQuery';
 import { useEffect } from 'react';
 
 export const ViewsCount = ({ slug }: { slug: string }) => {
   const { data, error } = useQuery<ContentMetaApiResponse>(
-    ApiRoutes.CONTENTS.replace(ApiRouteKeys.SLUG, slug)
+    ApiRoutes.CONTENTS.replace(RouteKeys.SLUG, slug)
   );
 
   useEffect(() => {

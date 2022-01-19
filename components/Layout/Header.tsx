@@ -1,11 +1,11 @@
 import { cn } from '@lib/classnames';
-import { Routes } from '@lib/routes';
+import { routes } from '@lib/routes';
 
 import { Navigation } from './Navigation';
 import { NavItemProps } from './NavItem';
 import { ThemeSwitch } from './ThemeSwitch';
 
-const navItemProps: NavItemProps[] = Routes.map(({ title, path }) => ({
+const navItemProps: NavItemProps[] = routes.map(({ title, path }) => ({
   href: path,
   children: title
 }));

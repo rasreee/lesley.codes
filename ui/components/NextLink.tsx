@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import Anchor, { AnchorProps } from './Anchor';
 
-interface NextLinkProps extends AnchorProps {
+interface NextLinkProps extends Omit<AnchorProps, 'href'> {
   href: string;
 }
 

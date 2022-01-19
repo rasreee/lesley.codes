@@ -1,6 +1,6 @@
 import PostCard from '@components/PostCard';
 import Search from '@features/search/Search';
-import { ApiRoutes } from '@lib/apiRoutes';
+import { ApiRoutes, RouteKeys, Routes } from '@lib/routes';
 import { useRouter } from 'next/router';
 
 export function PostsSearch() {
@@ -8,7 +8,7 @@ export function PostsSearch() {
 
   const handleHitClick = (item: SearchData) => {
     console.log('Selected post: ', item.slug);
-    router.push(`${ApiRoutes.POST}/${item.slug}`);
+    router.push(Routes.POST.replace(RouteKeys.SLUG, item.slug));
   };
 
   const renderHit = (item: SearchData) => <PostCard {...item} />;
