@@ -5,6 +5,8 @@ export const isBrowser =
 
 export const isProduction = () => process.env.NODE_ENV === 'production';
 
+export const isDevelopment = () => !isProduction();
+
 export const isRegisterViewEnabled = () => {
   return isProduction() || process.env.NEXT_PUBLIC_REGISTER_VIEWS === 'true';
 };

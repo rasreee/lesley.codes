@@ -1,2 +1,2 @@
-export * from './SearchModalProvider'
-export * from './SearchModalToggle'
+export * from './SearchModalProvider';
+export * from './SearchModalToggle';

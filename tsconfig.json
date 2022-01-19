@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "target": "ES2019",
+    "lib": ["dom", "dom.iterable", "es2017"],
+    "allowJs": false,
+    "preserveConstEnums": true,
     "skipLibCheck": true,
     "strict": true,
+    "sourceMap": true,
     "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
@@ -14,9 +16,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "types": [
-      "@emotion/react/types/css-prop"
-    ],
+    "types": ["@emotion/react/types/css-prop", "jest"],
     // Added by Emotion 11, necessary to use the "css" props using the "Babel preset", without using JSX pragma.
     // Using the Babel preset is better (DX), because we don't have to use "/** @jsx jsx */" in every file, as Babel does it for us.
     // See https://emotion.sh/docs/typescript#css-prop TS configuration to support the "css" prop
@@ -32,10 +32,10 @@
       "@components/*": ["./components/*"],
       "@db/*": ["./db/*"],
       "@models/*": ["./models/*"],
-      "@styles/*": ["./styles/*"],
+      "@styles/*": ["./styles/*"]
     },
     "incremental": true
   },
-  "exclude": ["node_modules", ".next", "out"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"]
+  "exclude": ["node_modules", ".next", "out", "blog"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

@@ -19,4 +19,6 @@ const Anchor = forwardRef(
   }
 );
 
+Anchor.displayName = 'Anchor';
+
 export default Anchor;

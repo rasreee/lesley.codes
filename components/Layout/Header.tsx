@@ -1,16 +1,14 @@
 import { cn } from '@lib/classnames';
-import { RouteNames, Routes } from '@lib/navigation';
+import { Routes } from '@lib/routes';
 
 import { Navigation } from './Navigation';
 import { NavItemProps } from './NavItem';
 import { ThemeSwitch } from './ThemeSwitch';
 
-const navItemProps: NavItemProps[] = Object.keys(RouteNames).map(
-  (routeName) => ({
-    href: Routes[routeName],
-    children: routeName,
-  })
-);
+const navItemProps: NavItemProps[] = Routes.map(({ title, path }) => ({
+  href: path,
+  children: title,
+}));
 
 const Header = () => {
   return (

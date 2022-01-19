@@ -39,19 +39,24 @@ Before coding anything, we should take a brief moment to get a better understand
 We can outline an example the of UI flow, specifically the expected sequence of user inputs and outputs.
 
 Here's a somewhat end-to-end example where the user gets non-empty search results for their query:
+
 1. The search modal is in its default state (hidden).
 2. Bob clicks the "Quick search" button.
 3. The search modal is visible, and the top input field is automatically focused.
 4. Bob types "doge" into the input field.
 5. The search modal briefly shows a loading indicator before displaying the results for the query "doge".
-7. Bob clicks the first search hit for "doge".
-8. The search modal is hidden, and the app navigates Bob to the search hit's URL.
+6. Bob clicks the first search hit for "doge".
+7. The search modal is hidden, and the app navigates Bob to the search hit's URL.
 
 <NotionAside>
-	It's useful to write UI flow examples not only because it helps you understand the scenarios better, but also because you can then use it with a behavior-driven testing tool like [Cucumber](https://cucumber.io/) to write tests.
+  It's useful to write UI flow examples not only because it helps you understand
+  the scenarios better, but also because you can then use it with a
+  behavior-driven testing tool like [Cucumber](https://cucumber.io/) to write
+  tests.
 </NotionAside>
 
 Let's write another example where the user gets no results for their query.
+
 1. The search modal is in its default state (hidden).
 2. Bob clicks the "Quick search" button.
 3. The search modal is visible, and the top input field is automatically focused.
@@ -69,11 +74,11 @@ At some point we will want to know what the data looks like for the search resul
 ```ts
 export interface SearchHit {
   /* Unique integer ID */
-  id: number
+  id: number;
   /* Title for the search hit to present to the user */
-  title: string
+  title: string;
   /* sourceUrl of the search hit relative to the client app (i.e. https://demo.app/memes/doge ) */
-  sourceUrl: string
+  sourceUrl: string;
 }
 ```
 
@@ -82,6 +87,7 @@ export interface SearchHit {
 Now, let's mock search hit data based on this definition. I often use `faker` and `lodash.times` to generate mock data during development instead of using a pre-defined fixture to make things a bit more realistic. Don't forget to install @types/faker and @types/lodash.times for the type definitions if you want your IDE to help you out with autocompletion and whatnot.
 
 Install faker & lodash.times with the following command:
+
 ```bash
 yarn add -D faker@5.5.3 @types/faker@5.5.3 lodash.times @types/lodash.times
 ```
@@ -89,14 +95,16 @@ yarn add -D faker@5.5.3 @types/faker@5.5.3 lodash.times @types/lodash.times
 **IMPORTANT** Make sure to keep the faker@5.5.3 versionings because the author pulled a big petty and destroyed the versions after 5.5.3, so yeah.
 
 For now, you can generate any number of mocks; I created a function `generateMockSearchHits` that handles this:
+
 ```ts
 export const generateMockSearchHit = (index: number): SearchHitData => ({
   id: index,
   title: faker.lorem.words(3),
-  sourceUrl: faker.lorem.slug()
-})
+  sourceUrl: faker.lorem.slug(),
+});
 
-export const generateMockSearchHits = (n = 30) => times(n, generateMockSearchHit)
+export const generateMockSearchHits = (n = 30) =>
+  times(n, generateMockSearchHit);
 ```
 
 ### SearchModal
@@ -104,37 +112,40 @@ export const generateMockSearchHits = (n = 30) => times(n, generateMockSearchHit
 Let's implement the Modal component which will be used by SearchModal to wrap its children.
 
 The Modal component should take care of the basic functionality of modals:
+
 1. It should render its children as its content (i.e. via a `children` prop)
 2. It should should notify whichever component is using it of when the modal should be closed, namely: (1) when the user clicks outside of it and (2) when the user presses the Escape key (i.e. via an `onClose` handler prop).
 3. Clients of the Modal should be able to tell the Modal whether to show or hide its children (i.e. via an `isOpen` boolean prop).
 
 Based on the above requirements, here's a basic typescript definition for its props:
+
 ```ts
 interface IModalProps {
   /**
    * Indicates whether modal is visible or not
    */
-  isOpen: boolean
+  isOpen: boolean;
   /**
    * Handler to call when modal should be closed
    */
-  onClose: () => void
+  onClose: () => void;
   /**
    * Children of modal
    */
-  children: ReactNode
+  children: ReactNode;
 }
 ```
 
 ... and here's the initial implementation of the React component:
+
 ```tsx
 const Modal: FC<IModalProps> = ({ isOpen, onClose, children }) => {
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
-  return <div>{children}</div>
-}
+  return <div>{children}</div>;
+};
 
-export default Modal
+export default Modal;
 ```
 
 Let's create another component that uses this Modal component and render it as one of the children for SearchModalProvider:
