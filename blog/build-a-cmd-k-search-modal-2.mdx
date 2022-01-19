@@ -34,20 +34,19 @@ yarn install && yarn start
 
 Review the tutorial instructions [here](http://localhost:3000/blog/build-a-cmd-k-search-modal-1) if you need to, but I'm going to dive straight into the tutorial and explain my solution as best as possible.
 
-Let's start with the implementation for SearchModalProvider.
+Before coding anything, we should take a brief moment to get a better understanding of the architecture we want the implementation to take, keeping in mind that this may change as throughout development and doesn't have to be absolutely perfect from the start. In the real world, the most important thing is to ship features to users as fast as possible - something that can be easy to forget as a Software Engineer.
 
-## SearchModalProvider
+We can outline a minimal example the of UI flow, specifically the sequence of user inputs and their outputs.
 
-The starter code already includes the basic React Context API usage, namely the SearchModalContext object to be used across the components and its typescript interface definition, also pasted here for reference:
+1. The search modal is in its default state (hidden).
+2. Bob clicks the "Quick search" button.
+3. The search modal is visible, and the top input field is automatically focused.
+4. Bob types "doge" into the input field.
+5. The search modal briefly shows a loading indicator before displaying the results for the query "doge".
+7. Bob clicks the first search hit for "doge".
+8. The search modal is hidden, and the app navigates Bob to the search hit's URL.
 
-```ts
-interface ISearchModalContext {
-  open: boolean
-  setOpen: Dispatch<SetStateAction<boolean>>
-}
-```
-
-We already know the state of the component will involve the visibility of Search Modal (that's what `open` is for), we should try to map out the state across the different components more thoroughly.
+### Search Hit Data Model
 
 First, let's define a typescript interface that represents the data for a search hit:
 
@@ -61,6 +60,8 @@ export interface SearchHit {
   pathname: string
 }
 ```
+
+### Mocking Search Hit Data using Faker
 
 Now, let's mock search hit data based on this definition. I often use `faker` and `lodash.times` to generate mock data during development instead of using a pre-defined fixture to make things a bit more realistic. Don't forget to install @types/faker and @types/lodash.times for the type definitions if you want your IDE to help you out with autocompletion and whatnot.
 
@@ -81,6 +82,8 @@ export const generateMockSearchHit = (index: number): SearchHitData => ({
 
 export const generateMockSearchHits = (n = 30) => times(n, generateMockSearchHit)
 ```
+
+
 
 ## Questions?
 
