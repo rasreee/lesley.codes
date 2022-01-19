@@ -7,13 +7,13 @@ import { Section } from './Section';
 export interface SearchPostsResultsProps {}
 
 export const SearchPostsResults: React.FunctionComponent<SearchPostsResultsProps> = () => {
-  const { hits: sortedAndFilteredPosts, onSelect } = useSearch();
+  const { hits: sortedAndFilteredPosts } = useSearch();
 
   return (
     <Section>
       <ul className={'flex flex-col gap-10'}>
         {sortedAndFilteredPosts.map((post) => (
-          <BlogPostCard key={post.title} onClick={onSelect(post)} {...post} />
+          <BlogPostCard key={post.title} {...post} />
         ))}
       </ul>
     </Section>

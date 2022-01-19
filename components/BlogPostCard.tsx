@@ -10,7 +10,9 @@ import { ViewsStat } from './ViewsStat';
 const buttonStyles =
   'text-base font-semibold text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition-all';
 
-export const BlogPostCard: React.FC<BlogFrontmatterWithSlug & { slug: string }> = ({
+interface BlogPostCardProps extends BlogFrontmatterWithSlug {}
+
+export const BlogPostCard: React.FC<BlogPostCardProps> = ({
   createdAt,
   slug,
   title,

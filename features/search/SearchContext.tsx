@@ -1,3 +1,4 @@
+import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
 import { createContext } from 'react';
 
 import { SearchData } from './SearchData';
@@ -9,4 +10,6 @@ export interface ISearchContext<Data extends SearchData = SearchData> {
   onSelect: ((selectedSearchResult: Data) => void) | undefined;
 }
 
-export const SearchContext = createContext<ISearchContext | undefined>(undefined);
+export const SearchContext = createContext<ISearchContext<BlogFrontmatterWithSlug> | undefined>(
+  undefined
+);

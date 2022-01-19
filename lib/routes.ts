@@ -7,7 +7,7 @@ const DefaultRoutes = [
   },
   {
     title: 'Blog',
-    path: '/posts/all'
+    path: '/posts'
   }
 ];
 
