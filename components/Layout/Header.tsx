@@ -13,10 +13,6 @@ const navItemProps: NavItemProps[] = [
   {
     children: RouteNames.POSTS,
     href: Routes.POSTS
-  },
-  {
-    children: RouteNames.POST,
-    href: Routes.POST
   }
 ];
 
