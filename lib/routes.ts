@@ -11,12 +11,6 @@ const DefaultRoutes = [
   }
 ];
 
-const DevRoutes = [
-  ...DefaultRoutes,
-  {
-    title: 'Playground',
-    path: '/playground'
-  }
-];
+const DevRoutes = [...DefaultRoutes];
 
 export const Routes = isProduction() ? DefaultRoutes : DevRoutes;
