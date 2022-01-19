@@ -327,3 +327,13 @@ export const mockSearchHits = generateMockSearchHits();
 
 
 ### Rendering Array of Search Hits
+
+When mapping over an array to render elements in React, you must pass a key prop to each list item. Since our data model has a unique `id` property, we can use that for the key:
+
+```tsx
+<ul>
+  {data.map((searchHit: SearchHit) => (
+    <li key={searchHit.id}><a href={searchHit.sourceUrl}>{searchHit.title}</a></li>
+  ))}
+</ul>
+```

@@ -44,13 +44,13 @@ interface SearchDropdownProps {
 
 const SearchDropdown = ({ data }: SearchDropdownProps) => {
   return (
-    <div>
-      <ul>
-        {data.map((searchHit: SearchHit) => (
-          <li key={searchHit.id}>{searchHit.title}</li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {data.map((searchHit: SearchHit) => (
+        <li key={searchHit.id}>
+          <a href={searchHit.sourceUrl}>{searchHit.title}</a>
+        </li>
+      ))}
+    </ul>
   );
 };
 
