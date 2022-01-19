@@ -1,3 +1,5 @@
+import { typography } from './typography';
+
 const colors = {
   gray: {
     50: '#f9fafb',
@@ -34,6 +36,31 @@ const colors = {
     700: '#1d4ed8',
     800: '#1e40af',
     900: '#1e3a8a'
+  },
+
+  indigo: {
+    50: '#eef2ff',
+    100: '#e0e7ff',
+    200: '#c7d2fe',
+    300: '#a5b4fc',
+    400: '#818cf8',
+    500: '#6366f1',
+    600: '#4f46e5',
+    700: '#4338ca',
+    800: '#3730a3',
+    900: '#312e81'
+  },
+  red: {
+    50: '#fef2f2',
+    100: '#FFE8D2',
+    200: '#FFCBA6',
+    300: '#FFA879',
+    400: '#FF8558',
+    500: '#FF4D21',
+    600: '#DB3018',
+    700: '#B71810',
+    800: '#930A0D',
+    900: '#7A0611'
   },
   tailwindPrimary: '#0ea5e9'
 };
@@ -94,29 +121,6 @@ const sizes = {
   ...spacing
 };
 
-const fontWeights = {
-  light: 300,
-  normal: 400,
-  medium: 500,
-  semibold: 600,
-  bold: 700
-};
-
-const fontSizes = {
-  xs: '0.75rem',
-  sm: '0.875rem',
-  base: '1rem',
-  lg: '1.125rem',
-  xl: '1.25rem',
-  '2xl': '1.5rem',
-  '3xl': '1.875rem',
-  '4xl': '2.25rem',
-  '5xl': '3rem',
-  '6xl': '3.75rem',
-  '7xl': '4.5rem',
-  '8xl': '6rem'
-};
-
 const shadows = {
   xs: 'inset 0px 2px 4px rgba(0, 0, 0, 0.06)',
   sm: '0px 0px 1px rgba(12, 26, 75, 0.24), 0px 3px 8px -1px rgba(50, 50, 71, 0.05)',
@@ -151,8 +155,7 @@ export const theme = {
   colors,
   spacing,
   sizes,
-  fontWeights,
-  fontSizes,
+  ...typography,
   radii,
   shadows,
   zIndex

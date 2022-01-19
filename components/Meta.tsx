@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 export interface MetaProps
-  extends Partial<Pick<BlogFrontmatter, 'publishedAt' | 'description' | 'image' | 'title'>> {
+  extends Partial<Pick<BlogFrontmatter, 'createdAt' | 'description' | 'image' | 'title'>> {
   /**
    * For the meta tag `og:type`
    */
@@ -31,7 +31,7 @@ const Meta = (props: MetaProps): JSX.Element => {
       <meta name="twitter:title" content={props.title} />
       <meta name="twitter:description" content={props.description} />
       <meta name="twitter:image" content={props.image} />
-      {props.publishedAt && <meta property="article:published_time" content={props.publishedAt} />}
+      {props.createdAt && <meta property="article:published_time" content={props.createdAt} />}
     </Head>
   );
 };

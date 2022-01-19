@@ -1,6 +1,4 @@
-import { BlogPage } from '@components/BlogPage';
 import { BlogPostPage } from '@components/BlogPostPage';
-import { getAllPosts } from '@lib/api';
 import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
 import { postFilePaths, POSTS_PATH } from '@lib/mdx';
 import fs from 'fs';
@@ -10,30 +8,15 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
-import React from 'react';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 
-interface AllPostsRouteProps {
-  posts: BlogFrontmatterWithSlug[];
-}
-
-type PostPageProps =
-  | {
-      source: MDXRemoteSerializeResult;
-      frontMatter: BlogFrontmatterWithSlug;
-    }
-  | AllPostsRouteProps;
-
-const isAllPostsRouteProps = (o: any): o is AllPostsRouteProps => {
-  return typeof o === 'object' && 'posts' in o && Array.isArray(o.posts);
+type BlogPostPageProps = {
+  source: MDXRemoteSerializeResult;
+  frontMatter: BlogFrontmatterWithSlug;
 };
 
-const BlogRoute = (props: PostPageProps): JSX.Element => {
-  if (isAllPostsRouteProps(props)) {
-    return <BlogPage {...props} />;
-  }
-
+const BlogRoute = (props: BlogPostPageProps): JSX.Element => {
   return <BlogPostPage {...props} />;
 };
 
@@ -41,18 +24,10 @@ const BlogRoute = (props: PostPageProps): JSX.Element => {
  * Params must be either an empty object or of type { slugs: string[] }
  * where slugs has exactly one item.
  */
-export const getStaticProps: GetStaticProps<{ slug: string } | EmptyObject> = async ({
-  params
-}) => {
-  if (!params || !('slug' in params)) {
-    const posts = getAllPosts();
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  if (!params) return { redirect: { destination: '/', permanent: false } };
 
-    return {
-      props: { posts }
-    };
-  }
-
-  const slug = (params.slug as string[])[0];
+  const slug = (params as { slug: string }).slug;
 
   const postFilePath = path.join(POSTS_PATH, `${slug}.mdx`);
   const source = fs.readFileSync(postFilePath);

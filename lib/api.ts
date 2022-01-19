@@ -3,11 +3,13 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import { join } from 'path';
 
+import { BlogFrontmatterWithSlug } from './frontmatter';
+
 export type Fields = readonly string[];
 
 export const ALL_POST_FIELDS = [
   'image',
-  'publishedAt',
+  'createdAt',
   'description',
   'slug',
   'title',
@@ -18,17 +20,16 @@ export function getPostSlugs(): string[] {
   return fs.readdirSync(POSTS_PATH);
 }
 
-type PostItems = {
-  [key: string]: string;
-};
-
-export function getPostBySlug(slug: string, fields: Fields = ALL_POST_FIELDS): PostItems {
+export function getPostBySlug(
+  slug: string,
+  fields: Fields = ALL_POST_FIELDS
+): BlogFrontmatterWithSlug {
   const realSlug = slug.replace(/\.mdx$/, '');
   const fullPath = join(POSTS_PATH, `${realSlug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
-  const items: PostItems = {};
+  const items = {} as BlogFrontmatterWithSlug;
 
   // Ensure only the minimal needed data is exposed
   fields.forEach((field) => {
@@ -48,13 +49,12 @@ export function getPostBySlug(slug: string, fields: Fields = ALL_POST_FIELDS): P
   return items;
 }
 
-export function getAllPosts(fields: Fields = ALL_POST_FIELDS): PostItems[] {
+export function getAllPosts(fields: Fields = ALL_POST_FIELDS): BlogFrontmatterWithSlug[] {
   const slugs = getPostSlugs();
 
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug, fields))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+  console.log('Slugs: ', slugs);
+
+  const posts = slugs.map((slug) => getPostBySlug(slug, fields));
 
   return posts;
 }

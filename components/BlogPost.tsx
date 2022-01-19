@@ -39,7 +39,7 @@ export const BlogPost: React.FunctionComponent<BlogPostProps> = ({ frontMatter, 
         <H2 size="md:text-4xl">{frontMatter.title}</H2>
         <P color="text-hint" size="text-base">
           {'Published on '}
-          <DateFormatter date={frontMatter.publishedAt} />
+          <DateFormatter date={frontMatter.createdAt} />
         </P>
         <Tags tags={frontMatter.tags} />
       </section>

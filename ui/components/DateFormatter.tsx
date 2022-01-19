@@ -5,7 +5,7 @@ const getParsedDate = (date: string) => {
   try {
     return format(parseISO(date), 'MMMM dd, yyyy');
   } catch (err) {
-    console.error(`Failed to parse publishedAt ${date}.`, err);
+    console.error(`Failed to parse createdAt ${date}.`, err);
 
     return '???';
   }

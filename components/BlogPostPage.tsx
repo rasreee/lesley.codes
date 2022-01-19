@@ -33,7 +33,7 @@ export const BlogPostPage: React.FunctionComponent<BlogPostPageProps> = ({
     title: `${frontMatter.title} - Lesley Chang`,
     description: frontMatter.description,
     image: `${WEBSITE_HOST_URL}${frontMatter.image}`,
-    publishedAt: frontMatter.publishedAt,
+    createdAt: frontMatter.createdAt,
     type: 'article'
   };
 
