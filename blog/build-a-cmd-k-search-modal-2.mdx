@@ -44,7 +44,7 @@ Here's a somewhat end-to-end example where the user gets non-empty search result
 2. Bob clicks the "Quick search" button.
 3. The search modal is visible, and the top input field is automatically focused.
 4. Bob types "doge" into the input field.
-5. The search modal briefly shows a loading indicator before displaying the results for the query "doge".
+5. Bob sees a list of search results for his query.
 6. Bob clicks the first search hit for "doge".
 7. The search modal is hidden, and the app navigates Bob to the search hit's URL.
 
@@ -61,55 +61,15 @@ Let's write another example where the user gets no results for their query.
 2. Bob clicks the "Quick search" button.
 3. The search modal is visible, and the top input field is automatically focused.
 4. Bob types "asdf" into the input field.
-5. The search modal briefly shows a loading indicator before showing "No results found for 'asdf'".
+5. The search modal shows "No results found for 'asdf'".
 6. Bob presses the Escape key.
 7. The search modal is hidden.
 
 Later, we will exchange Step 2 for both example flows with the pressing of ⌘K to test for the hotkey implementation for opening the search modal, but for now let's ignore that to keep things focused and simple.
 
-### Search Hit Data Model
+### Generic Modal Component
 
-At some point we will want to know what the data looks like for the search results. Let's define a typescript interface that represents the data for a search hit:
-
-```ts
-export interface SearchHit {
-  /* Unique integer ID */
-  id: number;
-  /* Title for the search hit to present to the user */
-  title: string;
-  /* sourceUrl of the search hit relative to the client app (i.e. https://demo.app/memes/doge ) */
-  sourceUrl: string;
-}
-```
-
-### Mocking Search Hit Data using Faker
-
-Now, let's mock search hit data based on this definition. I often use `faker` and `lodash.times` to generate mock data during development instead of using a pre-defined fixture to make things a bit more realistic. Don't forget to install @types/faker and @types/lodash.times for the type definitions if you want your IDE to help you out with autocompletion and whatnot.
-
-Install faker & lodash.times with the following command:
-
-```bash
-yarn add -D faker@5.5.3 @types/faker@5.5.3 lodash.times @types/lodash.times
-```
-
-**IMPORTANT** Make sure to keep the faker@5.5.3 versionings because the author pulled a big petty and destroyed the versions after 5.5.3, so yeah.
-
-For now, you can generate any number of mocks; I created a function `generateMockSearchHits` that handles this:
-
-```ts
-export const generateMockSearchHit = (index: number): SearchHit => ({
-  id: index,
-  title: faker.lorem.words(3),
-  sourceUrl: faker.lorem.slug(),
-});
-
-export const generateMockSearchHits = (n = 30) =>
-  times(n, generateMockSearchHit);
-```
-
-### SearchModal
-
-Let's implement the Modal component which will be used by SearchModal to wrap its children.
+Let's implement a generic Modal component which will be used by SearchModal to wrap its children.
 
 The Modal component should take care of the basic functionality of modals:
 
@@ -145,6 +105,8 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   return <div>{children}</div>;
 };
 ```
+
+### SearchModal
 
 Let's create another component that uses Modal called SearchModal. SearchModal can just require the same props as ModalProps except for children.
 ```tsx
@@ -305,3 +267,65 @@ Compose SearchModal with these two components like so:
   <SearchDropdown data={mockSearchHits} />
 </Modal>
 ```
+
+### Input Autofocus
+
+Let's make the input field autofocus upon mounting. Again, we can utilize React hooks in combination with a ref instance for the <input> HTML element, like so:
+```tsx
+const inputRef = useRef<HTMLInputElement | null>(null);
+
+/* Auto-focus input upon mounting */
+useEffect(() => {
+    inputRef.current?.focus();
+}, []);
+
+return (
+  <input ref={inputRef} />
+)
+```
+
+### SearchDropdown: Rendering Search Results and Mocking Data
+
+#### Data Model
+
+At some point we will want to know what the data looks like for the search results. Let's define a typescript interface that represents the data for a search hit:
+
+```ts
+export interface SearchHit {
+  /* Unique integer ID */
+  id: number;
+  /* Title for the search hit to present to the user */
+  title: string;
+  /* sourceUrl of the search hit relative to the client app (i.e. https://demo.app/memes/doge ) */
+  sourceUrl: string;
+}
+```
+
+#### Mocking Data using Faker
+
+Now, let's mock search hit data based on this definition. I often use `faker` and `lodash.times` to generate mock data during development instead of using a pre-defined fixture to make things a bit more realistic. Don't forget to install @types/faker and @types/lodash.times for the type definitions if you want your IDE to help you out with autocompletion and whatnot.
+
+Install faker & lodash.times with the following command:
+
+```bash
+yarn add -D faker@5.5.3 @types/faker@5.5.3 lodash.times @types/lodash.times
+```
+
+**IMPORTANT** Make sure to keep the faker@5.5.3 versionings because the author pulled a big petty and destroyed the versions after 5.5.3, so yeah.
+
+For now, you can generate any number of mocks; I created a function `generateMockSearchHits` that handles this:
+
+```ts
+export const generateMockSearchHit = (index: number): SearchHit => ({
+  id: index,
+  title: faker.lorem.words(3),
+  sourceUrl: faker.lorem.slug(),
+});
+
+export const generateMockSearchHits = (n = 30) =>
+  times(n, generateMockSearchHit);
+
+export const mockSearchHits = generateMockSearchHits();
+```
+
+

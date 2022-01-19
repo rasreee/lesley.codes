@@ -1,6 +1,6 @@
 import { Modal, ModalProps } from '@ui/components/Modal/Modal';
 import SearchIcon from '@ui/icons/SearchIcon';
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
 
 import { mockSearchHits } from './mocks';
 import { SearchHit } from './SearchHit';
@@ -11,6 +11,13 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ query, onQueryChange }: SearchBarProps) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  /* Auto-focus input upon mounting */
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) =>
     onQueryChange(event.currentTarget.value);
 
@@ -20,6 +27,7 @@ const SearchBar = ({ query, onQueryChange }: SearchBarProps) => {
         <SearchIcon />
       </label>
       <input
+        ref={inputRef}
         type="search"
         name="search"
         placeholder="Search"
