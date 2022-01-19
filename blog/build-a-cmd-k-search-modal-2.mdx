@@ -30,4 +30,58 @@ To run the app, run the following command from the root of the project:
 yarn install && yarn start
 ```
 
-## 
+## Implementation Walkthrough
+
+Review the tutorial instructions [here](http://localhost:3000/blog/build-a-cmd-k-search-modal-1) if you need to, but I'm going to dive straight into the tutorial and explain my solution as best as possible.
+
+Let's start with the implementation for SearchModalProvider.
+
+## SearchModalProvider
+
+The starter code already includes the basic React Context API usage, namely the SearchModalContext object to be used across the components and its typescript interface definition, also pasted here for reference:
+
+```ts
+interface ISearchModalContext {
+  open: boolean
+  setOpen: Dispatch<SetStateAction<boolean>>
+}
+```
+
+We already know the state of the component will involve the visibility of Search Modal (that's what `open` is for), we should try to map out the state across the different components more thoroughly.
+
+First, let's define a typescript interface that represents the data for a search hit:
+
+```ts
+export interface SearchHit {
+  /* Unique integer ID */
+  id: number
+  /* Title for the search hit to present to the user */
+  title: string
+  /* Pathname of the search hit relative to the client app (i.e. /memes/doge which should take you to https://demo.app/memes/doge ) */
+  pathname: string
+}
+```
+
+Now, let's mock search hit data based on this definition. I often use `faker` and `lodash.times` to generate mock data during development instead of using a pre-defined fixture to make things a bit more realistic. Don't forget to install @types/faker and @types/lodash.times for the type definitions if you want your IDE to help you out with autocompletion and whatnot.
+
+Install faker & lodash.times with the following command:
+```bash
+ya -D faker@5.5.3 @types/faker@5.5.3 lodash.times @types/lodash.times
+```
+
+**IMPORTANT** Make sure to keep the faker@5.5.3 versionings because the author pulled a big petty and destroyed the versions after 5.5.3, so yeah.
+
+For now, you can generate any number of mocks; I created a function `generateMockSearchHits` that generates 30 by default:
+```ts
+export const generateMockSearchHit = (index: number): SearchHitData => ({
+  id: index,
+  title: faker.lorem.words(3),
+  pathname: faker.lorem.slug()
+})
+
+export const generateMockSearchHits = (n = 30) => times(n, generateMockSearchHit)
+```
+
+## Questions?
+
+If you run into any issues with the tutorial, please feel free to open an issue against the [Github repo](https://github.com/rasreee/cmdk-search-tutorial-skeleton).
