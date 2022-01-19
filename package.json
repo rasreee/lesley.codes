@@ -13,6 +13,8 @@
     "test-all": "yarn lint && yarn type-check && yarn test"
   },
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
     "@supabase/supabase-js": "^1.29.2",
     "@tailwindcss/typography": "^0.5.0",
     "classnames": "^2.3.1",
@@ -32,6 +34,7 @@
     "swr": "^1.1.2"
   },
   "devDependencies": {
+    "@emotion/babel-plugin": "^11.7.2",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.10",

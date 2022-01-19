@@ -1,0 +1,15 @@
+@tailwind utilities;
+
+@layer utilities {
+  .text {
+    @apply text-gray-900 dark:text-gray-50;
+  }
+
+  .text-hint {
+    @apply text-gray-500 dark:text-gray-400;
+  }
+
+  .text-body {
+    @apply text-lg;
+  }
+}
