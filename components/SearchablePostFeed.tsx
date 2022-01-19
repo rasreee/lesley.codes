@@ -29,14 +29,10 @@ export const SearchablePostFeed: React.FunctionComponent<
     [posts, query]
   );
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
-  useAutoFocus(inputRef);
-
   return (
     <>
       <Section className="relative w-full">
-        <SearchInput ref={inputRef} query={query} onChange={setQuery} />
+        <SearchInput query={query} onChange={setQuery} />
         <SearchIcon className="absolute right-3 top-[1.125rem]" />
       </Section>
       {!filteredBlogPosts.length && <P>No posts found.</P>}
