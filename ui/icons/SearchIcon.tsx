@@ -1,8 +1,9 @@
+import styled from '@emotion/styled';
 import { SVGProps } from 'react';
 
 const SearchIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
-    <svg
+    <Svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -16,8 +17,13 @@ const SearchIcon = (props: SVGProps<SVGSVGElement>) => {
         strokeWidth={2}
         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
       />
-    </svg>
+    </Svg>
   );
 };
+
+const Svg = styled.svg`
+  height: 1.25rem;
+  width: 1.25rem;
+`;
 
 export default SearchIcon;
