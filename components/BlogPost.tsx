@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import React from 'react';
 
-import Seo from './Seo';
+import Seo from './Layout/Seo';
 import { Tags } from './Tags';
 import { H2, P } from './Typography';
 

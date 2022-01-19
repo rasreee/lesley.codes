@@ -3,7 +3,7 @@ import { RouteNames, Routes } from '@lib/navigation';
 import { useRouter } from 'next/router';
 import React, { ReactNode } from 'react';
 
-import { NavLink } from './NavLink';
+import { NavLink } from '../NavLink';
 
 const capitalizeFirstLetter = (text: string): string => {
   const firstLetter = text[0];
