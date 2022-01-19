@@ -1,6 +1,6 @@
 import { getOrCreateContentMeta } from '@db/contents/getOrCreateContentMeta';
 import { supabase } from '@lib/supabase';
-import { ContentMeta } from '@models/contents';
+import { ContentMeta } from '@models/contentMeta';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

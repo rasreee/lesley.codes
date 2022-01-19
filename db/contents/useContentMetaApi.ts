@@ -1,5 +1,5 @@
 import { fetcher } from '@lib/fetcher';
-import { ContentMeta } from '@models/contents';
+import { ContentMeta } from '@models/contentMeta';
 import useSWR, { SWRResponse } from 'swr';
 
 export type ContentMetaApiResponse = { contentMeta: ContentMeta | null };

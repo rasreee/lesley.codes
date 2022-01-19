@@ -1,5 +1,5 @@
 import { NullDataError } from '@lib/error';
-import { ContentMeta } from '@models/contents';
+import { ContentMeta } from '@models/contentMeta';
 import { SupabaseClient } from '@supabase/supabase-js';
 
 import { getContentMeta } from './getContentMeta';
