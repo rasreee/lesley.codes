@@ -1,4 +1,5 @@
-import React, { FC, ReactNode } from 'react';
+import { useClickOutside } from '@ui/hooks/useClickOutside';
+import React, { FC, ReactNode, useRef } from 'react';
 
 export interface ModalProps {
   /**
@@ -16,7 +17,14 @@ export interface ModalProps {
 }
 
 export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useClickOutside(ref, () => {
+    console.log('👈 clicked outside');
+    onClose();
+  });
+
   if (!isOpen) return null;
 
-  return <div>{children}</div>;
+  return <div ref={ref}>{children}</div>;
 };

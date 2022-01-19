@@ -25,7 +25,7 @@ const SearchModalProvider = ({ children }: SearchModalProviderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const open = () => setIsOpen(true);
-  const close = () => setIsOpen(true);
+  const close = () => setIsOpen(false);
 
   return (
     <SearchModalContext.Provider value={{ isOpen, open, close }}>
