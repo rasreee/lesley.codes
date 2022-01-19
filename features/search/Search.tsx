@@ -4,11 +4,11 @@ import { useQuery } from '@lib/useQuery';
 import SearchComponent, { SearchComponentProps } from './SearchComponent';
 
 export interface SearchProps extends Omit<SearchComponentProps, 'allData'> {
-  apiRoute: `/${string}`;
+  apiEndpoint: `/${string}`;
 }
 
-function Search({ apiRoute, renderHit, onHitClick }: SearchProps) {
-  const allDataQuery = useQuery<SearchData[]>(`/api${apiRoute}`);
+function Search({ apiEndpoint, renderHit, onHitClick }: SearchProps) {
+  const allDataQuery = useQuery<SearchData[]>(`${apiEndpoint}`);
 
   if (allDataQuery.status === 'error')
     return <ErrorMessage>{allDataQuery.error.message}</ErrorMessage>;
