@@ -3,7 +3,7 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import { join } from 'path';
 
-import { BlogFrontmatterWithSlug } from './frontmatter';
+import { BlogFrontmatter } from './frontmatter';
 
 export type Fields = readonly string[];
 
@@ -20,16 +20,13 @@ export function getPostSlugs(): string[] {
   return fs.readdirSync(POSTS_PATH);
 }
 
-export function getPostBySlug(
-  slug: string,
-  fields: Fields = ALL_POST_FIELDS
-): BlogFrontmatterWithSlug {
+export function getPostBySlug(slug: string, fields: Fields = ALL_POST_FIELDS): BlogFrontmatter {
   const realSlug = slug.replace(/\.mdx$/, '');
   const fullPath = join(POSTS_PATH, `${realSlug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
-  const items = {} as BlogFrontmatterWithSlug;
+  const items = {} as BlogFrontmatter;
 
   // Ensure only the minimal needed data is exposed
   fields.forEach((field) => {
@@ -49,7 +46,7 @@ export function getPostBySlug(
   return items;
 }
 
-export function getAllPosts(fields: Fields = ALL_POST_FIELDS): BlogFrontmatterWithSlug[] {
+export function getAllPosts(fields: Fields = ALL_POST_FIELDS): BlogFrontmatter[] {
   const slugs = getPostSlugs();
 
   console.log('Slugs: ', slugs);

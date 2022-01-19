@@ -287,7 +287,7 @@ useEffect(() => {
 
 ### 🥞 SearchResults
 
-#### Data Model
+#### SearchData Model
 
 At some point we will want to know what the data looks like for the search results. Let's define a typescript interface that represents the data for a search hit:
 
@@ -302,7 +302,7 @@ export interface SearchResultData {
 }
 ```
 
-#### Mocking Data Using Faker
+#### Mocking SearchData Using Faker
 
 Now, let's mock search hit data based on this definition. I often use `faker` and `lodash.times` to generate mock data during development instead of using a pre-defined fixture to make things a bit more realistic. Don't forget to install @types/faker and @types/lodash.times for the type definitions if you want your IDE to help you out with autocompletion and whatnot.
 
@@ -328,7 +328,7 @@ export const generateMockSearchResultDatas = (n = 30) => times(n, generateMockSe
 export const mockSearchResultDatas = generateMockSearchResultDatas();
 ```
 
-#### Rendering Array of Data in React
+#### Rendering Array of SearchData in React
 
 When mapping over an array to render elements in React, you must pass a key prop to each list item. Since our data model has a unique `id` property, we can use that for the key:
 

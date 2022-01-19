@@ -1,15 +1,10 @@
-import once from 'lodash.once';
 import { createContext } from 'react';
 
-import { SearchData } from './SearchData';
-
-export interface ISearchContext<Data extends SearchData = SearchData> {
+export interface ISearchContext {
   query: string;
   setQuery: (query: string) => void;
-  hits: Data[];
-  onSelect: ((selectedSearchResult: Data) => void) | undefined;
+  hits: SearchData[];
+  onSelect: ((selectedSearchResult: SearchData) => void) | undefined;
 }
 
-export const initSearchContext = once(<Data extends SearchData = SearchData>() =>
-  createContext<ISearchContext<Data> | undefined>(undefined)
-);
+export const SearchContext = createContext<ISearchContext | undefined>(undefined);

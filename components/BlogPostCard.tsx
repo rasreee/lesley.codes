@@ -1,5 +1,5 @@
 import { cn } from '@lib/classnames';
-import { BlogFrontmatterWithSlug } from '@lib/frontmatter';
+import { BlogFrontmatter } from '@lib/frontmatter';
 import DateFormatter from '@ui/components/DateFormatter';
 import { useRouter } from 'next/router';
 
@@ -10,15 +10,7 @@ import { ViewsStat } from './ViewsStat';
 const buttonStyles =
   'text-base font-semibold text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition-all';
 
-interface BlogPostCardProps extends BlogFrontmatterWithSlug {}
-
-export const BlogPostCard: React.FC<BlogPostCardProps> = ({
-  createdAt,
-  slug,
-  title,
-  description,
-  tags
-}) => {
+export const BlogPostCard = ({ createdAt, slug, title, description, tags }: BlogFrontmatter) => {
   const router = useRouter();
 
   const handleClick = () => {

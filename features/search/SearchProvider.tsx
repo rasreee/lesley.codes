@@ -2,25 +2,18 @@ import { useDebouncedState } from '@ui/hooks/useDebouncedState';
 import { isBefore, isPast, parseISO } from 'date-fns';
 import { ReactNode, useMemo } from 'react';
 
-import { initSearchContext, ISearchContext } from './SearchContext';
-import { SearchData } from './SearchData';
+import { ISearchContext, SearchContext } from './SearchContext';
 
-type SearchProviderProps<Data extends SearchData = SearchData> = {
+type SearchProviderProps = {
   children: ReactNode;
-  onSelect?: ISearchContext<Data>['onSelect'];
-  allData: Data[];
+  onSelect?: ISearchContext['onSelect'];
+  allData: SearchData[];
 };
 
-function SearchProvider<Data extends SearchData = SearchData>({
-  children,
-  onSelect,
-  allData
-}: SearchProviderProps<Data>) {
-  const SearchContext = useMemo(() => initSearchContext<Data>(), []);
-
+function SearchProvider({ children, onSelect, allData }: SearchProviderProps) {
   const [query, setQuery] = useDebouncedState(``, 300);
 
-  const hits: Data[] = useMemo(() => {
+  const hits: SearchData[] = useMemo(() => {
     if (!allData.length) return [];
 
     return allData

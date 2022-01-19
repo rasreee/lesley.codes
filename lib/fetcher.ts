@@ -2,7 +2,7 @@ export async function fetcher<JSON = any>(input: RequestInfo, init?: RequestInit
   const res = await fetch(input, init);
   if (res.status === 200) {
     const data = await res.json();
-    console.error('❌ Data: ', JSON.stringify(data, null, 4));
+    console.error('❌ SearchData: ', JSON.stringify(data, null, 4));
     return data;
   }
   const data = await res.json();
