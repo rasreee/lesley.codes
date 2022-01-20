@@ -14,7 +14,7 @@ export async function getPost(
   slug: string,
   fields: readonly string[] = ALL_POST_FIELDS
 ): Promise<Post> {
-  const postFilePath = path.join(POSTS_PATH, slug);
+  const postFilePath = path.join(POSTS_PATH, `${slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
   const { content, data } = matter(source);
