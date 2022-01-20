@@ -1,24 +1,21 @@
 import { useDebouncedState } from '@ui/hooks/useDebouncedState';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import SearchField from './SearchField';
 
 export type SearchProps = {
+  hits: SearchData[];
   onHitClick: (hit: SearchData) => void;
   renderHit: (hit: SearchData) => JSX.Element;
-  onQuery: (query: string, allData: SearchData[]) => SearchData[];
-  allData: SearchData[];
+  onQuery: (query: string) => void;
 };
 
-const Search = ({ onHitClick, onQuery, renderHit, allData }: SearchProps) => {
+const Search = ({ hits, onHitClick, onQuery, renderHit }: SearchProps) => {
   const [query, setQuery] = useDebouncedState(``, 300);
-  const [hits, setHits] = useState<SearchData[]>([]);
 
   useEffect(() => {
-    if (!query) setHits(allData);
-
-    setHits(onQuery(query, allData));
-  }, [allData, onQuery, query]);
+    onQuery(query);
+  }, [onQuery, query]);
 
   const handleHitClick = (item: SearchData) => () => onHitClick(item);
 

@@ -2,7 +2,7 @@ import { BlogPostView } from '@components/BlogPostView';
 import { ErrorMessage } from '@components/ErrorMessage';
 import { Section } from '@components/Section';
 import { H1, P } from '@components/Typography';
-import { PostApiResponse } from '@db/posts/getPost';
+import { PostApiResponse } from '@db/posts/detail';
 import { AppConfig } from '@lib/appConfig';
 import { buildApiUrl } from '@lib/routes';
 import { useQuery } from '@lib/useQuery';

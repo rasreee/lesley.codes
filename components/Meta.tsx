@@ -1,10 +1,10 @@
 import { WEBSITE_HOST_URL } from '@lib/appConfig';
-import { BlogFrontmatter } from '@lib/frontmatter';
+import { Post } from '@models/post';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 export interface MetaProps
-  extends Partial<Pick<BlogFrontmatter, 'createdAt' | 'description' | 'image' | 'title'>> {
+  extends Partial<Pick<Post, 'createdAt' | 'description' | 'image' | 'title'>> {
   /**
    * For the meta tag `og:type`
    */

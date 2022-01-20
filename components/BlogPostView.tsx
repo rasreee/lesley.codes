@@ -1,5 +1,5 @@
 import { useRegisterPostView } from '@db/contents/useRegisterPostView';
-import { PostApiResponse } from '@db/posts/getPost';
+import { PostApiResponse } from '@db/posts/detail';
 import { WEBSITE_HOST_URL } from '@lib/appConfig';
 import DateFormatter from '@ui/components/DateFormatter';
 import NotionAside from '@ui/components/NotionAside';

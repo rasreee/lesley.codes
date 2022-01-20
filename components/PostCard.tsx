@@ -1,11 +1,11 @@
-import { BlogFrontmatter } from '@lib/frontmatter';
+import { Post } from '@models/post';
 import DateFormatter from '@ui/components/DateFormatter';
 
 import { Tags } from './Tags';
 import { H3, P } from './Typography';
 import { ViewsStat } from './ViewsStat';
 
-const PostCard = ({ createdAt, slug, title, description, tags }: BlogFrontmatter) => {
+const PostCard = ({ createdAt, slug, title, description, tags }: Post['frontMatter']) => {
   return (
     <article className={'flex flex-col gap-3 justify-center py-5'}>
       <div className="flex flex-col items-start gap-2">
