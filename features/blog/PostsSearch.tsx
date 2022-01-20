@@ -11,7 +11,7 @@ export const PostsSearch = ({ posts }: PostsSearchProps) => {
   const router = useRouter();
 
   const handleHitClick = (frontMatter: PostSearchHit) =>
-    router.push(Routes.BLOG_POST.replace(RouteKeys.SLUG, frontMatter.slug));
+    router.push(Routes.POST.replace(RouteKeys.SLUG, frontMatter.slug));
 
   return <PostsSearchComponent allPosts={posts} onHitClick={handleHitClick} />;
 };
