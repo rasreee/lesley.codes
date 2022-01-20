@@ -1,4 +1,5 @@
-import { BlogPostView, getSlugQueryParam, PostApiResponse } from '@features/blog';
+import { BlogPostView, getSlugQueryParam } from '@features/blog';
+import { PostApiResponse } from '@features/blog/api/posts';
 import { AppConfig } from '@lib/appConfig';
 import { buildApiUrl } from '@lib/routes';
 import { useQuery } from '@lib/swr';

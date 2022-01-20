@@ -1,4 +1,5 @@
-import { getPost, listPostSlugs, PostsApiResponse } from '@features/blog/api/posts';
+import { listPosts } from '@features/blog/api/posts';
+import { PostsApiResponse } from '@features/blog/api/posts';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -13,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const posts = await Promise.all(listPostSlugs().map((slug) => getPost(slug)));
+    const posts = await listPosts();
     const response: PostsApiResponse = { posts };
 
     return res.status(200).json(response);

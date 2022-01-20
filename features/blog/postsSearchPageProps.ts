@@ -1,5 +1,7 @@
-import { listPosts, Post } from '@features/blog';
+import { Post } from '@features/blog';
 import { GetStaticProps } from 'next';
+
+import { listPosts } from './api/posts';
 
 export type PostsSearchPageProps = {
   allPosts: Post[];

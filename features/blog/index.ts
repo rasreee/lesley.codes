@@ -8,5 +8,4 @@ export * from './postSearchHit';
 export * from './postsSearchPageProps';
 export * from './processHits';
 export * from './models';
-export * from './api/posts';
 export * from './api/contents';
