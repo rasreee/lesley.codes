@@ -7,16 +7,16 @@ import { SearchResults } from './SearchResults';
 export type SearchProps = {
   onHitClick: (hit: SearchData) => void;
   renderHit: (hit: SearchData) => JSX.Element;
-  processQuery: (query: string) => SearchData[];
+  onQuery: (query: string) => SearchData[];
 };
 
-const Search = ({ onHitClick, processQuery, renderHit }: SearchProps) => {
+const Search = ({ onHitClick, onQuery, renderHit }: SearchProps) => {
   const [query, setQuery] = useDebouncedState(``, 300);
   const [hits, setHits] = useState<SearchData[]>([]);
 
   useEffect(() => {
-    setHits(processQuery(query));
-  }, [processQuery, query]);
+    setHits(onQuery(query));
+  }, [onQuery, query]);
 
   return (
     <>

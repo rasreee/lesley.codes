@@ -24,23 +24,23 @@ export const PostsSearch = () => {
     return <ErrorMessage>{error?.message}</ErrorMessage>;
   }
 
-  if (typeof data === 'undefined' || data === null) {
+  if (!data) {
     return <div>Loading...</div>;
   }
 
-  const processQuery = (query: string): SearchData[] => {
+  const handleQuery = (query: string): SearchData[] => {
     if (!query) return data ?? [];
+
     if (!data) return [];
 
     return data
       .filter((data) => data.title.toLowerCase().includes(query.toLowerCase()))
-      .filter((data) => isPast(parseISO(data.createdAt)))
-      .sort((a, b) => (isBefore(parseISO(a.createdAt), parseISO(b.createdAt)) ? 1 : -1));
+      .sort((a, b) => (isBefore(parseISO(a.createdAt), parseISO(b.createdAt)) ? -1 : 1));
   };
 
   return (
     <Search
-      processQuery={processQuery}
+      onQuery={handleQuery}
       renderHit={(hit) => <PostCard {...hit} />}
       onHitClick={handleHitClick}
     />
