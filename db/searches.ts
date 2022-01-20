@@ -6,8 +6,6 @@ export type Search = {
 };
 
 export const registerSearch = async (query: string): Promise<Search> => {
-  console.log('Registering search query: ', query);
-
   /* Check if search entry exists for query */
   const { error: findError, count } = await supabase
     .from<Search>('searches')
@@ -30,6 +28,8 @@ export const registerSearch = async (query: string): Promise<Search> => {
       throw new Error('Expected data to be defined after upserting search data with no error');
     }
 
+    console.log('🔍 Registered search: ', updateData);
+
     return updateData;
   }
 
@@ -44,6 +44,8 @@ export const registerSearch = async (query: string): Promise<Search> => {
   if (!upsertData) {
     throw new Error('Expected data to be defined after upserting search data with no error');
   }
+
+  console.log('🔍 Registered search: ', upsertData);
 
   return upsertData;
 };

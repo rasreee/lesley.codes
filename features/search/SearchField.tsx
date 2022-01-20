@@ -13,21 +13,17 @@ export interface SearchFieldProps {
   onChange: (value: string) => void;
 }
 
-const SearchField = (props: SearchFieldProps) => {
+const SearchField = ({ query, onChange }: SearchFieldProps) => {
   const { isFocused, ...bindInput } = useInputFocus(true);
-
-  const { query, onChange } = props;
 
   useEffect(() => {
     if (query.length < MIN_QUERY_LENGTH) return;
 
-    registerSearch(query).then((response) => console.log('🔍 Registered search: ', response));
+    registerSearch(query);
   }, [query]);
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const newValue = event.currentTarget.value;
-    onChange(newValue);
-  };
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) =>
+    onChange(event.currentTarget.value);
 
   const colorMode = useColorMode();
 

@@ -1,16 +1,8 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ColorModeProps } from '@features/colorMode/types';
-import classed from '@lib/classed';
 import { StyledProps } from '@ui/utils/emotion';
-
-const BaseInput = classed('input', 'w-full', 'text-lg', 'px-5 py-2');
-
-const BaseInputGroup = classed(
-  'div',
-  'bg-white dark:bg-gray-800',
-  'border border-gray-200 dark:border-gray-900 focus:ring-blue-500 focus:border-blue-500'
-);
+import { spacing } from '@ui/utils/spacing';
 
 type FocusedProps = { isFocused: boolean };
 
@@ -23,15 +15,17 @@ const inputColorStyle = ({ theme, mode, isFocused }: StyledProps<ColorModeProps 
         color: ${theme.colors.gray[mode === 'light' ? 900 : 300]} !important;
       `;
 
-export const InputGroup = styled(BaseInputGroup)<ColorModeProps & FocusedProps>`
+export const InputGroup = styled.div<ColorModeProps & FocusedProps>`
   ${inputColorStyle}
 
   svg {
     ${inputColorStyle}
   }
 
-  ${({ theme }) =>
+  ${({ theme, mode }) =>
     css`
+      background: ${mode === 'light' ? '#fff' : theme.colors.gray[800]};
+      border: 1px solid ${theme.colors.gray[mode === 'light' ? 200 : 900]}
       border-radius: ${theme.radii.md};
       display: flex;
       align-items: center;
@@ -41,7 +35,13 @@ export const InputGroup = styled(BaseInputGroup)<ColorModeProps & FocusedProps>`
     `}
 `;
 
-export const Input = styled(BaseInput)<ColorModeProps>`
+export const Input = styled.input<ColorModeProps>`
   border: none;
   background: none;
+  width: 100%;
+  ${({ theme }) =>
+    css`
+      font-size: ${theme.fontSizes.lg};
+      padding: ${spacing(2, 5)};
+    `}
 `;
