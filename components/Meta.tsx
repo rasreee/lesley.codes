@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 export interface MetaProps
-  extends Partial<Pick<Post, 'createdAt' | 'description' | 'image' | 'title'>> {
+  extends Partial<Pick<Post['frontMatter'], 'createdAt' | 'description' | 'image' | 'title'>> {
   /**
    * For the meta tag `og:type`
    */

@@ -13,8 +13,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const allPosts = await listPosts();
-    const response: PostsApiResponse = { allPosts };
+    const posts = await listPosts();
+    const response: PostsApiResponse = { posts };
     return res.status(200).json(response);
   } catch (err) {
     console.error('Failed to fetch all posts. ', JSON.stringify(err));
