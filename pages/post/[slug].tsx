@@ -1,10 +1,10 @@
 import { PostApiResponse } from '@api/posts/detail';
 import { BlogPostView } from '@components/BlogPostView';
+import { Section } from '@layouts/Section';
 import { AppConfig } from '@lib/appConfig';
 import { buildApiUrl } from '@lib/routes';
 import { useQuery } from '@lib/useQuery';
 import { ErrorMessage } from '@ui/components/ErrorMessage';
-import { Section } from '@ui/components/Section';
 import { H1, P } from '@ui/components/Typography';
 import { getSlugQueryParam } from '@ui/utils/getSlugQueryParam';
 import { useRouter } from 'next/router';

@@ -1,10 +1,10 @@
-import Meta from '@components/Layout/Meta';
-import PostsSearch from '@features/postsSearch';
 import {
   loadPostsSearchStaticProps,
+  PostsSearch,
   PostsSearchPageProps
-} from '@features/postsSearch/postsSearchPageProps';
-import { Section } from '@ui/components/Section';
+} from '@features/postsSearch';
+import { Meta } from '@layouts/Meta';
+import { Section } from '@layouts/Section';
 import { H1, P } from '@ui/components/Typography';
 
 const BlogPage = (props: PostsSearchPageProps) => {

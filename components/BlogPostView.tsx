@@ -2,6 +2,7 @@ import { useRegisterPostView } from '@api/contents/useRegisterPostView';
 import { PostApiResponse } from '@api/posts/detail';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Meta, MetaProps } from '@layouts/Meta';
 import { WEBSITE_HOST_URL } from '@lib/appConfig';
 import DateFormatter from '@ui/components/DateFormatter';
 import NotionAside from '@ui/components/NotionAside';
@@ -12,8 +13,6 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { MDXRemote } from 'next-mdx-remote';
 import React from 'react';
-
-import Meta, { MetaProps } from './Layout/Meta';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
