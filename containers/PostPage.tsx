@@ -1,4 +1,4 @@
-import { getSlugQueryParam, Post } from '@features/blog';
+import { getSlugQueryParam, Post, useRegisterPostView } from '@features/blog';
 import { postApiKeys } from '@lib/api';
 import { useQuery, UseQueryResult } from '@lib/swr';
 import { useRouter } from 'next/router';
@@ -20,7 +20,7 @@ const PostPage = ({ slug }: { slug: string }) => {
 
   const { data: postData, error } = usePostData(slug);
 
-  // useRegisterPostView(post.slug);
+  useRegisterPostView(slug);
 
   // const customMeta: MetaProps = {
   //   title: `${post.title} - Lesley Chang`,
