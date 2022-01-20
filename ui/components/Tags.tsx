@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Span } from '@ui/components/Typography';
-import { pseudo } from '@ui/utils/pseudo';
+import { Span } from '@ui/atoms';
+import { pseudo } from '@ui/utils';
 import classNames from 'classnames';
 import { useMemo } from 'react';
 

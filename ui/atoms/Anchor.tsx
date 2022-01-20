@@ -1,19 +1,21 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { pseudo } from '@ui/utils/pseudo';
+import { pseudo } from '@ui/utils';
 import { AnchorHTMLAttributes, forwardRef, Ref } from 'react';
 
 import { baseTextStyles } from './Typography';
 
 export type AnchorProps = AnchorHTMLAttributes<HTMLAnchorElement>;
 
-const Anchor = forwardRef(({ children, ...props }: AnchorProps, ref: Ref<HTMLAnchorElement>) => {
-  return (
-    <SAnchor {...props} ref={ref}>
-      {children}
-    </SAnchor>
-  );
-});
+export const Anchor = forwardRef(
+  ({ children, ...props }: AnchorProps, ref: Ref<HTMLAnchorElement>) => {
+    return (
+      <SAnchor {...props} ref={ref}>
+        {children}
+      </SAnchor>
+    );
+  }
+);
 
 const SAnchor = styled.a`
   ${baseTextStyles};
@@ -29,5 +31,3 @@ const SAnchor = styled.a`
 `;
 
 Anchor.displayName = 'Anchor';
-
-export default Anchor;

@@ -1,6 +1,5 @@
-import styled from '@emotion/styled';
-import NextLink from '@ui/components/NextLink';
-import { baseTextStyles } from '@ui/components/Typography';
+import { Anchor, AnchorProps } from '@ui/atoms';
+import Link from 'next/link';
 import { ReactNode } from 'react';
 
 export interface NavItemProps {
@@ -8,17 +7,25 @@ export interface NavItemProps {
   children: ReactNode;
 }
 
-function NavItem({ href, children }: NavItemProps) {
-  return (
-    <SNextLink href={href}>
-      <span className="capsize">{children}</span>
-    </SNextLink>
-  );
+interface NextLinkProps extends Omit<AnchorProps, 'href'> {
+  href: string;
 }
 
-const SNextLink = styled(NextLink)`
-  ${baseTextStyles}
-`;
+const NextLink: React.FunctionComponent<NextLinkProps> = ({ href, children, ...props }) => {
+  return (
+    <Link href={href} passHref>
+      <Anchor {...props}>{children}</Anchor>
+    </Link>
+  );
+};
+
+function NavItem({ href, children }: NavItemProps) {
+  return (
+    <NextLink href={href}>
+      <span className="capsize">{children}</span>
+    </NextLink>
+  );
+}
 
 interface NavigationProps {
   /**

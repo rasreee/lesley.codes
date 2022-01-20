@@ -1,6 +1,4 @@
-const {
-  spacing
-} = require('tailwindcss/defaultTheme');
+const { spacing } = require('tailwindcss/defaultTheme');
 
 module.exports = {
   mode: 'jit',

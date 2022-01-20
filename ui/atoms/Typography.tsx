@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { largerThan } from '@ui/utils/breakpoints';
-import { StyledProps } from '@ui/utils/styledProps';
+import { largerThan, StyledProps } from '@ui/utils';
 
 export const baseTextStyles = ({ theme }: StyledProps) => css`
   letter-spacing: -0.025em !important;

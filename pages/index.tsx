@@ -1,8 +1,7 @@
 import { loadPostsSearchStaticProps, PostsSearch, PostsSearchPageProps } from '@features/blog';
 import { AppConfig } from '@lib/appConfig';
-import { H1, P } from '@ui/components/Typography';
-import { Meta } from '@ui/layouts/Meta';
-import { Section } from '@ui/layouts/Section';
+import { H1, P } from '@ui/atoms';
+import { Meta, Section } from '@ui/layouts';
 
 const IndexPage = (props: PostsSearchPageProps) => {
   return (

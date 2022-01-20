@@ -4,7 +4,7 @@ import { ContentMetaApiResponse } from '@features/blog/api/contents';
 import { buildApiUrl } from '@lib/routes';
 import { isSWRLoading } from '@lib/swr';
 import { useQuery } from '@lib/swr';
-import { P } from '@ui/components/Typography';
+import { P } from '@ui/atoms';
 import EyeIcon from '@ui/icons/EyeIcon';
 import { useEffect } from 'react';
 

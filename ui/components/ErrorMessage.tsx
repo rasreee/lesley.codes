@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { smallerThan } from '@ui/utils/breakpoints';
-import { spacing } from '@ui/utils/spacing';
+import { smallerThan, spacing } from '@ui/utils';
 import classnames from 'classnames';
 
 export interface ErrorMessageProps {
