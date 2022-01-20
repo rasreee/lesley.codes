@@ -1,7 +1,15 @@
-import { ALL_POST_FIELDS, Post, PostFrontmatter } from '@features/blog';
+import { ALL_POST_FIELDS, PostFrontmatter } from '@features/blog';
 import fs from 'fs';
 import matter from 'gray-matter';
 import { join } from 'path';
+
+export const postApiKeys = {
+  all: ['/api/posts'] as const,
+  lists: () => [...postApiKeys.all, 'list'] as const,
+  list: (filters = {}) => [...postApiKeys.lists(), filters] as const,
+  details: () => [...postApiKeys.all, 'detail'] as const,
+  detail: (slug: string) => [...postApiKeys.details(), slug] as const
+};
 
 const postsDirectory = join(process.cwd(), 'blog');
 

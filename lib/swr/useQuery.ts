@@ -1,4 +1,4 @@
-import { fetcher, isSWRLoading } from '@lib/swr';
+import { fetcher as defaultFetcher, isSWRLoading } from '@lib/swr';
 import useSWR, { SWRConfiguration } from 'swr';
 
 export type QueryStatus = 'loading' | 'error' | 'success';
@@ -33,7 +33,8 @@ export interface IQueryError {
 const defaultSWRConfig: SWRConfiguration = {};
 
 export function useQuery<TData, TError extends IQueryError = IQueryError>(
-  query: string | readonly string[] | Falsy
+  query: string | readonly string[] | Falsy,
+  fetcher: AnyFunction = defaultFetcher
 ): UseQueryResult<TData, TError> {
   const swr = useSWR<TData, TError>(query, fetcher, defaultSWRConfig);
 

@@ -3,6 +3,7 @@ import { getPost, PostApiResponse } from '@features/blog/api/posts';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  console.log('👊 /api/posts/detail/[slug] with slug=' + req.query);
   const slug = getSlugQueryParam(req.query);
 
   try {
