@@ -1,3 +1,7 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { largerThan } from '@ui/utils/breakpoints';
+import { StyledProps } from '@ui/utils/emotion';
 import classNames from 'classnames';
 import { HTMLAttributes, ReactNode } from 'react';
 
@@ -11,115 +15,60 @@ export interface TextProps extends Omit<HTMLAttributes<HTMLElement>, 'color'> {
   weight?: string;
 }
 
+const headingStyles = ({ theme }: StyledProps) => css`
+  font-weight: ${theme.fontWeights.bold};
+  letter-spacing: -0.025em !important;
+`;
+
+export const H1 = styled.h1`
+  ${headingStyles}
+  ${({ theme }) => css`
+    font-size: ${theme.fontSizes['4xl']};
+    ${largerThan('tablet')} {
+      font-size: ${theme.fontSizes['5xl']};
+    }
+  `}
+`;
+
+export const H2 = styled.h2`
+  ${headingStyles}
+  ${({ theme }) => css`
+    font-size: ${theme.fontSizes['2xl']};
+    ${largerThan('tablet')} {
+      font-size: ${theme.fontSizes['3xl']};
+    }
+  `}
+`;
+
+export const H3 = styled.h3`
+  ${headingStyles}
+  ${({ theme }) => css`
+    font-size: ${theme.fontSizes['xl']};
+    ${largerThan('tablet')} {
+      font-size: ${theme.fontSizes['2xl']};
+    }
+  `}
+`;
+
+const bodyStyles = ({ theme }: StyledProps) => css`
+  font-weight: ${theme.fontWeights.normal};
+  letter-spacing: -0.025em !important;
+`;
+
+export const P = styled.p`
+  ${bodyStyles}
+  ${({ theme }) => css`
+    font-size: ${theme.fontSizes['base']};
+    ${largerThan('tablet')} {
+      font-size: ${theme.fontSizes['lg']};
+    }
+    ${largerThan('desktop')} {
+      font-size: ${theme.fontSizes['2xl']};
+    }
+  `}
+`;
+
 const defaultTextColor = 'text-gray-700 dark:text-gray-100';
-
-export const H1: React.FC<TextProps> = ({
-  children,
-  className,
-  size = 'text-4xl md:text-5xl',
-  color = defaultTextColor,
-  weight = 'font-bold',
-  ...props
-}) => {
-  return (
-    <h1
-      className={classNames(
-        size,
-        color,
-        weight,
-        'tracking-tight',
-        className
-          ?.split(' ')
-          .map((c) => `${c}`)
-          .join(' ')
-      )}
-      {...props}
-    >
-      {children}
-    </h1>
-  );
-};
-
-export const H2: React.FC<TextProps> = ({
-  children,
-  className,
-  size = 'text-2xl md:text-3xl',
-  color = defaultTextColor,
-  weight = 'font-bold',
-  ...props
-}) => {
-  return (
-    <h1
-      className={classNames(
-        size,
-        color,
-        weight,
-        'tracking-tight',
-        className
-          ?.split(' ')
-          .map((c) => `${c}`)
-          .join(' ')
-      )}
-      {...props}
-    >
-      {children}
-    </h1>
-  );
-};
-
-export const H3: React.FC<TextProps> = ({
-  children,
-  className,
-  size = 'text-xl md:text-2xl',
-  weight = 'font-semibold',
-  color = defaultTextColor,
-  ...props
-}) => {
-  return (
-    <h3
-      className={classNames(
-        color,
-        size,
-        weight,
-        'tracking-tight',
-        className
-          ?.split(' ')
-          .map((c) => `${c}`)
-          .join(' ')
-      )}
-      {...props}
-    >
-      {children}
-    </h3>
-  );
-};
-
-export const P: React.FC<TextProps> = ({
-  children,
-  className = '',
-  size = 'text-base md:text-lg 2xl:text-xl',
-  color = defaultTextColor,
-  weight = 'font-normal',
-  ...props
-}) => {
-  return (
-    <p
-      className={classNames(
-        color,
-        size,
-        weight,
-        'tracking-tight',
-        className
-          ?.split(' ')
-          .map((c) => `${c}`)
-          .join(' ')
-      )}
-      {...props}
-    >
-      {children}
-    </p>
-  );
-};
 
 export const Span: React.FC<TextProps> = ({
   children,
