@@ -4,7 +4,7 @@ import { useInputFocus } from '@ui/hooks/useInputFocus';
 import SearchIcon from '@ui/icons/SearchIcon';
 import { ChangeEventHandler, useEffect } from 'react';
 
-import * as S from './SearchField.styles';
+import * as S from './styles';
 
 const MIN_QUERY_LENGTH = 3;
 
