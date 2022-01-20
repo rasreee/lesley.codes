@@ -25,7 +25,7 @@ export const SearchField = ({ query, onChange }: SearchFieldProps) => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) =>
     onChange(event.currentTarget.value);
 
-  const colorMode = useColorMode();
+  const { colorMode } = useColorMode();
 
   return (
     <S.InputGroup mode={colorMode} isFocused={isFocused}>
