@@ -12,6 +12,8 @@ export const SearchResults = ({ hits, renderHitButton }: SearchResultsProps) => 
     return <EmptySearchResults />;
   }
 
+  debugger;
+
   return (
     <div className={'flex flex-col gap-3 w-full relative my-3'}>
       <ul className={'flex flex-col gap-10'}>

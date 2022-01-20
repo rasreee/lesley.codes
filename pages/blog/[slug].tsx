@@ -1,12 +1,9 @@
-import PostFeedPage from '@containers/PostFeedPage';
 import PostPage from '@containers/PostPage';
 import { getSlugQueryParam } from '@features/blog';
 import { useRouter } from 'next/router';
 
-const BlogRoute = () => {
+const BlogPostRoute = () => {
   const router = useRouter();
-
-  if (!('slug' in router.query)) return <PostFeedPage />;
 
   const slug = getSlugQueryParam(router.query);
 
@@ -15,4 +12,4 @@ const BlogRoute = () => {
   return <PostPage slug={slug} />;
 };
 
-export default BlogRoute;
+export default BlogPostRoute;

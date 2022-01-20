@@ -12,7 +12,7 @@ class MyDocument extends Document {
             defer
           ></script>
         </Head>
-        <body className="bg-white dark:bg-black text-gray-900 dark:text-white">
+        <body>
           <Main />
           <NextScript />
         </body>

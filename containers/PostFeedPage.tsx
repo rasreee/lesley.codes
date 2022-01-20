@@ -15,7 +15,9 @@ const useAllPosts = (): UseQueryResult<PostFrontmatter[]> => {
   return response;
 };
 
-const PostFeedPage = () => {
+type BlogPageProps = { posts: PostFrontmatter[] };
+
+const PostFeedPage = ({ posts }: BlogPageProps) => {
   const { data: allPosts } = useAllPosts();
   return (
     <>
@@ -24,7 +26,7 @@ const PostFeedPage = () => {
         <H1>{'Blog'}</H1>
         <P>{'Thoughts and tutorials about web development, product validation, and Solana.'}</P>
       </Section>
-      {allPosts && <PostsSearch allPosts={allPosts} />}
+      {allPosts && <PostsSearch posts={allPosts} />}
     </>
   );
 };

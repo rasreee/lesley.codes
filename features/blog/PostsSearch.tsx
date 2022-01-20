@@ -5,13 +5,13 @@ import { PostFrontmatter } from './models';
 import { PostSearchHit } from './postSearchHit';
 import PostsSearchComponent from './PostsSearchComponent';
 
-type PostsSearchProps = { allPosts: PostFrontmatter[] };
+type PostsSearchProps = { posts: PostFrontmatter[] };
 
-export const PostsSearch = ({ allPosts }: PostsSearchProps) => {
+export const PostsSearch = ({ posts }: PostsSearchProps) => {
   const router = useRouter();
 
   const handleHitClick = (frontMatter: PostSearchHit) =>
     router.push([Routes.BLOG, frontMatter.slug].join('/'));
 
-  return <PostsSearchComponent allPosts={allPosts} onHitClick={handleHitClick} />;
+  return <PostsSearchComponent allPosts={posts} onHitClick={handleHitClick} />;
 };

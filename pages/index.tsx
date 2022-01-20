@@ -4,8 +4,9 @@ import { PostsSearchPageProps } from '@features/blog/postsSearchPageProps';
 import { AppConfig } from '@lib/appConfig';
 import { H1, P } from '@ui/atoms';
 import { Meta, Section } from '@ui/layouts';
+import { GetStaticProps } from 'next';
 
-const IndexPage = (props: PostsSearchPageProps) => {
+const IndexPage = ({ posts }: PostsSearchPageProps) => {
   return (
     <>
       <Meta />
@@ -13,21 +14,14 @@ const IndexPage = (props: PostsSearchPageProps) => {
         <H1>{AppConfig.meta.title}</H1>
         <P>{AppConfig.meta.description}</P>
       </Section>
-      <PostsSearch allPosts={props.allPosts} />
+      <PostsSearch posts={posts} />
     </>
   );
 };
 
-export const getStaticProps = async () => {
-  try {
-    const allPosts = listPosts();
-
-    return { props: { allPosts } };
-  } catch (err) {
-    console.log(`❗ERROR: Failed to getStaticProps for all posts. Error: `, err);
-
-    return { props: { allPosts: [] } };
-  }
+export const getStaticProps: GetStaticProps<PostsSearchPageProps> = () => {
+  const allPosts = listPosts();
+  return { props: { posts: allPosts } };
 };
 
 export default IndexPage;

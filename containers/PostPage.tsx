@@ -18,7 +18,7 @@ const usePostData = (slug: string): UseQueryResult<Post> => {
 const PostPage = ({ slug }: { slug: string }) => {
   const router = useRouter();
 
-  // const { data: postData, error } = usePostData(post.slug);
+  const { data: postData, error } = usePostData(slug);
 
   // useRegisterPostView(post.slug);
 

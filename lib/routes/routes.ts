@@ -2,7 +2,7 @@ import { sluggify } from './sluggify';
 
 export const Routes = {
   HOME: '/',
-  BLOG: '/blog'
+  BLOG: '/blog/all'
 } as const;
 
 export const RouteNames = {
@@ -13,10 +13,6 @@ export const RouteNames = {
 export const RouteKeys = {
   SLUG: '[slug]'
 } as const;
-
-export function buildUrl(main = '', pos = '') {
-  return `${sluggify(main)}${pos ? sluggify(pos) : pos}`;
-}
 
 export function buildApiUrl(main = '', pos = '') {
   return `/api${sluggify(main)}${pos ? sluggify(pos) : pos}`;
