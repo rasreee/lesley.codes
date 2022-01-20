@@ -13,8 +13,8 @@ export const SearchResults = ({ hits, renderHitButton }: SearchResultsProps) => 
   }
 
   return (
-    <div className={'flex flex-col gap-3 w-full relative my-3'}>
-      <ul className={'flex flex-col gap-10'}>
+    <div className={'w-full relative my-3'}>
+      <ul className={'flex flex-col gap-3'}>
         {hits?.map((hit) => (
           <li key={hit.slug}>{renderHitButton(hit)}</li>
         ))}

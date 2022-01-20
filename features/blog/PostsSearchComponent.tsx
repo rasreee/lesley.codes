@@ -34,10 +34,10 @@ const PostsSearchComponent = ({ allPosts, onHitClick }: PostsSearchComponentProp
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-3 py-5">
       <SearchField query={query} onChange={setQuery} />
       <SearchResults hits={hits} renderHitButton={renderHitButton} />
-    </>
+    </div>
   );
 };
 
