@@ -30,7 +30,8 @@
       "@ui/*": ["./ui/*"],
       "@lib/*": ["./lib/*"],
       "@components/*": ["./components/*"],
-      "@features/*": ["./features/*"]
+      "@features/*": ["./features/*"],
+      "@containers/*": ["./containers/*"]
     },
     "incremental": true
   },
