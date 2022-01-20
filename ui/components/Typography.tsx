@@ -3,12 +3,17 @@ import styled from '@emotion/styled';
 import { largerThan } from '@ui/utils/breakpoints';
 import { StyledProps } from '@ui/utils/emotion';
 
+const baseTextStyles = ({ theme }: StyledProps) => css`
+  letter-spacing: -0.025em !important;
+  color: ${theme.color.text};
+`;
+
 const headingStyles = ({ theme }: StyledProps) => css`
   font-weight: ${theme.fontWeights.bold};
-  letter-spacing: -0.025em !important;
 `;
 
 export const H1 = styled.h1`
+  ${baseTextStyles}
   ${headingStyles}
   ${({ theme }) => css`
     font-size: ${theme.fontSizes['4xl']};
@@ -19,6 +24,7 @@ export const H1 = styled.h1`
 `;
 
 export const H2 = styled.h2`
+  ${baseTextStyles}
   ${headingStyles}
   ${({ theme }) => css`
     font-size: ${theme.fontSizes['2xl']};
@@ -29,6 +35,7 @@ export const H2 = styled.h2`
 `;
 
 export const H3 = styled.h3`
+  ${baseTextStyles}
   ${headingStyles}
   ${({ theme }) => css`
     font-size: ${theme.fontSizes['xl']};
@@ -40,10 +47,10 @@ export const H3 = styled.h3`
 
 const bodyStyles = ({ theme }: StyledProps) => css`
   font-weight: ${theme.fontWeights.normal};
-  letter-spacing: -0.025em !important;
 `;
 
 export const P = styled.p`
+  ${baseTextStyles}
   ${bodyStyles}
   ${({ theme }) => css`
     font-size: ${theme.fontSizes['base']};
@@ -57,6 +64,7 @@ export const P = styled.p`
 `;
 
 export const Span = styled.p`
+  ${baseTextStyles}
   ${bodyStyles}
   ${({ theme }) => css`
     font-size: ${theme.fontSizes['base']};
