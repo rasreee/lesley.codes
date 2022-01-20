@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@emotion/react';
 import { darkTheme } from '@ui/styles/darkTheme';
 import { lightTheme } from '@ui/styles/lightTheme';
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 
 import { ThemeToggleContext } from './ThemeToggleContext';
 import { ColorMode } from './types';
@@ -17,6 +17,10 @@ export const ThemeToggleProvider = ({
   const getIsDark = () => colorMode === 'dark';
 
   const currentTheme = getIsDark() ? darkTheme : lightTheme;
+
+  useEffect(() => {
+    console.log('🌙 Color Mode: ', colorMode.toUpperCase());
+  }, [colorMode]);
 
   return (
     <ThemeProvider theme={currentTheme}>
