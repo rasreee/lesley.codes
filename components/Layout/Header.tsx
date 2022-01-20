@@ -20,27 +20,32 @@ const navItemProps: NavItemProps[] = [
 const Header = () => {
   return (
     <SHeader>
-      <Navigation navItemProps={navItemProps} />
-      <ThemeSwitch />
+      <InnerContent>
+        <Navigation navItemProps={navItemProps} />
+        <ThemeSwitch />
+      </InnerContent>
     </SHeader>
   );
 };
 
 const SHeader = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 64rem /* 1024px */ !important;
+  min-width: 100vw !important;
   padding-left: 2rem /* 32px */ !important;
   padding-right: 2rem /* 32px */ !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-
   ${({ theme }) =>
     css`
       background: ${theme.color.background};
       color: ${theme.color.text};
     `};
+`;
+
+const InnerContent = styled.div`
+  max-width: 64rem /* 1024px */ !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export default Header;
