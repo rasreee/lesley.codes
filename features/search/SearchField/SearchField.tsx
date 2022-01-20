@@ -1,4 +1,4 @@
-import { registerSearch } from '@db/searches';
+import { registerSearch } from '@api/searches';
 import { useColorMode } from '@features/colorMode/useColorMode';
 import { useInputFocus } from '@ui/hooks/useInputFocus';
 import SearchIcon from '@ui/icons/SearchIcon';

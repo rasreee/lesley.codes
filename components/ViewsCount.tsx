@@ -1,6 +1,6 @@
-import { ContentMetaApiResponse } from '@db/contents/types';
-import { isRequesting } from '@lib/isRequesting';
+import { ContentMetaApiResponse } from '@api/contents/types';
 import { buildApiUrl } from '@lib/routes';
+import { isSWRLoading } from '@lib/swr';
 import { useQuery } from '@lib/useQuery';
 import { useEffect } from 'react';
 
@@ -8,7 +8,7 @@ export const ViewsCount = ({ slug }: { slug: string }) => {
   const { data, error } = useQuery<ContentMetaApiResponse>(buildApiUrl('contents', slug));
 
   useEffect(() => {
-    if (isRequesting(data, error)) return;
+    if (isSWRLoading(data, error)) return;
 
     if (data?.contentMeta === null) {
       console.log(`WARNING: no contentMeta found for slug=${slug} in Supabase`);

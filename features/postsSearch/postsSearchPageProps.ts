@@ -1,4 +1,4 @@
-import { listPosts } from '@db/posts/list';
+import { listPosts } from '@api/posts/list';
 import { Post } from '@models/post';
 import { GetStaticProps } from 'next';
 

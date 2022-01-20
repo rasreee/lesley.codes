@@ -1,6 +1,7 @@
-import { Emojis } from '@lib/emojis';
 import classNames from 'classnames';
 import React from 'react';
+
+const EXCLAMATION_EMOJI = '💡';
 
 interface NotionAsideProps {
   children: string;
@@ -20,7 +21,7 @@ const NotionAside: React.FunctionComponent<NotionAsideProps> = ({ children }) =>
         'flex gap-3'
       )}
     >
-      {Emojis.Exclamation}
+      {EXCLAMATION_EMOJI}
       <div className="pr-2">{children}</div>
     </aside>
   );

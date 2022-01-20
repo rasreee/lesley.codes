@@ -1,5 +1,5 @@
+import { PostApiResponse } from '@api/posts/detail';
 import { BlogPostView } from '@components/BlogPostView';
-import { PostApiResponse } from '@db/posts/detail';
 import { AppConfig } from '@lib/appConfig';
 import { buildApiUrl } from '@lib/routes';
 import { useQuery } from '@lib/useQuery';

@@ -1,5 +1,5 @@
-import { useRegisterPostView } from '@db/contents/useRegisterPostView';
-import { PostApiResponse } from '@db/posts/detail';
+import { useRegisterPostView } from '@api/contents/useRegisterPostView';
+import { PostApiResponse } from '@api/posts/detail';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { WEBSITE_HOST_URL } from '@lib/appConfig';

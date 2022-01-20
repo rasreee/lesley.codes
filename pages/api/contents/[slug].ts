@@ -1,4 +1,4 @@
-import { getOrCreateContentMeta } from '@db/contents/getOrCreateContentMeta';
+import { getOrCreateContentMeta } from '@api/contents/getOrCreateContentMeta';
 import { supabase } from '@lib/supabase';
 import { ContentMeta } from '@models/contentMeta';
 import type { NextApiRequest, NextApiResponse } from 'next';

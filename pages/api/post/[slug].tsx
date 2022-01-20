@@ -1,4 +1,4 @@
-import { getPost, PostApiResponse } from '@db/posts/detail';
+import { getPost, PostApiResponse } from '@api/posts/detail';
 import { getSlugQueryParam } from '@ui/utils/getSlugQueryParam';
 import { NextApiRequest, NextApiResponse } from 'next';
 

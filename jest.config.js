@@ -22,7 +22,7 @@ module.exports = {
    */
   moduleNameMapper: {
     '^@components/(.*)$': '<rootDir>/components/$1',
-    '^@db/(.*)$': '<rootDir>/db/$1',
+    '^@api/(.*)$': '<rootDir>/db/$1',
     '^@models/(.*)$': '<rootDir>/models/$1',
     '^@lib/(.*)$': '<rootDir>/lib/$1',
     '^@ui/(.*)$': '<rootDir>/ui/$1',

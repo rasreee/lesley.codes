@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { SearchField, SearchResults, useSearch } from '@ui/search';
+import { SearchField, SearchResults, useSearch } from '@features/search';
 import { pseudo } from '@ui/utils/pseudo';
 
 import PostCard from './PostCard';

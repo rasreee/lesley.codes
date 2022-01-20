@@ -30,7 +30,7 @@
       "@ui/*": ["./ui/*"],
       "@lib/*": ["./lib/*"],
       "@components/*": ["./components/*"],
-      "@db/*": ["./db/*"],
+      "@api/*": ["./api/*"],
       "@models/*": ["./models/*"],
       "@styles/*": ["./ui/styles/*"],
       "@features/*": ["./features/*"]

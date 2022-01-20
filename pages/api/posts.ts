@@ -1,5 +1,5 @@
-import { getPost } from '@db/posts/detail';
-import { listPostSlugs, PostsApiResponse } from '@db/posts/list';
+import { getPost } from '@api/posts/detail';
+import { listPostSlugs, PostsApiResponse } from '@api/posts/list';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

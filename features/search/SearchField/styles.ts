@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ColorModeProps } from '@features/colorMode/types';
-import { StyledProps } from '@ui/utils/emotion';
 import { spacing } from '@ui/utils/spacing';
+import { StyledProps } from '@ui/utils/styledProps';
 
 type FocusedProps = { isFocused: boolean };
 

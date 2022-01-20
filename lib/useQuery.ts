@@ -1,6 +1,7 @@
-import useSWR, { SWRConfiguration, SWRResponse } from 'swr';
+import useSWR, { SWRConfiguration } from 'swr';
 
 import { fetcher } from './fetcher';
+import { isSWRLoading } from './swr';
 
 export type QueryStatus = 'loading' | 'error' | 'success';
 
@@ -32,9 +33,6 @@ export interface IQueryError {
 }
 
 const defaultSWRConfig: SWRConfiguration = {};
-
-const isSWRLoading = ({ data, error }: SWRResponse) =>
-  typeof data === 'undefined' && typeof error === 'undefined';
 
 export function useQuery<TData, TError extends IQueryError = IQueryError>(
   query: string | readonly string[] | Falsy
