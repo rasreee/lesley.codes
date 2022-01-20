@@ -5,6 +5,7 @@ export const lightTheme = {
   color: {
     background: sharedTheme.colors.gray[50],
     text: sharedTheme.colors.gray[900],
+    textHint: sharedTheme.colors.gray[600],
     muted: sharedTheme.colors.gray[600]
   }
 };

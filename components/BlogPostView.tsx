@@ -1,8 +1,11 @@
 import { useRegisterPostView } from '@db/contents/useRegisterPostView';
 import { PostApiResponse } from '@db/posts/detail';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { WEBSITE_HOST_URL } from '@lib/appConfig';
 import DateFormatter from '@ui/components/DateFormatter';
 import NotionAside from '@ui/components/NotionAside';
+import { largerThan } from '@ui/utils/breakpoints';
 import Head from 'next/head';
 import Image from 'next/image';
 import { MDXRemote } from 'next-mdx-remote';
@@ -39,11 +42,11 @@ export const BlogPostView: React.FunctionComponent<{ post: PostApiResponse }> = 
       <Meta {...customMeta} />
       <article>
         <section className="flex flex-col gap-3 max-w-3xl">
-          <H2 size="md:text-4xl">{post.frontMatter.title}</H2>
-          <P color="text-hint" size="text-base">
+          <SH2>{post.frontMatter.title}</SH2>
+          <SP>
             {'Published on '}
             <DateFormatter date={post.frontMatter.createdAt} />
-          </P>
+          </SP>
           <Tags tags={post.frontMatter.tags} />
         </section>
         <section className="prose dark:prose-dark mt-8">
@@ -53,3 +56,18 @@ export const BlogPostView: React.FunctionComponent<{ post: PostApiResponse }> = 
     </>
   );
 };
+
+const SH2 = styled(H2)`
+  ${({ theme }) => css`
+    ${largerThan('mobile')} {
+      font-size: ${theme.fontSizes['4xl']};
+    }
+  `}
+`;
+
+const SP = styled(P)`
+  ${({ theme }) =>
+    css`
+      color: ${theme.color.textHint};
+    `}
+`;
