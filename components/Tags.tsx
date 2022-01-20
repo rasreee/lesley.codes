@@ -14,21 +14,30 @@ export const Tags: React.FC<TagsProps> = ({ tags, className }) => {
     <ul className={classNames(className, 'flex gap-2 items-center', 'overflow-auto')}>
       {parsedTags.map((tag) => (
         <li key={tag}>
-          <div
-            className={classNames(
-              'cursor-pointer rounded',
-              'bg-gray-100 dark:bg-gray-700 dark:bg-opacity-70',
-              'flex items-center',
-              'py-1 px-2.5'
-            )}
-          >
+          <SContainer>
             <SText>{tag}</SText>
-          </div>
+          </SContainer>
         </li>
       ))}
     </ul>
   );
 };
+
+const SContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  padding-top: 0.25rem /* 4px */ !important;
+  padding-bottom: 0.25rem /* 4px */ !important;
+  padding-left: 0.625rem /* 10px */ !important;
+  padding-right: 0.625rem /* 10px */ !important;
+
+  cursor: pointer;
+  ${({ theme }) => css`
+    border-radius: ${theme.radii.DEFAULT};
+    background: ${theme.color.muted};
+  `}
+`;
 
 const SText = styled(Span)`
   margin: auto unset;
