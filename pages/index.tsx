@@ -1,8 +1,8 @@
 import Meta from '@components/Meta';
-import { PostsSearch } from '@components/PostsSearch';
-import { Section } from '@components/Section';
-import { H1, P } from '@components/Typography';
+import PostsSearch from '@features/postsSearch';
 import { AppConfig } from '@lib/appConfig';
+import { Section } from '@ui/components/Section';
+import { H1, P } from '@ui/components/Typography';
 
 const Index = () => {
   return (

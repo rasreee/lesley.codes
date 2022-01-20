@@ -3,7 +3,6 @@ import { ALL_POST_FIELDS, Post } from '@models/post';
 import fs from 'fs';
 import matter from 'gray-matter';
 import mdxPrism from 'mdx-prism';
-import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
@@ -19,7 +18,7 @@ export async function getPost(
 
   const { content, data } = matter(source);
 
-  const mdxSource = await serialize(content, {
+  const mdxSource = await require('next-mdx-remote/serialize').serialize(content, {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
       remarkPlugins: [require('remark-code-titles')],

@@ -2,7 +2,7 @@
   "name": "lesley.codes",
   "license": "MIT",
   "scripts": {
-    "clean:dist": "rimraf .next",
+    "clean:dist": "rimraf .next tsconfig.tsbuildinfo",
     "clean:node": "rimraf node_modules yarn.lock",
     "refresh":"yarn clean:node && yarn install && yarn build",
     "dev": "next dev",

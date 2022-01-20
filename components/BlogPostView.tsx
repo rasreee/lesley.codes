@@ -8,9 +8,9 @@ import Image from 'next/image';
 import { MDXRemote } from 'next-mdx-remote';
 import React from 'react';
 
+import { H2, P } from '../ui/components/Typography';
 import Meta, { MetaProps } from './Meta';
 import { Tags } from './Tags';
-import { H2, P } from './Typography';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how

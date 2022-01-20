@@ -1,11 +1,11 @@
 import { BlogPostView } from '@components/BlogPostView';
-import { ErrorMessage } from '@components/ErrorMessage';
-import { Section } from '@components/Section';
-import { H1, P } from '@components/Typography';
 import { PostApiResponse } from '@db/posts/detail';
 import { AppConfig } from '@lib/appConfig';
 import { buildApiUrl } from '@lib/routes';
 import { useQuery } from '@lib/useQuery';
+import { ErrorMessage } from '@ui/components/ErrorMessage';
+import { Section } from '@ui/components/Section';
+import { H1, P } from '@ui/components/Typography';
 import { getSlugQueryParam } from '@ui/utils/getSlugQueryParam';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';

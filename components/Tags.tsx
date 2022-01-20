@@ -1,7 +1,7 @@
 import { cn } from '@lib/classnames';
 import { useMemo } from 'react';
 
-import { Span } from './Typography';
+import { Span } from '../ui/components/Typography';
 
 type TagsProps = { tags: string; className?: string };
 

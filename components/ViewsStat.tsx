@@ -1,6 +1,6 @@
 import EyeIcon from '@ui/icons/EyeIcon';
 
-import { P } from './Typography';
+import { P } from '../ui/components/Typography';
 import { ViewsCount } from './ViewsCount';
 
 export const ViewsStat = ({ slug }: { slug: string }) => {
