@@ -1,13 +1,11 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { useRegisterPostView } from '@features/blog/api/contents';
 import { PostApiResponse } from '@features/blog/api/posts';
-import { WEBSITE_HOST_URL } from '@lib/appConfig';
 import { H2, P } from '@ui/atoms';
 import DateFormatter from '@ui/components/DateFormatter';
 import NotionAside from '@ui/components/NotionAside';
 import { Tags } from '@ui/components/Tags';
-import { Meta, MetaProps } from '@ui/layouts/Meta';
+import { Meta } from '@ui/layouts/Meta';
 import { largerThan } from '@ui/utils';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -26,19 +24,8 @@ const components = {
 };
 
 export const BlogPostView: React.FunctionComponent<{ post: PostApiResponse }> = ({ post }) => {
-  useRegisterPostView(post.frontMatter.slug);
-
-  const customMeta: MetaProps = {
-    title: `${post.frontMatter.title} - Lesley Chang`,
-    description: post.frontMatter.description,
-    image: `${WEBSITE_HOST_URL}${post.frontMatter.image}`,
-    createdAt: post.frontMatter.createdAt,
-    type: 'article'
-  };
-
   return (
     <>
-      <Meta {...customMeta} />
       <article>
         <section className="flex flex-col gap-3 max-w-3xl">
           <SH2>{post.frontMatter.title}</SH2>
