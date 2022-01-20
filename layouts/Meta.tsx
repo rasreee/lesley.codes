@@ -11,7 +11,7 @@ export interface MetaProps
   type?: string;
 }
 
-const Meta = (props: MetaProps): JSX.Element => {
+export const Meta = (props: MetaProps): JSX.Element => {
   const router = useRouter();
 
   return (
@@ -36,5 +36,3 @@ const Meta = (props: MetaProps): JSX.Element => {
     </Head>
   );
 };
-
-export default Meta;

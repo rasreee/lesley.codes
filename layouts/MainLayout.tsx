@@ -8,7 +8,7 @@ type LayoutProps = {
   children: React.ReactNode;
 };
 
-export const Layout = ({ children }: LayoutProps): JSX.Element => {
+const MainLayout = ({ children }: LayoutProps): JSX.Element => {
   return (
     <>
       <Header />
@@ -49,3 +49,5 @@ const Container = styled.div`
     margin-right: auto !important;
   `}
 `;
+
+export default MainLayout;

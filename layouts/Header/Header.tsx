@@ -2,8 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { RouteNames, Routes } from '@lib/routes';
 
-import { Navigation } from './Navigation';
-import { NavItemProps } from './NavItem';
+import { Navigation, NavItemProps } from './Navigation';
 import { ThemeSwitch } from './ThemeSwitch';
 
 const navItemProps: NavItemProps[] = [
@@ -17,7 +16,7 @@ const navItemProps: NavItemProps[] = [
   }
 ];
 
-const Header = () => {
+export const Header = () => {
   return (
     <SHeader>
       <InnerContent>
@@ -47,5 +46,3 @@ const InnerContent = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-
-export default Header;

@@ -1,7 +1,7 @@
 import '@styles/global.css';
 
-import Layout from '@components/Layout';
-import { ThemeToggleProvider } from '@features/colorMode/ThemeToggleProvider';
+import ThemeToggleProvider from '@features/colorMode/ThemeToggleProvider';
+import MainLayout from '@layouts/MainLayout';
 import { useAnalytics } from '@lib/analytics';
 import type { AppProps } from 'next/app';
 
@@ -10,9 +10,9 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 
   return (
     <ThemeToggleProvider>
-      <Layout>
+      <MainLayout>
         <Component {...pageProps} />
-      </Layout>
+      </MainLayout>
     </ThemeToggleProvider>
   );
 };

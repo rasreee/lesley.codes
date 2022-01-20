@@ -5,15 +5,15 @@ import styled from '@emotion/styled';
 import { WEBSITE_HOST_URL } from '@lib/appConfig';
 import DateFormatter from '@ui/components/DateFormatter';
 import NotionAside from '@ui/components/NotionAside';
+import { Tags } from '@ui/components/Tags';
+import { H2, P } from '@ui/components/Typography';
 import { largerThan } from '@ui/utils/breakpoints';
 import Head from 'next/head';
 import Image from 'next/image';
 import { MDXRemote } from 'next-mdx-remote';
 import React from 'react';
 
-import { H2, P } from '../ui/components/Typography';
-import Meta, { MetaProps } from './Meta';
-import { Tags } from './Tags';
+import Meta, { MetaProps } from './Layout/Meta';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how

@@ -7,7 +7,7 @@ import { PropsWithChildren, useEffect, useState } from 'react';
 import { ThemeToggleContext } from './ThemeToggleContext';
 import { ColorMode } from './types';
 
-export const ThemeToggleProvider = ({
+const ThemeToggleProvider = ({
   children,
   initialMode = 'dark'
 }: PropsWithChildren<{ initialMode?: ColorMode }>) => {
@@ -32,3 +32,5 @@ export const ThemeToggleProvider = ({
     </ThemeProvider>
   );
 };
+
+export default ThemeToggleProvider;

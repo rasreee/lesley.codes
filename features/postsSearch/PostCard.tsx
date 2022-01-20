@@ -1,9 +1,9 @@
-import { Tags } from '@components/Tags';
 import { ViewsStat } from '@components/ViewsStat';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Post } from '@models/post';
 import DateFormatter from '@ui/components/DateFormatter';
+import { Tags } from '@ui/components/Tags';
 import { H3, P } from '@ui/components/Typography';
 
 const PostCard = ({ createdAt, slug, title, description, tags }: Post['frontMatter']) => {

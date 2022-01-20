@@ -33,6 +33,7 @@
       "@api/*": ["./api/*"],
       "@models/*": ["./models/*"],
       "@styles/*": ["./ui/styles/*"],
+      "@layouts/*": ["./layouts/*"],
       "@features/*": ["./features/*"]
     },
     "incremental": true

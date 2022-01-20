@@ -1,4 +1,4 @@
-import Meta from '@components/Meta';
+import Meta from '@components/Layout/Meta';
 import PostsSearch from '@features/postsSearch';
 import {
   loadPostsSearchStaticProps,
