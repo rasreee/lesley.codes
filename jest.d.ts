@@ -23,7 +23,7 @@ declare global {
    */
   namespace jest {
     interface Matchers<R, T> {
-      toContainObject(expected: any): R;
+      // toContainObject(expected: any): R;
     }
   }
 }
