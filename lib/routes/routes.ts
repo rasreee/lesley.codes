@@ -4,14 +4,12 @@ export const Routes = {
   HOME: '/',
   CONTENTS: '/contents/[slug]',
   BLOG: '/blog',
-  POST_BASE: '/post',
   POST: '/blog/[slug]'
 } as const;
 
 export const RouteNames = {
   HOME: 'Home',
-  BLOG: 'Blog',
-  POST: 'Blog'
+  BLOG: 'Blog'
 } as const;
 
 export const RouteKeys = {

@@ -80,7 +80,7 @@ export const getStaticPaths = async () => {
   return {
     paths: slugs.map((slug) => ({
       params: {
-        slug
+        slug: [slug]
       }
     })),
     fallback: false
