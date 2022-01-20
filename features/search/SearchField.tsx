@@ -13,7 +13,7 @@ export interface SearchFieldProps {
   onChange: (value: string) => void;
 }
 
-export const SearchField = (props: SearchFieldProps) => {
+const SearchField = (props: SearchFieldProps) => {
   const { isFocused, ...bindInput } = useInputFocus(true);
 
   const { query, onChange } = props;
@@ -45,3 +45,5 @@ export const SearchField = (props: SearchFieldProps) => {
     </S.InputGroup>
   );
 };
+
+export default SearchField;

@@ -4,28 +4,21 @@ import { fetcher } from './fetcher';
 
 export type QueryStatus = 'loading' | 'error' | 'success';
 
-interface BaseQueryResult<TData, TError> {
-  mutate: SWRResponse<TData, TError>['mutate'];
-}
-
-export interface UseQueryLoadingResult<TData, TError> extends BaseQueryResult<TData, TError> {
+export interface UseQueryLoadingResult<TData, TError> {
+  status: 'loading';
   data: undefined;
   error: undefined;
-  isLoading: true;
-  status: 'loading';
 }
 
-export interface UseQuerySuccessResult<TData, TError> extends BaseQueryResult<TData, TError> {
+export interface UseQuerySuccessResult<TData, TError> {
   data: TData;
   error: null;
-  isLoading: false;
   status: 'success';
 }
 
-export interface UseQueryErrorResult<TData, TError> extends BaseQueryResult<TData, TError> {
-  data: null;
+export interface UseQueryErrorResult<TData, TError> {
   error: TError;
-  isLoading: false;
+  data: null;
   status: 'error';
 }
 
@@ -48,26 +41,30 @@ export function useQuery<TData, TError extends IQueryError = IQueryError>(
 ): UseQueryResult<TData, TError> {
   const swr = useSWR<TData, TError>(query, fetcher, defaultSWRConfig);
 
-  const { data, error, mutate } = swr;
-
-  let state: Pick<
-    UseQueryResult<TData, TError>,
-    'data' | 'error' | 'mutate' | 'isLoading' | 'status'
-  > = {
+  let state: UseQueryResult<TData, TError> = {
+    status: 'loading',
     data: undefined,
-    error: undefined,
-    mutate,
-    isLoading: true,
-    status: 'loading'
+    error: undefined
   };
 
   if (!isSWRLoading(swr)) {
-    if (error) {
-      state = { data: null, error, mutate, isLoading: false, status: 'error' };
-    } else if (data) {
-      state = { data, error: null, mutate, isLoading: false, status: 'success' };
+    if (swr.error && 'message' in swr.error) {
+      const errorRes: UseQueryErrorResult<TData, TError> = {
+        data: null,
+        error: swr.error,
+        status: 'error'
+      };
+
+      state = errorRes;
+    } else if (swr.data) {
+      const successRes: UseQuerySuccessResult<TData, TError> = {
+        error: null,
+        data: swr.data,
+        status: 'success'
+      };
+      state = successRes;
     }
   }
 
-  return { ...swr, ...state } as UseQueryResult<TData, TError>;
+  return state;
 }

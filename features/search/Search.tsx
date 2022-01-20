@@ -1,22 +1,29 @@
-import { ErrorMessage } from '@components/ErrorMessage';
-import { useQuery } from '@lib/useQuery';
+import { useDebouncedState } from '@ui/hooks/useDebouncedState';
+import { useEffect, useState } from 'react';
 
-import SearchComponent, { SearchComponentProps } from './SearchComponent';
+import SearchField from './SearchField';
+import { SearchResults } from './SearchResults';
 
-export interface SearchProps extends Omit<SearchComponentProps, 'allData'> {
-  apiEndpoint: string | readonly string[];
-}
+export type SearchProps = {
+  onHitClick: (hit: SearchData) => void;
+  renderHit: (hit: SearchData) => JSX.Element;
+  processQuery: (query: string) => SearchData[];
+};
 
-function Search({ apiEndpoint, renderHit, onHitClick }: SearchProps) {
-  const allDataQuery = useQuery<SearchData[]>(`${apiEndpoint}`);
+const Search = ({ onHitClick, processQuery, renderHit }: SearchProps) => {
+  const [query, setQuery] = useDebouncedState(``, 300);
+  const [hits, setHits] = useState<SearchData[]>([]);
 
-  if (allDataQuery.isLoading) return <div>Loading...</div>;
+  useEffect(() => {
+    setHits(processQuery(query));
+  }, [processQuery, query]);
 
-  if (allDataQuery.error) return <ErrorMessage>{allDataQuery.error.message}</ErrorMessage>;
-
-  const allData: SearchData[] = allDataQuery.data;
-
-  return <SearchComponent allData={allData} renderHit={renderHit} onHitClick={onHitClick} />;
-}
+  return (
+    <>
+      <SearchField query={query} onChange={setQuery} />
+      <SearchResults items={hits} renderHit={renderHit} onHitClick={onHitClick} />
+    </>
+  );
+};
 
 export default Search;
