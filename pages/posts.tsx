@@ -1,8 +1,4 @@
-import {
-  loadPostsSearchStaticProps,
-  PostsSearch,
-  PostsSearchPageProps
-} from '@features/postsSearch';
+import { loadPostsSearchStaticProps, PostsSearch, PostsSearchPageProps } from '@features/blog';
 import { Meta } from '@layouts/Meta';
 import { Section } from '@layouts/Section';
 import { H1, P } from '@ui/components/Typography';

@@ -1,7 +1,7 @@
 import { useRegisterPostView } from '@api/contents/useRegisterPostView';
-import { PostApiResponse } from '@api/posts/detail';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { PostApiResponse } from '@features/blog/api';
 import { Meta, MetaProps } from '@layouts/Meta';
 import { WEBSITE_HOST_URL } from '@lib/appConfig';
 import DateFormatter from '@ui/components/DateFormatter';

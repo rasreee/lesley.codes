@@ -1,5 +1,4 @@
-import { getPost } from '@api/posts/detail';
-import { listPostSlugs, PostsApiResponse } from '@api/posts/list';
+import { getPost, listPostSlugs, PostsApiResponse } from '@features/blog/api';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

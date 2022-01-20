@@ -1,5 +1,4 @@
-import { getPost, PostApiResponse } from '@api/posts/detail';
-import { getSlugQueryParam } from '@ui/utils/getSlugQueryParam';
+import { getPost, getSlugQueryParam, PostApiResponse } from '@features/blog';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
