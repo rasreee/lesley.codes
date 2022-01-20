@@ -4,10 +4,10 @@ import EmptySearchResults from './EmptySearchResults';
 
 export interface SearchResultsProps {
   hits: SearchData[];
-  renderHit: (item: SearchData) => ReactNode;
+  renderHitButton: (hit: SearchData) => ReactNode;
 }
 
-export const SearchResults = ({ hits, renderHit }: SearchResultsProps) => {
+export const SearchResults = ({ hits, renderHitButton }: SearchResultsProps) => {
   if (hits.length === 0) {
     return <EmptySearchResults />;
   }
@@ -15,8 +15,8 @@ export const SearchResults = ({ hits, renderHit }: SearchResultsProps) => {
   return (
     <div className={'flex flex-col gap-3 w-full relative my-3'}>
       <ul className={'flex flex-col gap-10'}>
-        {hits.map((item) => (
-          <li key={item.slug}>{renderHit(item)}</li>
+        {hits.map((hit) => (
+          <li key={hit.slug}>{renderHitButton(hit)}</li>
         ))}
       </ul>
     </div>

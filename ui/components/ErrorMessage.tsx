@@ -47,7 +47,7 @@ const SFlex = styled.div`
   ${({ theme }) =>
     css`
       color: ${theme.colors.red[600]};
-      font-size: ${theme.fontSizes.md};
+      font-size: ${theme.fontSizes.base};
       ${smallerThan('tablet')} {
         font-size: ${theme.fontSizes.sm};
       }

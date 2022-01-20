@@ -1,62 +1,72 @@
 import { usePosts } from '@db/posts/list';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { buildUrl } from '@lib/routes';
 import { Post } from '@models/post';
 import { ErrorMessage } from '@ui/components/ErrorMessage';
 import { SearchField, SearchResults, useSearch } from '@ui/search';
-import { parseISO } from 'date-fns';
+import { pseudo } from '@ui/utils/pseudo';
 import { useRouter } from 'next/router';
 
 import PostCard from './PostCard';
+import { processHits } from './processHits';
 
-const compareCreatedAt = (a: SearchData, b: SearchData) =>
-  -1 * (parseISO(a.createdAt).getTime(), parseISO(b.createdAt).getTime());
-
-const processHits =
-  (allData: Array<Post['frontMatter']>) =>
-  (query: string): Array<Post['frontMatter']> => {
-    if (!query) return allData;
-
-    return allData
-      .filter((frontMatter) => frontMatter.title.toLowerCase().includes(query.toLowerCase()))
-      .slice()
-      .sort(compareCreatedAt);
-  };
+export type PostSearchHit = Post['frontMatter'];
 
 interface PostsSearchProps {
-  allData: Array<Post['frontMatter']>;
-  onHitClick: (hit: Post['frontMatter']) => void;
+  allData: Array<PostSearchHit>;
+  onHitClick: (hit: PostSearchHit) => void;
 }
 
 const PostsSearchComponent = ({ allData, onHitClick }: PostsSearchProps) => {
   const { hits, query, setQuery } = useSearch(allData, processHits(allData));
 
-  const renderHit = (hit: SearchData) => {
+  const renderHitButton = (hit: SearchData) => {
+    const getButtonProps = (hit: SearchData) => ({ onClick: () => onHitClick(hit) });
+
     return (
-      <button
-        className={
-          'text-base font-semibold text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition-all'
-        }
-        onClick={() => onHitClick(hit)}
-      >
+      <SearchHitButton {...getButtonProps(hit)}>
         <PostCard {...hit} />
-      </button>
+      </SearchHitButton>
     );
   };
 
   return (
     <>
       <SearchField query={query} onChange={setQuery} />
-      <SearchResults hits={hits} renderHit={renderHit} />
+      <SearchResults hits={hits} renderHitButton={renderHitButton} />
     </>
   );
 };
+
+const SearchHitButton = styled.button`
+  transition-property: all !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-duration: 150ms !important;
+
+  ${({ theme }) =>
+    css`
+      color: ${theme.colors.gray[500]};
+      font-weight: ${theme.fontWeights.semibold};
+      font-size: ${theme.fontSizes.base};
+
+      ${pseudo('_hover')} {
+        color: ${theme.colors.gray[900]};
+        background: ${theme.colors.gray[100]};
+      }
+      ${pseudo('_active')} {
+        color: ${theme.colors.gray[200]};
+        background: ${theme.colors.gray[200]};
+      }
+    `}
+`;
 
 export const PostsSearch = () => {
   const { posts: posts, error } = usePosts();
 
   const router = useRouter();
 
-  const handleHitClick = (frontMatter: Post['frontMatter']) =>
+  const handleHitClick = (frontMatter: PostSearchHit) =>
     router.push(buildUrl('post', frontMatter.slug));
 
   if (error) return <ErrorMessage>{error?.message}</ErrorMessage>;
