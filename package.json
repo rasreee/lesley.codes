@@ -6,7 +6,7 @@
     "clean:node": "rimraf node_modules yarn.lock",
     "refresh": "yarn clean:node && yarn install && yarn build",
     "dev": "next dev",
-    "build": "yarn clean:dist && next build",
+    "build": "yarn clean:dist && yarn cache clean && next build",
     "start": "next start",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write .",
