@@ -1,10 +1,9 @@
-import { PostFrontmatter, PostsSearch } from '@features/blog';
+import { PostsSearch } from '@features/blog';
+import { PostsSearchPageProps } from '@features/blog/postsSearchPageProps';
 import { H1, P } from '@ui/atoms';
 import { Meta, Section } from '@ui/layouts';
 
-type BlogPageProps = { posts: PostFrontmatter[] };
-
-const PostFeedPage = ({ posts }: BlogPageProps) => {
+const PostsSearchPage = ({ posts }: PostsSearchPageProps) => {
   return (
     <>
       <Meta title="Blog" />
@@ -17,4 +16,4 @@ const PostFeedPage = ({ posts }: BlogPageProps) => {
   );
 };
 
-export default PostFeedPage;
+export default PostsSearchPage;
