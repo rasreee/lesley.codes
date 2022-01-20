@@ -982,11 +982,6 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/faker@5.5.3":
-  version "5.5.3"
-  resolved "https://registry.yarnpkg.com/@types/faker/-/faker-5.5.3.tgz#80978e52862e5df9e7a96befdfdd8fad882f6350"
-  integrity sha512-InxkM6sCFQTI6YQl29M/XGlO19ecv/EHH5X5zLEFdge2/qya8oIT0XkJUKTqheVYWJtGi+FBAfP7hbbunDiOmg==
-
 "@types/graceful-fs@^4.1.2":
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/@types/graceful-fs/-/graceful-fs-4.1.5.tgz#21ffba0d98da4350db64891f92a9e5db3cdb4e15"
@@ -1065,13 +1060,6 @@
   version "4.1.6"
   resolved "https://registry.yarnpkg.com/@types/lodash.once/-/lodash.once-4.1.6.tgz#f6ea46e3426bc3494b72a45e65efed440103b967"
   integrity sha512-kawTe2cBNZ5OI4CvTJT9cs8wacGZK4BoakKAGASl/jH3LxflMTuy82wN2U5klYsxYjrABkNWmzgO33volt7urQ==
-  dependencies:
-    "@types/lodash" "*"
-
-"@types/lodash.times@^4.3.6":
-  version "4.3.6"
-  resolved "https://registry.yarnpkg.com/@types/lodash.times/-/lodash.times-4.3.6.tgz#bdfb82585d4f6aaf2b092ffddd88837e23cf42d0"
-  integrity sha512-+LSWHXpMIfZlQjyTaUWAH2FpMZmDV3yuy6+QWASl3ahjA1LkDhdFtnjsMAp5fs37jTn8B9CTmtt4evvdifGONQ==
   dependencies:
     "@types/lodash" "*"
 
@@ -2749,11 +2737,6 @@ extglob@^2.0.4:
     regex-not "^1.0.0"
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
-
-faker@5.5.3:
-  version "5.5.3"
-  resolved "https://registry.yarnpkg.com/faker/-/faker-5.5.3.tgz#c57974ee484431b25205c2c8dc09fda861e51e0e"
-  integrity sha512-wLTv2a28wjUyWkbnX7u/ABZBkUkIF2fCd73V6P2oFqEGEktDfzWx4UxrSqtPRw0xPRAcjeAOIiJWqZm3pP4u3g==
 
 fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
@@ -4488,11 +4471,6 @@ lodash.once@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
   integrity sha1-DdOXEhPHxW34gJd9UEyI+0cal6w=
-
-lodash.times@^4.3.2:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/lodash.times/-/lodash.times-4.3.2.tgz#3e1f2565c431754d54ab57f2ed1741939285ca1d"
-  integrity sha1-Ph8lZcQxdU1Uq1fy7RdBk5KFyh0=
 
 lodash.uniq@4.5.0, lodash.uniq@^4.5.0:
   version "4.5.0"
