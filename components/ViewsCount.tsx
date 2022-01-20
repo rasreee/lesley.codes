@@ -8,7 +8,7 @@ export const ViewsCount = ({ slug }: { slug: string }) => {
   const { data, error } = useQuery<ContentMetaApiResponse>(buildApiUrl('contents', slug));
 
   useEffect(() => {
-    if (isSWRLoading(data, error)) return;
+    if (isSWRLoading({ data, error })) return;
 
     if (data?.contentMeta === null) {
       console.log(`WARNING: no contentMeta found for slug=${slug} in Supabase`);

@@ -1,7 +1,5 @@
+import { fetcher, isSWRLoading } from '@lib/swr';
 import useSWR, { SWRConfiguration } from 'swr';
-
-import { fetcher } from './fetcher';
-import { isSWRLoading } from './swr';
 
 export type QueryStatus = 'loading' | 'error' | 'success';
 
