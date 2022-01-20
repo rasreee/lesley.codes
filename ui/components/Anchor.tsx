@@ -1,4 +1,4 @@
-import { cn } from '@lib/classnames';
+import classNames from 'classnames';
 import React, { AnchorHTMLAttributes, forwardRef, Ref } from 'react';
 
 export const baseAnchorStyles =
@@ -9,7 +9,7 @@ export type AnchorProps = AnchorHTMLAttributes<HTMLAnchorElement>;
 const Anchor = forwardRef(
   ({ children, className, ...props }: AnchorProps, ref: Ref<HTMLAnchorElement>) => {
     return (
-      <a {...props} ref={ref} className={cn(className, baseAnchorStyles)}>
+      <a {...props} ref={ref} className={classNames(className, baseAnchorStyles)}>
         {children}
       </a>
     );

@@ -1,5 +1,5 @@
-import { cn } from '@lib/classnames';
 import { RouteNames, Routes } from '@lib/routes';
+import classNames from 'classnames';
 
 import { Navigation } from './Navigation';
 import { NavItemProps } from './NavItem';
@@ -18,7 +18,7 @@ const navItemProps: NavItemProps[] = [
 
 const Header = () => {
   return (
-    <header className={cn('flex items-center justify-between', 'max-w-5xl px-8 mx-auto')}>
+    <header className={classNames('flex items-center justify-between', 'max-w-5xl px-8 mx-auto')}>
       <Navigation navItemProps={navItemProps} />
       <ThemeSwitch />
     </header>

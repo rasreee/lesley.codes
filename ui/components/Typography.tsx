@@ -1,4 +1,4 @@
-import { cn } from '@lib/classnames';
+import classNames from 'classnames';
 import { HTMLAttributes, ReactNode } from 'react';
 
 export interface TextProps extends Omit<HTMLAttributes<HTMLElement>, 'color'> {
@@ -23,7 +23,7 @@ export const H1: React.FC<TextProps> = ({
 }) => {
   return (
     <h1
-      className={cn(
+      className={classNames(
         size,
         color,
         weight,
@@ -50,7 +50,7 @@ export const H2: React.FC<TextProps> = ({
 }) => {
   return (
     <h1
-      className={cn(
+      className={classNames(
         size,
         color,
         weight,
@@ -77,7 +77,7 @@ export const H3: React.FC<TextProps> = ({
 }) => {
   return (
     <h3
-      className={cn(
+      className={classNames(
         color,
         size,
         weight,
@@ -104,7 +104,7 @@ export const P: React.FC<TextProps> = ({
 }) => {
   return (
     <p
-      className={cn(
+      className={classNames(
         color,
         size,
         weight,
@@ -131,7 +131,7 @@ export const Span: React.FC<TextProps> = ({
 }) => {
   return (
     <span
-      className={cn(
+      className={classNames(
         color,
         size,
         weight,

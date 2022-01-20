@@ -4,7 +4,7 @@
   "scripts": {
     "clean:dist": "rimraf .next tsconfig.tsbuildinfo",
     "clean:node": "rimraf node_modules yarn.lock",
-    "refresh":"yarn clean:node && yarn install && yarn build",
+    "refresh": "yarn clean:node && yarn install && yarn build",
     "dev": "next dev",
     "build": "yarn clean:dist && next build",
     "start": "next start",

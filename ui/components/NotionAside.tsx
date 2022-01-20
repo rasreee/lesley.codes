@@ -1,5 +1,5 @@
-import { cn } from '@lib/classnames';
 import { Emojis } from '@lib/emojis';
+import classNames from 'classnames';
 import React from 'react';
 
 interface NotionAsideProps {
@@ -12,7 +12,7 @@ interface NotionAsideProps {
 const NotionAside: React.FunctionComponent<NotionAsideProps> = ({ children }) => {
   return (
     <aside
-      className={cn(
+      className={classNames(
         'rounded',
         'dark:bg-gray-800 dark:bg-opacity-90',
         'px-5 py-4',

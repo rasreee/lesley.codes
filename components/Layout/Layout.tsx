@@ -1,4 +1,4 @@
-import { cn } from '@lib/classnames';
+import classNames from 'classnames';
 import React from 'react';
 
 import Header from './Header';
@@ -12,7 +12,7 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
     <>
       <Header />
       <main>
-        <div className={cn('relative', 'max-w-5xl px-8 py-4 mx-auto')}>{children}</div>
+        <div className={classNames('relative', 'max-w-5xl px-8 py-4 mx-auto')}>{children}</div>
       </main>
     </>
   );

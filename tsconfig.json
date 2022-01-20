@@ -32,7 +32,7 @@
       "@components/*": ["./components/*"],
       "@db/*": ["./db/*"],
       "@models/*": ["./models/*"],
-      "@styles/*": ["./styles/*"],
+      "@styles/*": ["./ui/styles/*"],
       "@features/*": ["./features/*"]
     },
     "incremental": true
