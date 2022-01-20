@@ -14,9 +14,10 @@ export const getOrCreateContentMeta = (slug: string) => {
     const { data, error } = await supabase
       .from<ContentMeta>('contents')
       .insert({ slug, views: 0 })
-      .single();
+      .limit(1);
 
     if (error) throw error;
+
     if (!data) throw new NullDataError('contents', 'insert');
 
     return data[0];
