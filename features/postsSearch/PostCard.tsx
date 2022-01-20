@@ -8,7 +8,7 @@ import { H3, P } from '@ui/components/Typography';
 
 const PostCard = ({ createdAt, slug, title, description, tags }: Post['frontMatter']) => {
   return (
-    <article className={'flex flex-col gap-3 justify-center py-5'}>
+    <article className={'flex flex-col gap-3 justify-center py-5 text-left'}>
       <div className="flex flex-col items-start gap-2">
         <H3>{title}</H3>
         <P>{description}</P>
