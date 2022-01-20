@@ -1,9 +1,7 @@
-import { usePosts } from '@db/posts/list';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { buildUrl } from '@lib/routes';
 import { Post } from '@models/post';
-import { ErrorMessage } from '@ui/components/ErrorMessage';
 import { SearchField, SearchResults, useSearch } from '@ui/search';
 import { pseudo } from '@ui/utils/pseudo';
 import { useRouter } from 'next/router';
