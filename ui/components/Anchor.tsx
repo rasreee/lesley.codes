@@ -1,20 +1,32 @@
-import classNames from 'classnames';
-import React, { AnchorHTMLAttributes, forwardRef, Ref } from 'react';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { pseudo } from '@ui/utils/pseudo';
+import { AnchorHTMLAttributes, forwardRef, Ref } from 'react';
 
-export const baseAnchorStyles =
-  'text-base font-semibold text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition-all';
+import { baseTextStyles } from './Typography';
 
 export type AnchorProps = AnchorHTMLAttributes<HTMLAnchorElement>;
 
-const Anchor = forwardRef(
-  ({ children, className, ...props }: AnchorProps, ref: Ref<HTMLAnchorElement>) => {
-    return (
-      <a {...props} ref={ref} className={classNames(className, baseAnchorStyles)}>
-        {children}
-      </a>
-    );
-  }
-);
+const Anchor = forwardRef(({ children, ...props }: AnchorProps, ref: Ref<HTMLAnchorElement>) => {
+  return (
+    <SAnchor {...props} ref={ref}>
+      {children}
+    </SAnchor>
+  );
+});
+
+const SAnchor = styled.a`
+  ${baseTextStyles};
+  ${({ theme }) => css`
+    font-weight: ${theme.fontWeights.semibold};
+    color: ${theme.color.textHint};
+    opacity: 0.7;
+    ${pseudo('_hover')} {
+      color: ${theme.color.textHintHover};
+      opacity: 1;
+    }
+  `}
+`;
 
 Anchor.displayName = 'Anchor';
 

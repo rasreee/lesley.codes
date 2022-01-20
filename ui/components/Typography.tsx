@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { largerThan } from '@ui/utils/breakpoints';
 import { StyledProps } from '@ui/utils/emotion';
 
-const baseTextStyles = ({ theme }: StyledProps) => css`
+export const baseTextStyles = ({ theme }: StyledProps) => css`
   letter-spacing: -0.025em !important;
   color: ${theme.color.text};
 `;
