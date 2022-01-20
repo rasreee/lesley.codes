@@ -8,11 +8,11 @@ import { getPost } from './detail';
 
 export type PostsApiResponse = { posts: Post[] };
 
-function listPostSlugs(): string[] {
+export function listPostSlugs(): string[] {
   return fs.readdirSync(POSTS_PATH);
 }
 
-export async function listPosts(fields: readonly string[] = ALL_POST_FIELDS): Promise<Post[]> {
+export function listPosts(fields: readonly string[] = ALL_POST_FIELDS): Promise<Post[]> {
   const slugs = listPostSlugs();
 
   return Promise.all(slugs.map((slug) => getPost(slug, fields)));

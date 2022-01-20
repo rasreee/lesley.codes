@@ -3,7 +3,8 @@
   "license": "MIT",
   "scripts": {
     "clean:dist": "rimraf .next",
-    "clean:node": "rimraf node_modules yarn.lock && yarn install",
+    "clean:node": "rimraf node_modules yarn.lock",
+    "refresh":"yarn clean:node && yarn install && yarn build",
     "dev": "next dev",
     "build": "yarn clean:dist && next build",
     "start": "next start",

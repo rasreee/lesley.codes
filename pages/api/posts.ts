@@ -1,4 +1,5 @@
-import { listPosts, PostsApiResponse } from '@db/posts/list';
+import { getPost } from '@db/posts/detail';
+import { listPostSlugs, PostsApiResponse } from '@db/posts/list';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -13,8 +14,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const posts = await listPosts();
+    const posts = await Promise.all(listPostSlugs().map((slug) => getPost(slug)));
     const response: PostsApiResponse = { posts };
+
     return res.status(200).json(response);
   } catch (err) {
     console.error('Failed to fetch all posts. ', JSON.stringify(err));
