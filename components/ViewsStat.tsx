@@ -7,7 +7,7 @@ import { ViewsCount } from './ViewsCount';
 
 export const ViewsStat = ({ slug }: { slug: string }) => {
   return (
-    <div className="flex items-center gap-2 text-hint">
+    <div className="flex items-center gap-2">
       <EyeIcon />
       <SText>
         <ViewsCount slug={slug} />
@@ -19,7 +19,8 @@ export const ViewsStat = ({ slug }: { slug: string }) => {
 const SText = styled(P)`
   ${({ theme }) =>
     css`
-      font-size: ${theme.fontSizes.sm};
+      color: ${theme.color.textHint};
+      font-size: ${theme.fontSizes.xs};
       font-weight: ${theme.fontWeights.semibold};
     `}
 `;

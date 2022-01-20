@@ -47,32 +47,21 @@ export const H3 = styled.h3`
 
 const bodyStyles = ({ theme }: StyledProps) => css`
   font-weight: ${theme.fontWeights.normal};
+  font-size: ${theme.fontSizes['sm']};
+  ${largerThan('tablet')} {
+    font-size: ${theme.fontSizes['base']};
+  }
+  ${largerThan('desktop')} {
+    font-size: ${theme.fontSizes['xl']};
+  }
 `;
 
 export const P = styled.p`
   ${baseTextStyles}
   ${bodyStyles}
-  ${({ theme }) => css`
-    font-size: ${theme.fontSizes['base']};
-    ${largerThan('tablet')} {
-      font-size: ${theme.fontSizes['lg']};
-    }
-    ${largerThan('desktop')} {
-      font-size: ${theme.fontSizes['2xl']};
-    }
-  `}
 `;
 
 export const Span = styled.p`
   ${baseTextStyles}
   ${bodyStyles}
-  ${({ theme }) => css`
-    font-size: ${theme.fontSizes['base']};
-    ${largerThan('tablet')} {
-      font-size: ${theme.fontSizes['lg']};
-    }
-    ${largerThan('desktop')} {
-      font-size: ${theme.fontSizes['2xl']};
-    }
-  `}
 `;

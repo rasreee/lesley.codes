@@ -36,6 +36,9 @@ const SContainer = styled.div`
   ${({ theme }) => css`
     border-radius: ${theme.radii.DEFAULT};
     background: ${theme.color.muted};
+
+    font-size: ${theme.fontSizes.xs};
+    font-weight: ${theme.fontWeights.medium};
   `}
 `;
 
@@ -44,9 +47,6 @@ const SText = styled(Span)`
   ${({ theme }) =>
     css`
       color: ${theme.color.textHint};
-      font-size: ${theme.fontSizes.xs};
-      font-weight: ${theme.fontWeights.semibold};
-
       ${pseudo('_hover')} {
         color: ${theme.color.textHintHover};
       }

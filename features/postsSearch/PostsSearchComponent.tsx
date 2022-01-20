@@ -34,23 +34,14 @@ const PostsSearchComponent = ({ allData, onHitClick }: PostsSearchComponentProps
 };
 
 const SearchHitButton = styled.button`
-  transition-property: all !important;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
-  transition-duration: 150ms !important;
-
   ${({ theme }) =>
     css`
-      color: ${theme.colors.gray[500]};
+      color: ${theme.color.textHint};
       font-weight: ${theme.fontWeights.semibold};
       font-size: ${theme.fontSizes.base};
 
       ${pseudo('_hover')} {
-        color: ${theme.colors.gray[900]};
-        background: ${theme.colors.gray[100]};
-      }
-      ${pseudo('_active')} {
-        color: ${theme.colors.gray[200]};
-        background: ${theme.colors.gray[200]};
+        color: ${theme.color.textHintHover};
       }
     `}
 `;

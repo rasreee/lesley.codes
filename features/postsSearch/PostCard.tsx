@@ -17,20 +17,19 @@ const PostCard = ({ createdAt, slug, title, description, tags }: Post['frontMatt
         <Tags tags={tags} />
       </div>
       <section className="flex items-center justify-start gap-6">
-        <SText>
+        <HintText>
           <DateFormatter date={createdAt} />
-        </SText>
+        </HintText>
         <ViewsStat slug={slug} />
       </section>
     </article>
   );
 };
 
-const SText = styled(P)`
+const HintText = styled.div`
   ${({ theme }) =>
     css`
       color: ${theme.color.textHint};
-      font-size: ${theme.fontSizes.sm};
     `}
 `;
 
