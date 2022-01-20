@@ -1,4 +1,4 @@
-import { Theme } from '@styles/theme';
+import { Theme } from '@ui/styles/lightTheme';
 
 export type StyledProps<P extends {} = {}> = {
   theme: Theme;

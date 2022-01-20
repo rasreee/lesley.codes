@@ -1,5 +1,5 @@
+import { useColorMode } from '@features/colorMode/useColorMode';
 import { useIsMounted } from '@ui/hooks/useIsMounted';
-import { useTheme } from 'next-themes';
 
 /**
  * Based off of gatsby-theme-novela
@@ -8,21 +8,16 @@ import { useTheme } from 'next-themes';
 
 export const ThemeSwitch = () => {
   const isMounted = useIsMounted();
-  const { theme, setTheme } = useTheme();
+  const { getIsDark, toggle } = useColorMode();
 
   if (!isMounted) return null;
 
-  const isDark = theme === 'dark';
+  const isDark = getIsDark();
   const color = isDark ? '#fff' : '#000';
   const maskColor = isDark ? '#000' : '#fff';
 
   return (
-    <button
-      className="theme-button"
-      type="button"
-      aria-label="Toggle Dark Mode"
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-    >
+    <button className="theme-button" type="button" aria-label="Toggle Dark Mode" onClick={toggle}>
       <div className="moon-or-sun" />
       <div className="moon-mask" />
       <style jsx>{`

@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 
-import { ColorModeContext, IColorModeContext } from './ColorModeContext';
+import { IThemeToggleContext, ThemeToggleContext } from './ThemeToggleContext';
 
-export function useColorMode(): IColorModeContext {
-  const context = useContext(ColorModeContext);
+export function useColorMode(): IThemeToggleContext {
+  const context = useContext(ThemeToggleContext);
 
   if (!context) throw new Error();
 
