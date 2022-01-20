@@ -1,7 +1,10 @@
-import { getSlugQueryParam, Post, useRegisterPostView } from '@features/blog';
+import { BlogPostView, Post, useRegisterPostView } from '@features/blog';
 import { postApiKeys } from '@lib/api';
+import { AppConfig, WEBSITE_HOST_URL } from '@lib/appConfig';
 import { useQuery, UseQueryResult } from '@lib/swr';
-import { useRouter } from 'next/router';
+import { H1, P } from '@ui/atoms';
+import { ErrorMessage } from '@ui/components/ErrorMessage';
+import { Meta, MetaProps, Section } from '@ui/layouts';
 import { useEffect } from 'react';
 
 const usePostData = (slug: string): UseQueryResult<Post> => {
@@ -16,33 +19,32 @@ const usePostData = (slug: string): UseQueryResult<Post> => {
 };
 
 const PostPage = ({ slug }: { slug: string }) => {
-  const router = useRouter();
-
-  const { data: postData, error } = usePostData(slug);
+  const { data: post, error } = usePostData(slug);
 
   useRegisterPostView(slug);
 
-  // const customMeta: MetaProps = {
-  //   title: `${post.title} - Lesley Chang`,
-  //   description: post.description,
-  //   image: `${WEBSITE_HOST_URL}${post.image}`,
-  //   createdAt: post.createdAt,
-  //   type: 'article'
-  // };
+  if (error) return <ErrorMessage>{error.message}</ErrorMessage>;
 
-  // return (
-  //   <>
-  //     <Meta {...customMeta} />
-  //     <Section>
-  //       <H1>{AppConfig.meta.title}</H1>
-  //       <P>{AppConfig.meta.description}</P>
-  //     </Section>
-  //     <ErrorMessage>{error?.message}</ErrorMessage>
-  //     {postData && <BlogPostView post={postData} />}
-  //   </>
-  // );
+  if (!post) return <div>Loading...</div>;
 
-  return null;
+  const customMeta: MetaProps = {
+    title: `${post.frontMatter.title} - Lesley Chang`,
+    description: post.frontMatter.description,
+    image: `${WEBSITE_HOST_URL}${post.frontMatter.image}`,
+    createdAt: post.frontMatter.createdAt,
+    type: 'article'
+  };
+
+  return (
+    <>
+      <Meta {...customMeta} />
+      <Section>
+        <H1>{AppConfig.meta.title}</H1>
+        <P>{AppConfig.meta.description}</P>
+      </Section>
+      <BlogPostView post={post} />
+    </>
+  );
 };
 
 export default PostPage;
