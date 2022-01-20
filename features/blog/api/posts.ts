@@ -32,7 +32,7 @@ export async function getPost(
 
   return {
     source: mdxSource,
-    frontMatter: data as Post['frontMatter']
+    frontMatter: data as PostFrontmatter
   };
 }
 
@@ -50,7 +50,7 @@ export function getPostFrontmatter(
 
 export type PostsApiResponse = { posts: PostFrontmatter[] };
 
-function listPostSlugs(): string[] {
+export function listPostSlugs(): string[] {
   return fs.readdirSync(POSTS_PATH);
 }
 
