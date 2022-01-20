@@ -1,25 +1,12 @@
-import { BlogPostView, Post, useRegisterPostView } from '@features/blog';
-import { postApiKeys } from '@lib/api';
+import { BlogPostView, useRegisterPostView } from '@features/blog';
+import { usePost } from '@features/blog/api/usePost';
 import { AppConfig, WEBSITE_HOST_URL } from '@lib/appConfig';
-import { useQuery, UseQueryResult } from '@lib/swr';
 import { H1, P } from '@ui/atoms';
 import { ErrorMessage } from '@ui/components/ErrorMessage';
 import { Meta, MetaProps, Section } from '@ui/layouts';
-import { useEffect } from 'react';
-
-const usePostData = (slug: string): UseQueryResult<Post> => {
-  const key = postApiKeys.detail(slug).join('/');
-  const response = useQuery<Post>(key);
-  const { data, error } = response;
-  useEffect(() => {
-    console.log('🌙 Post Data: ', data);
-    error && console.log('❌ Post Error: ', error);
-  }, [data, error]);
-  return response;
-};
 
 const PostPage = ({ slug }: { slug: string }) => {
-  const { data: post, error } = usePostData(slug);
+  const { data: post, error } = usePost(slug);
 
   useRegisterPostView(slug);
 
