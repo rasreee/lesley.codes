@@ -15,8 +15,9 @@ export const PostsSearch = () => {
   const router = useRouter();
 
   const handleHitClick = (item: SearchData) => {
-    console.log('Selected post: ', item.slug);
-    router.push(buildUrl('posts'));
+    const { slug } = item;
+    console.log('Selected post: ', slug);
+    router.push(buildUrl('post', slug));
   };
 
   if (error) {
