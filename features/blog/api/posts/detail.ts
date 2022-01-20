@@ -6,7 +6,6 @@ import mdxPrism from 'mdx-prism';
 import path from 'path';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
-
 export interface PostApiResponse extends Post {}
 
 export async function getPost(
