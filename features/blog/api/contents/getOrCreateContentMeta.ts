@@ -1,4 +1,4 @@
-import { ContentMeta } from '@features/blog/models';
+import { ContentMeta } from '@features/blog';
 import { NullDataError } from '@lib/error';
 import { SupabaseClient } from '@supabase/supabase-js';
 

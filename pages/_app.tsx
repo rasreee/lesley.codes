@@ -1,8 +1,8 @@
-import '@styles/global.css';
+import '@ui/styles/global.css';
 
 import ThemeToggleProvider from '@features/colorMode/ThemeToggleProvider';
-import MainLayout from '@layouts/MainLayout';
 import { useAnalytics } from '@lib/analytics';
+import MainLayout from '@ui/layouts/MainLayout';
 import type { AppProps } from 'next/app';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {

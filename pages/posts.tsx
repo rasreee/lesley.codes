@@ -1,7 +1,7 @@
 import { loadPostsSearchStaticProps, PostsSearch, PostsSearchPageProps } from '@features/blog';
-import { Meta } from '@layouts/Meta';
-import { Section } from '@layouts/Section';
 import { H1, P } from '@ui/components/Typography';
+import { Meta } from '@ui/layouts/Meta';
+import { Section } from '@ui/layouts/Section';
 
 const BlogPage = (props: PostsSearchPageProps) => {
   return (

@@ -1,4 +1,4 @@
-import { Post } from '@features/blog/models';
+import { Post } from '@features/blog';
 import { buildUrl } from '@lib/routes';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';

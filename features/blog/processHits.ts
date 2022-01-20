@@ -1,4 +1,4 @@
-import { Post } from '@features/blog/models';
+import { Post } from '@features/blog';
 import parseISO from 'date-fns/parseISO';
 
 const compareCreatedAt = (a: SearchData, b: SearchData) =>

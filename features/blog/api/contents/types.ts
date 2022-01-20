@@ -1,3 +1,3 @@
-import { ContentMeta } from '@features/blog/models';
+import { ContentMeta } from '@features/blog';
 
 export type ContentMetaApiResponse = { contentMeta: ContentMeta | null };

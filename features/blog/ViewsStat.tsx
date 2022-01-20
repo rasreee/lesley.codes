@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { ContentMetaApiResponse } from '@features/blog/api/contents';
 import { buildApiUrl } from '@lib/routes';
 import { isSWRLoading } from '@lib/swr';
-import { useQuery } from '@lib/useQuery';
+import { useQuery } from '@lib/swr';
 import { P } from '@ui/components/Typography';
 import EyeIcon from '@ui/icons/EyeIcon';
 import { useEffect } from 'react';

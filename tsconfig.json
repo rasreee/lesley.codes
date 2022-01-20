@@ -30,10 +30,6 @@
       "@ui/*": ["./ui/*"],
       "@lib/*": ["./lib/*"],
       "@components/*": ["./components/*"],
-      "@api/*": ["./api/*"],
-      "@models/*": ["./models/*"],
-      "@styles/*": ["./ui/styles/*"],
-      "@layouts/*": ["./layouts/*"],
       "@features/*": ["./features/*"]
     },
     "incremental": true

@@ -1,10 +1,10 @@
 import { BlogPostView, getSlugQueryParam, PostApiResponse } from '@features/blog';
-import { Section } from '@layouts/Section';
 import { AppConfig } from '@lib/appConfig';
 import { buildApiUrl } from '@lib/routes';
-import { useQuery } from '@lib/useQuery';
+import { useQuery } from '@lib/swr';
 import { ErrorMessage } from '@ui/components/ErrorMessage';
 import { H1, P } from '@ui/components/Typography';
+import { Section } from '@ui/layouts/Section';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 

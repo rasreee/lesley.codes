@@ -1,7 +1,7 @@
-import { ALL_POST_FIELDS, Post } from '@features/blog/models';
+import { ALL_POST_FIELDS, Post } from '@features/blog';
 import { POSTS_PATH } from '@lib/mdx';
 import { buildApiUrl } from '@lib/routes';
-import { useQuery } from '@lib/useQuery';
+import { useQuery } from '@lib/swr';
 import fs from 'fs';
 
 import { getPost } from './detail';

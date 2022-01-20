@@ -26,7 +26,7 @@ module.exports = {
     '^@models/(.*)$': '<rootDir>/models/$1',
     '^@lib/(.*)$': '<rootDir>/lib/$1',
     '^@ui/(.*)$': '<rootDir>/ui/$1',
-    '^@styles/(.*)$': '<rootDir>/styles/$1'
+    '^@ui/styles/(.*)$': '<rootDir>/styles/$1'
   },
   modulePathIgnorePatterns: ['.next/'],
   runner: 'groups', // Allow to use jest-runner-groups - See https://github.com/eugene-manuilov/jest-runner-groups#update-jest-config

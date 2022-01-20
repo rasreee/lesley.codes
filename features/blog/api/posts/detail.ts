@@ -1,4 +1,4 @@
-import { ALL_POST_FIELDS, Post } from '@features/blog/models';
+import { ALL_POST_FIELDS, Post } from '@features/blog';
 import { POSTS_PATH } from '@lib/mdx';
 import fs from 'fs';
 import matter from 'gray-matter';
