@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import { darkTheme } from '@ui/styles/darkTheme';
+import GlobalStyles from '@ui/styles/GlobalStyles';
 import { lightTheme } from '@ui/styles/lightTheme';
 import { PropsWithChildren, useEffect, useState } from 'react';
 
@@ -24,6 +25,7 @@ export const ThemeToggleProvider = ({
 
   return (
     <ThemeProvider theme={currentTheme}>
+      <GlobalStyles />
       <ThemeToggleContext.Provider value={{ colorMode, toggle, getIsDark }}>
         {children}
       </ThemeToggleContext.Provider>
