@@ -4,11 +4,7 @@ import { useEffect } from 'react';
 
 export const useRegisterPostView = (slug: string) => {
   useEffect(() => {
-    if (!isRegisterViewEnabled()) {
-      console.log('Registering views disabled due to NEXT_PUBLIC_REGISTER_VIEWS env variable');
-
-      return;
-    }
+    if (!isRegisterViewEnabled()) return;
 
     const registerView = () =>
       fetch(buildApiUrl('contents', slug), {

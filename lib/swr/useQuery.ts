@@ -21,7 +21,7 @@ export interface UseQueryErrorResult<TData, TError> {
   status: 'error';
 }
 
-export type UseQueryResult<TData, TError> =
+export type UseQueryResult<TData, TError extends IQueryError = IQueryError> =
   | UseQueryLoadingResult<TData, TError>
   | UseQueryErrorResult<TData, TError>
   | UseQuerySuccessResult<TData, TError>;

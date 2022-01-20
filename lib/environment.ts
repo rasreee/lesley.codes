@@ -15,10 +15,10 @@ export const isRegisterSearchEnabled = () => {
   return isProduction() || process.env.NEXT_PUBLIC_REGISTER_SEARCHES === 'true';
 };
 
-if (!isRegisterViewEnabled()) {
-  console.log('👉 Registering view disabled due to NEXT_PUBLIC_REGISTER_VIEWS env variable');
-}
+// if (!isRegisterViewEnabled()) {
+//   console.log('👉 Registering view disabled due to NEXT_PUBLIC_REGISTER_VIEWS env variable');
+// }
 
-if (!isRegisterSearchEnabled()) {
-  console.log('👉 Registering search disabled due to NEXT_PUBLIC_REGISTER_SEARCHES env variable');
-}
+// if (!isRegisterSearchEnabled()) {
+//   console.log('👉 Registering search disabled due to NEXT_PUBLIC_REGISTER_SEARCHES env variable');
+// }

@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { PostApiResponse } from '@features/blog/api/posts';
 import { H2, P } from '@ui/atoms';
 import DateFormatter from '@ui/components/DateFormatter';
 import NotionAside from '@ui/components/NotionAside';
@@ -11,6 +10,8 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { MDXRemote } from 'next-mdx-remote';
 import React from 'react';
+
+import { Post } from './models/post';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -23,7 +24,7 @@ const components = {
   Meta
 };
 
-export const BlogPostView: React.FunctionComponent<{ post: PostApiResponse }> = ({ post }) => {
+export const BlogPostView: React.FunctionComponent<{ post: Post }> = ({ post }) => {
   return (
     <>
       <article>
