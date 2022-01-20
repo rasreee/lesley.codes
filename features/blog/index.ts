@@ -1,4 +1,3 @@
-export * from './BlogPostView';
 export * from './PostCard';
 export * from './PostsSearch';
 export * from './PostsSearchComponent';
