@@ -49,7 +49,5 @@ export function getPostBySlug(slug: string, fields: Fields = ALL_POST_FIELDS): B
 export function getAllPosts(fields: Fields = ALL_POST_FIELDS): BlogFrontmatter[] {
   const slugs = getPostSlugs();
 
-  const posts = slugs.map((slug) => getPostBySlug(slug, fields));
-
-  return posts;
+  return slugs.map((slug) => getPostBySlug(slug, fields));
 }

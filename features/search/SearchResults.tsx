@@ -6,7 +6,7 @@ export interface SearchResultsProps {
   onHitClick: (item: SearchData) => void;
 }
 
-export const SearchResults: React.FC<SearchResultsProps> = ({ items, renderHit, onHitClick }) => {
+export const SearchResults = ({ items, renderHit, onHitClick }: SearchResultsProps) => {
   const handleHitClick = (item: SearchData) => () => onHitClick(item);
 
   return (
@@ -14,7 +14,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ items, renderHit, 
       <ul className={'flex flex-col gap-10'}>
         {items.map((item) => (
           <button
-            key={item.title}
+            key={item.slug}
             className={
               'text-base font-semibold text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition-all'
             }

@@ -1,7 +1,7 @@
 import Search from '@features/search/Search';
 import { buildApiUrl, buildUrl } from '@lib/routes';
 import { useQuery } from '@lib/useQuery';
-import { isBefore, isPast, parseISO } from 'date-fns';
+import { parseISO } from 'date-fns';
 import { useRouter } from 'next/router';
 
 import { ErrorMessage } from './ErrorMessage';
@@ -28,21 +28,27 @@ export const PostsSearch = () => {
     return <div>Loading...</div>;
   }
 
-  const handleQuery = (query: string): SearchData[] => {
-    if (!query) return data ?? [];
-
-    if (!data) return [];
-
-    return data
+  const handleQuery = (query: string, allData: SearchData[]): SearchData[] => {
+    let res = allData
       .filter((data) => data.title.toLowerCase().includes(query.toLowerCase()))
-      .sort((a, b) => (isBefore(parseISO(a.createdAt), parseISO(b.createdAt)) ? -1 : 1));
+      .slice();
+
+    res = res.sort(compareCreatedAt);
+
+    console.log('AFTER sort: ', res);
+
+    return res;
   };
 
   return (
     <Search
+      allData={data ?? []}
       onQuery={handleQuery}
       renderHit={(hit) => <PostCard {...hit} />}
       onHitClick={handleHitClick}
     />
   );
 };
+
+export const compareCreatedAt = (a: SearchData, b: SearchData) =>
+  -1 * (parseISO(a.createdAt).getTime(), parseISO(b.createdAt).getTime());

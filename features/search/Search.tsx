@@ -2,26 +2,44 @@ import { useDebouncedState } from '@ui/hooks/useDebouncedState';
 import { useEffect, useState } from 'react';
 
 import SearchField from './SearchField';
-import { SearchResults } from './SearchResults';
 
 export type SearchProps = {
   onHitClick: (hit: SearchData) => void;
   renderHit: (hit: SearchData) => JSX.Element;
-  onQuery: (query: string) => SearchData[];
+  onQuery: (query: string, allData: SearchData[]) => SearchData[];
+  allData: SearchData[];
 };
 
-const Search = ({ onHitClick, onQuery, renderHit }: SearchProps) => {
+const Search = ({ onHitClick, onQuery, renderHit, allData }: SearchProps) => {
   const [query, setQuery] = useDebouncedState(``, 300);
   const [hits, setHits] = useState<SearchData[]>([]);
 
   useEffect(() => {
-    setHits(onQuery(query));
-  }, [onQuery, query]);
+    if (!query) setHits(allData);
+
+    setHits(onQuery(query, allData));
+  }, [allData, onQuery, query]);
+
+  const handleHitClick = (item: SearchData) => () => onHitClick(item);
 
   return (
     <>
       <SearchField query={query} onChange={setQuery} />
-      <SearchResults items={hits} renderHit={renderHit} onHitClick={onHitClick} />
+      <div className={'flex flex-col gap-3 w-full relative my-3'}>
+        <ul className={'flex flex-col gap-10'}>
+          {hits.map((item) => (
+            <button
+              key={item.slug}
+              className={
+                'text-base font-semibold text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition-all'
+              }
+              onClick={handleHitClick(item)}
+            >
+              {renderHit(item)}
+            </button>
+          ))}
+        </ul>
+      </div>
     </>
   );
 };
