@@ -13,12 +13,12 @@ import { processHits } from './processHits';
 
 export type PostSearchHit = Post['frontMatter'];
 
-interface PostsSearchProps {
+interface PostsSearchComponentProps {
   allData: Array<PostSearchHit>;
   onHitClick: (hit: PostSearchHit) => void;
 }
 
-const PostsSearchComponent = ({ allData, onHitClick }: PostsSearchProps) => {
+const PostsSearchComponent = ({ allData, onHitClick }: PostsSearchComponentProps) => {
   const { hits, query, setQuery } = useSearch(allData, processHits(allData));
 
   const renderHitButton = (hit: SearchData) => {
@@ -61,19 +61,15 @@ const SearchHitButton = styled.button`
     `}
 `;
 
-export const PostsSearch = () => {
-  const { posts: posts, error } = usePosts();
+type PostsSearchProps = { allPosts: Post[] };
 
+export const PostsSearch = ({ allPosts }: PostsSearchProps) => {
   const router = useRouter();
 
   const handleHitClick = (frontMatter: PostSearchHit) =>
     router.push(buildUrl('post', frontMatter.slug));
 
-  if (error) return <ErrorMessage>{error?.message}</ErrorMessage>;
-
-  if (!posts) return <div>Loading...</div>;
-
-  const allData = posts.map((post) => post.frontMatter);
+  const allData = allPosts.map((post) => post.frontMatter);
 
   return <PostsSearchComponent allData={allData} onHitClick={handleHitClick} />;
 };

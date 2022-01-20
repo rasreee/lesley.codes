@@ -1,10 +1,14 @@
 import Meta from '@components/Meta';
 import PostsSearch from '@features/postsSearch';
+import {
+  loadPostsSearchStaticProps,
+  PostsSearchPageProps
+} from '@features/postsSearch/postsSearchPageProps';
 import { AppConfig } from '@lib/appConfig';
 import { Section } from '@ui/components/Section';
 import { H1, P } from '@ui/components/Typography';
 
-const Index = () => {
+const IndexPage = (props: PostsSearchPageProps) => {
   return (
     <>
       <Meta />
@@ -12,9 +16,11 @@ const Index = () => {
         <H1>{AppConfig.meta.title}</H1>
         <P>{AppConfig.meta.description}</P>
       </Section>
-      <PostsSearch />
+      <PostsSearch allPosts={props.allPosts} />
     </>
   );
 };
 
-export default Index;
+export const getStaticProps = loadPostsSearchStaticProps();
+
+export default IndexPage;

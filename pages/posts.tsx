@@ -1,9 +1,13 @@
 import Meta from '@components/Meta';
 import PostsSearch from '@features/postsSearch';
+import {
+  loadPostsSearchStaticProps,
+  PostsSearchPageProps
+} from '@features/postsSearch/postsSearchPageProps';
 import { Section } from '@ui/components/Section';
 import { H1, P } from '@ui/components/Typography';
 
-const Posts = () => {
+const BlogPage = (props: PostsSearchPageProps) => {
   return (
     <>
       <Meta title="Blog" />
@@ -11,9 +15,11 @@ const Posts = () => {
         <H1>{'Blog'}</H1>
         <P>{'Thoughts and tutorials about web development, product validation, and Solana.'}</P>
       </Section>
-      <PostsSearch />
+      <PostsSearch allPosts={props.allPosts} />
     </>
   );
 };
 
-export default Posts;
+export const getStaticProps = loadPostsSearchStaticProps();
+
+export default BlogPage;
