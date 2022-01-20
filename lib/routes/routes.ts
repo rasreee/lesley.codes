@@ -3,14 +3,14 @@ import { sluggify } from './sluggify';
 export const Routes = {
   HOME: '/',
   CONTENTS: '/contents/[slug]',
-  POSTS: '/posts',
+  BLOG: '/blog',
   POST_BASE: '/post',
-  POST: '/post/[slug]'
+  POST: '/blog/[slug]'
 } as const;
 
 export const RouteNames = {
   HOME: 'Home',
-  POSTS: 'Blog',
+  BLOG: 'Blog',
   POST: 'Blog'
 } as const;
 

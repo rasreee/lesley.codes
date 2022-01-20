@@ -3,9 +3,10 @@ import {
   getSlugQueryParam,
   Post,
   PostFrontmatter,
+  PostsSearch,
   useRegisterPostView
 } from '@features/blog';
-import { listPostSlugs } from '@features/blog/api/posts';
+import { listPosts, listPostSlugs } from '@features/blog/api/posts';
 import { getPostBySlug } from '@lib/api';
 import { AppConfig, WEBSITE_HOST_URL } from '@lib/appConfig';
 import { buildApiUrl } from '@lib/routes';
@@ -17,7 +18,7 @@ import { Section } from '@ui/layouts/Section';
 import { GetStaticProps } from 'next';
 import { useEffect } from 'react';
 
-type PostPageProps = { post: PostFrontmatter };
+type PostPageProps = { data: PostFrontmatter | PostFrontmatter[] };
 
 const usePostData = (slug: string): UseQueryResult<Post> => {
   const response = useQuery<Post>(buildApiUrl('post', slug));
@@ -29,7 +30,20 @@ const usePostData = (slug: string): UseQueryResult<Post> => {
   return response;
 };
 
-const PostRoute = ({ post }: PostPageProps) => {
+const PostsSearchPage = ({ allPosts }: { allPosts: PostFrontmatter[] }) => {
+  return (
+    <>
+      <Meta title="Blog" />
+      <Section>
+        <H1>{'Blog'}</H1>
+        <P>{'Thoughts and tutorials about web development, product validation, and Solana.'}</P>
+      </Section>
+      <PostsSearch allPosts={allPosts} />
+    </>
+  );
+};
+
+const PostPage = ({ post }: { post: PostFrontmatter }) => {
   const { data: postData, error } = usePostData(post.slug);
 
   useRegisterPostView(post.slug);
@@ -55,6 +69,12 @@ const PostRoute = ({ post }: PostPageProps) => {
   );
 };
 
+const PostRoute = ({ data }: PostPageProps) => {
+  if (Array.isArray(data)) return <PostsSearchPage allPosts={data} />;
+
+  return <PostPage post={data} />;
+};
+
 export const getStaticPaths = async () => {
   const slugs = listPostSlugs();
   return {
@@ -69,7 +89,10 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<PostPageProps> = async (args) => {
   try {
-    if (!args.params) throw new Error('getStaticProps called with no params for /post/[slug]');
+    if (!args.params) {
+      const allPosts = listPosts();
+      return { props: { data: allPosts } };
+    }
 
     const slug = getSlugQueryParam(args.params);
 
@@ -79,7 +102,7 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (args) => {
 
     console.log('✅ Got Post front matter: ', post);
 
-    return { props: { post } };
+    return { props: { data: post } };
   } catch (err) {
     console.log(`❗ERROR: Failed to getStaticProps for /post/[slug]. Error: `, err);
 

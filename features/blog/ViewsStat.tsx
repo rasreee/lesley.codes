@@ -1,27 +1,22 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { ContentMetaApiResponse } from '@features/blog/api/contents';
-import { buildApiUrl } from '@lib/routes';
-import { isSWRLoading } from '@lib/swr';
-import { useQuery } from '@lib/swr';
+import { useGetOrCreateContentMeta } from '@features/blog/api/contents';
 import { P } from '@ui/atoms';
 import EyeIcon from '@ui/icons/EyeIcon';
 import { useEffect } from 'react';
 
 const ViewsCount = ({ slug }: { slug: string }) => {
-  const { data, error } = useQuery<ContentMetaApiResponse>(buildApiUrl('contents', slug));
+  const { data, error } = useGetOrCreateContentMeta(slug);
 
   useEffect(() => {
-    if (isSWRLoading({ data, error })) return;
-
-    if (data?.contentMeta === null) {
-      console.log(`WARNING: no contentMeta found for slug=${slug} in Supabase`);
+    if (error) {
+      console.log('❌ ERROR: ', error);
     }
-  }, [data, error, slug]);
+  }, [error]);
 
   return (
     <>
-      {data?.contentMeta?.views ?? '--'}
+      {data?.views ?? '--'}
       {' views'}
     </>
   );

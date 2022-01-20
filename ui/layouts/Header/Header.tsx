@@ -11,8 +11,8 @@ const navItemProps: NavItemProps[] = [
     href: Routes.HOME
   },
   {
-    children: RouteNames.POSTS,
-    href: Routes.POSTS
+    children: RouteNames.BLOG,
+    href: Routes.BLOG
   }
 ];
 
