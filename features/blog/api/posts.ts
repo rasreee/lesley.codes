@@ -1,7 +1,5 @@
 import { ALL_POST_FIELDS, Post } from '@features/blog';
 import { POSTS_PATH } from '@lib/mdx';
-import { buildApiUrl } from '@lib/routes';
-import { useQuery } from '@lib/swr';
 import fs from 'fs';
 import matter from 'gray-matter';
 import mdxPrism from 'mdx-prism';
@@ -58,11 +56,3 @@ export const listPosts = (fields: readonly string[] = ALL_POST_FIELDS): PostFron
   const slugs = listPostSlugs();
   return slugs.map((slug) => getPostFrontmatter(slug, fields));
 };
-
-export function usePosts() {
-  const { data, error } = useQuery<PostsApiResponse>(buildApiUrl('posts'));
-
-  const posts = data?.posts;
-
-  return { posts, error };
-}
