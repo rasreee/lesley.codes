@@ -1,4 +1,7 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { Span } from '@ui/components/Typography';
+import { pseudo } from '@ui/utils/pseudo';
 import classNames from 'classnames';
 import { useMemo } from 'react';
 
@@ -19,17 +22,24 @@ export const Tags: React.FC<TagsProps> = ({ tags, className }) => {
               'py-1 px-2.5'
             )}
           >
-            <Span
-              color="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-              size="text-xs"
-              weight="font-semibold"
-              className="leading-none my-auto"
-            >
-              {tag}
-            </Span>
+            <SText>{tag}</SText>
           </div>
         </li>
       ))}
     </ul>
   );
 };
+
+const SText = styled(Span)`
+  margin: auto unset;
+  ${({ theme }) =>
+    css`
+      color: ${theme.color.textHint};
+      font-size: ${theme.fontSizes.xs};
+      font-weight: ${theme.fontWeights.semibold};
+
+      ${pseudo('_hover')} {
+        color: ${theme.color.textHintHover};
+      }
+    `}
+`;

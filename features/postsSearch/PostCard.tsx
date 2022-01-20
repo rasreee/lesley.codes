@@ -1,5 +1,7 @@
 import { Tags } from '@components/Tags';
 import { ViewsStat } from '@components/ViewsStat';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { Post } from '@models/post';
 import DateFormatter from '@ui/components/DateFormatter';
 import { H3, P } from '@ui/components/Typography';
@@ -15,13 +17,21 @@ const PostCard = ({ createdAt, slug, title, description, tags }: Post['frontMatt
         <Tags tags={tags} />
       </div>
       <section className="flex items-center justify-start gap-6">
-        <P color="text-hint" size="text-sm">
+        <SText>
           <DateFormatter date={createdAt} />
-        </P>
+        </SText>
         <ViewsStat slug={slug} />
       </section>
     </article>
   );
 };
+
+const SText = styled(P)`
+  ${({ theme }) =>
+    css`
+      color: ${theme.color.textHint};
+      font-size: ${theme.fontSizes.sm};
+    `}
+`;
 
 export default PostCard;
