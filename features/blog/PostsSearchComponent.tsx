@@ -8,12 +8,12 @@ import { PostSearchHit } from './postSearchHit';
 import { processHits } from './processHits';
 
 interface PostsSearchComponentProps {
-  allData: Array<PostSearchHit>;
+  allPosts: Array<PostSearchHit>;
   onHitClick: (hit: PostSearchHit) => void;
 }
 
-const PostsSearchComponent = ({ allData, onHitClick }: PostsSearchComponentProps) => {
-  const { hits, query, setQuery } = useSearch(allData, processHits(allData));
+const PostsSearchComponent = ({ allPosts, onHitClick }: PostsSearchComponentProps) => {
+  const { hits, query, setQuery } = useSearch(allPosts, processHits(allPosts));
 
   const renderHitButton = (hit: SearchData) => {
     const getButtonProps = (hit: SearchData) => ({ onClick: () => onHitClick(hit) });

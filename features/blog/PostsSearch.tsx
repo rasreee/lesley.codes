@@ -1,12 +1,11 @@
-import { Post } from '@features/blog';
 import { buildUrl } from '@lib/routes';
 import { useRouter } from 'next/router';
-import { useMemo } from 'react';
 
+import { PostFrontmatter } from './models';
 import { PostSearchHit } from './postSearchHit';
 import PostsSearchComponent from './PostsSearchComponent';
 
-type PostsSearchProps = { allPosts: Post[] };
+type PostsSearchProps = { allPosts: PostFrontmatter[] };
 
 export const PostsSearch = ({ allPosts }: PostsSearchProps) => {
   const router = useRouter();
@@ -14,7 +13,5 @@ export const PostsSearch = ({ allPosts }: PostsSearchProps) => {
   const handleHitClick = (frontMatter: PostSearchHit) =>
     router.push(buildUrl('post', frontMatter.slug));
 
-  const allData = useMemo(() => allPosts.map((post) => post.frontMatter), [allPosts]);
-
-  return <PostsSearchComponent allData={allData} onHitClick={handleHitClick} />;
+  return <PostsSearchComponent allPosts={allPosts} onHitClick={handleHitClick} />;
 };

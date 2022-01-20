@@ -5,10 +5,11 @@ import { useQuery } from '@lib/swr';
 import fs from 'fs';
 import matter from 'gray-matter';
 import mdxPrism from 'mdx-prism';
-import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
+
+import { PostFrontmatter } from '../models';
 export interface PostApiResponse extends Post {}
 
 export async function getPost(
@@ -20,7 +21,7 @@ export async function getPost(
 
   const { content, data } = matter(source);
 
-  const mdxSource = await serialize(content, {
+  const mdxSource = await require('next-mdx-remote/serialize').serialize(content, {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
       remarkPlugins: [require('remark-code-titles')],
@@ -35,17 +36,28 @@ export async function getPost(
   };
 }
 
-export type PostsApiResponse = { posts: Post[] };
+export function getPostFrontmatter(
+  slug: string,
+  fields: readonly string[] = ALL_POST_FIELDS
+): PostFrontmatter {
+  const postFilePath = path.join(POSTS_PATH, slug);
+  const source = fs.readFileSync(postFilePath);
+
+  const { data } = matter(source);
+
+  return data as PostFrontmatter;
+}
+
+export type PostsApiResponse = { posts: PostFrontmatter[] };
 
 function listPostSlugs(): string[] {
   return fs.readdirSync(POSTS_PATH);
 }
 
-export function listPosts(fields: readonly string[] = ALL_POST_FIELDS): Promise<Post[]> {
+export const listPosts = (fields: readonly string[] = ALL_POST_FIELDS): PostFrontmatter[] => {
   const slugs = listPostSlugs();
-
-  return Promise.all(slugs.map((slug) => getPost(slug, fields)));
-}
+  return slugs.map((slug) => getPostFrontmatter(slug, fields));
+};
 
 export function usePosts() {
   const { data, error } = useQuery<PostsApiResponse>(buildApiUrl('posts'));

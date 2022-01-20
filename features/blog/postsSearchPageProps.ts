@@ -1,15 +1,15 @@
-import { Post } from '@features/blog';
 import { GetStaticProps } from 'next';
 
 import { listPosts } from './api/posts';
+import { PostFrontmatter } from './models';
 
 export type PostsSearchPageProps = {
-  allPosts: Post[];
+  allPosts: PostFrontmatter[];
 };
 
 export const loadPostsSearchStaticProps = (): GetStaticProps<PostsSearchPageProps> => async () => {
   try {
-    const allPosts = await listPosts();
+    const allPosts = listPosts();
 
     return { props: { allPosts } };
   } catch (err) {
