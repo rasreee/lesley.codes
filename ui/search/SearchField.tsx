@@ -28,7 +28,7 @@ export const SearchField = ({ query, onChange }: SearchFieldProps) => {
   const { colorMode } = useColorMode();
 
   return (
-    <S.InputGroup mode={colorMode} isFocused={isFocused}>
+    <S.ImposterInput mode={colorMode} isFocused={isFocused}>
       <S.Input
         onChange={handleChange}
         aria-label="Search articles"
@@ -38,6 +38,6 @@ export const SearchField = ({ query, onChange }: SearchFieldProps) => {
         {...bindInput}
       />
       <SearchIcon />
-    </S.InputGroup>
+    </S.ImposterInput>
   );
 };

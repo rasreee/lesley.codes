@@ -15,7 +15,7 @@ const inputColorStyle = ({ theme, mode, isFocused }: StyledProps<ColorModeProps 
         color: ${theme.colors.gray[mode === 'light' ? 900 : 300]} !important;
       `;
 
-export const InputGroup = styled.div<ColorModeProps & FocusedProps>`
+export const ImposterInput = styled.div<ColorModeProps & FocusedProps>`
   ${inputColorStyle}
 
   svg {
@@ -26,7 +26,8 @@ export const InputGroup = styled.div<ColorModeProps & FocusedProps>`
     css`
       background: ${mode === 'light' ? '#fff' : theme.colors.gray[800]};
       border: 1px solid ${theme.colors.gray[mode === 'light' ? 200 : 900]}
-      border-radius: ${theme.radii.md};
+      border-radius: ${theme.radii.DEFAULT} !important;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: space-between;
