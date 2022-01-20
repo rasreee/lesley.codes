@@ -15,14 +15,8 @@ const usePostData = (slug: string): UseQueryResult<Post> => {
   return response;
 };
 
-const PostPage = () => {
+const PostPage = ({ slug }: { slug: string }) => {
   const router = useRouter();
-
-  useEffect(() => {
-    const slug = getSlugQueryParam(router.query);
-
-    console.log(`👌 Getting Post data for slug=${slug}`);
-  }, [router.query]);
 
   // const { data: postData, error } = usePostData(post.slug);
 
