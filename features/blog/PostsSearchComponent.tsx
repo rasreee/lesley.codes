@@ -1,7 +1,9 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { SearchField, SearchResults, useSearch } from '@features/search';
+import { SearchField, SearchResults } from '@features/search';
+import { useDebouncedState } from '@ui/hooks/useDebouncedState';
 import { pseudo } from '@ui/utils';
+import { useMemo } from 'react';
 
 import PostCard from './PostCard';
 import { PostSearchHit } from './postSearchHit';
@@ -13,7 +15,13 @@ interface PostsSearchComponentProps {
 }
 
 const PostsSearchComponent = ({ allPosts, onHitClick }: PostsSearchComponentProps) => {
-  const { hits, query, setQuery } = useSearch(allPosts, processHits(allPosts));
+  const [query, setQuery] = useDebouncedState(``, 300);
+
+  const hits = useMemo(() => {
+    const newHits = processHits(allPosts, query);
+    console.log('NEW HITS: ', newHits);
+    return newHits;
+  }, [query, allPosts]);
 
   const renderHitButton = (hit: SearchData) => {
     const getButtonProps = (hit: SearchData) => ({ onClick: () => onHitClick(hit) });

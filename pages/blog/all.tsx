@@ -1,15 +1,13 @@
 import PostFeedPage from '@containers/PostFeedPage';
-import { PostFrontmatter } from '@features/blog';
 import { listPosts } from '@features/blog/api/posts';
+import { PostsSearchPageProps } from '@features/blog/postsSearchPageProps';
 import { GetStaticProps } from 'next';
 
-type BlogRouteProps = { posts: PostFrontmatter[] };
-
-const BlogRoute = ({ posts }: BlogRouteProps) => {
+const BlogRoute = ({ posts }: PostsSearchPageProps) => {
   return <PostFeedPage posts={posts} />;
 };
 
-export const getStaticProps: GetStaticProps<BlogRouteProps> = () => {
+export const getStaticProps: GetStaticProps<PostsSearchPageProps> = () => {
   const allPosts = listPosts();
   return { props: { posts: allPosts } };
 };
