@@ -1,5 +1,4 @@
-import { listPosts } from '@features/blog/api';
-import { Post } from '@models/post';
+import { listPosts, Post } from '@features/blog';
 import { GetStaticProps } from 'next';
 
 export type PostsSearchPageProps = {

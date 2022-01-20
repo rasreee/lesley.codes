@@ -1,5 +1,5 @@
-import { registerSearch } from '@api/searches';
 import { useColorMode } from '@features/colorMode/useColorMode';
+import { registerSearch } from '@features/search/api/registerSearch';
 import { useInputFocus } from '@ui/hooks/useInputFocus';
 import SearchIcon from '@ui/icons/SearchIcon';
 import { ChangeEventHandler, useEffect } from 'react';

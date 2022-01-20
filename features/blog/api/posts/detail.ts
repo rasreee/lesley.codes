@@ -1,5 +1,5 @@
+import { ALL_POST_FIELDS, Post } from '@features/blog/models';
 import { POSTS_PATH } from '@lib/mdx';
-import { ALL_POST_FIELDS, Post } from '@models/post';
 import fs from 'fs';
 import matter from 'gray-matter';
 import mdxPrism from 'mdx-prism';

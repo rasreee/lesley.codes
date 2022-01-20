@@ -1,5 +1,5 @@
+import { Post } from '@features/blog/models';
 import { WEBSITE_HOST_URL } from '@lib/appConfig';
-import { Post } from '@models/post';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 

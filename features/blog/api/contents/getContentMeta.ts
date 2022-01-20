@@ -1,4 +1,4 @@
-import { ContentMeta } from '@models/contentMeta';
+import { ContentMeta } from '@features/blog/models';
 import { SupabaseClient } from '@supabase/supabase-js';
 
 export const getContentMeta = (slug: string) => {

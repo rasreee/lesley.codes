@@ -1,5 +1,5 @@
+import { Post } from '@features/blog/models';
 import { buildUrl } from '@lib/routes';
-import { Post } from '@models/post';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 

@@ -1,5 +1,5 @@
+import { ContentMeta } from '@features/blog/models';
 import { NullDataError } from '@lib/error';
-import { ContentMeta } from '@models/contentMeta';
 import { SupabaseClient } from '@supabase/supabase-js';
 
 import { getContentMeta } from './getContentMeta';

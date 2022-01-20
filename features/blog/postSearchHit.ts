@@ -1,3 +1,3 @@
-import { Post } from '@models/post';
+import { Post } from '@features/blog/models';
 
 export type PostSearchHit = Post['frontMatter'];
