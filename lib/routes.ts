@@ -1,7 +1,10 @@
+import { sluggify } from './sluggify';
+
 export const Routes = {
   HOME: '/',
-  CONTENTS: '/contents',
+  CONTENTS: '/contents/[slug]',
   POSTS: '/posts',
+  POST_BASE: '/post',
   POST: '/post/[slug]'
 } as const;
 
@@ -15,25 +18,10 @@ export const RouteKeys = {
   SLUG: '[slug]'
 } as const;
 
-export const routes = [
-  {
-    title: RouteNames.HOME,
-    path: Routes.HOME
-  },
-  {
-    title: RouteNames.POSTS,
-    path: Routes.POSTS
-  },
-  {
-    title: RouteNames.POST,
-    path: Routes.POST
-  }
-];
+export function buildUrl(main = '', pos = '') {
+  return `${sluggify(main)}${pos ? sluggify(pos) : pos}`;
+}
 
-export const getPostsRoute = () => Routes.POSTS;
-
-export const getPostRoute = (slug: string) => Routes.POST.replace(RouteKeys.SLUG, slug);
-export const getPostApiRoute = (slug: string) => '/api' + getPostRoute(slug);
-
-export const getContentMetaApiRoute = (slug: string) =>
-  '/api' + Routes.CONTENTS.replace(RouteKeys.SLUG, slug);
+export function buildApiUrl(main = '', pos = '') {
+  return `/api${sluggify(main)}${pos ? sluggify(pos) : pos}`;
+}

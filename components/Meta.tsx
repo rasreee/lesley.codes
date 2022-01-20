@@ -17,6 +17,7 @@ const Meta = (props: MetaProps): JSX.Element => {
   return (
     <Head>
       <title>{props.title}</title>
+      <meta charSet="UTF-8" />
       <meta name="robots" content="follow, index" />
       <meta content={props.description} name="description" />
       <meta property="og:url" content={`${WEBSITE_HOST_URL}${router.asPath}`} />

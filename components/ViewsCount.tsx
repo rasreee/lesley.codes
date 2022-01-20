@@ -1,11 +1,11 @@
 import { ContentMetaApiResponse } from '@db/contents/types';
 import { isRequesting } from '@lib/isRequesting';
-import { getContentMetaApiRoute } from '@lib/routes';
+import { buildApiUrl } from '@lib/routes';
 import { useQuery } from '@lib/useQuery';
 import { useEffect } from 'react';
 
 export const ViewsCount = ({ slug }: { slug: string }) => {
-  const { data, error } = useQuery<ContentMetaApiResponse>(getContentMetaApiRoute(slug));
+  const { data, error } = useQuery<ContentMetaApiResponse>(buildApiUrl('contents', slug));
 
   useEffect(() => {
     if (isRequesting(data, error)) return;

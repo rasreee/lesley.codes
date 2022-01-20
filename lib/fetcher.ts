@@ -1,11 +1,9 @@
-export async function fetcher<JSON = any>(input: RequestInfo, init?: RequestInit): Promise<JSON> {
-  const res = await fetch(input, init);
-  if (res.status === 200) {
-    const data = await res.json();
-    console.error('❌ SearchData: ', JSON.stringify(data, null, 4));
-    return data;
-  }
-  const data = await res.json();
-  console.error('❌ Error: ', JSON.stringify(data, null, 4));
-  throw data;
-}
+export const fetcher = async <T = Response>(url: string, token: string): Promise<T> => {
+  const res = await fetch(url, {
+    method: 'GET',
+    headers: new Headers({ 'Content-Type': 'application/json', token }),
+    credentials: 'same-origin'
+  });
+
+  return res.json();
+};

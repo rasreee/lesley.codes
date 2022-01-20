@@ -4,7 +4,7 @@ import { useQuery } from '@lib/useQuery';
 import SearchComponent, { SearchComponentProps } from './SearchComponent';
 
 export interface SearchProps extends Omit<SearchComponentProps, 'allData'> {
-  apiEndpoint: `/${string}`;
+  apiEndpoint: string | readonly string[];
 }
 
 function Search({ apiEndpoint, renderHit, onHitClick }: SearchProps) {

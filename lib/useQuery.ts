@@ -38,16 +38,13 @@ export interface IQueryError {
   message: string;
 }
 
-const defaultSWRConfig: SWRConfiguration = {
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false
-};
+const defaultSWRConfig: SWRConfiguration = {};
 
 const isSWRLoading = ({ data, error }: SWRResponse) =>
   typeof data === 'undefined' && typeof error === 'undefined';
 
 export function useQuery<TData, TError extends IQueryError = IQueryError>(
-  query: string | Falsy
+  query: string | readonly string[] | Falsy
 ): UseQueryResult<TData, TError> {
   const swr = useSWR<TData, TError>(query, fetcher, defaultSWRConfig);
 

@@ -1,5 +1,5 @@
 import { isRegisterViewEnabled } from '@lib/environment';
-import { getContentMetaApiRoute } from '@lib/routes';
+import { buildApiUrl } from '@lib/routes';
 import { useEffect } from 'react';
 
 export const useRegisterPostView = (slug: string) => {
@@ -11,7 +11,7 @@ export const useRegisterPostView = (slug: string) => {
     }
 
     const registerView = () =>
-      fetch(getContentMetaApiRoute(slug), {
+      fetch(buildApiUrl('contents', slug), {
         method: 'POST'
       });
 
