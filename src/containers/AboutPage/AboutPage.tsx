@@ -1,3 +1,4 @@
+import { DownloadLink } from 'ui/links/DownloadLink'
 import { PageHeading, PageTitle } from 'ui/page/page'
 
 import { AboutProfileIntro } from './AboutProfileIntro'
@@ -11,6 +12,7 @@ export const AboutPage: React.FC = () => {
           <PageTitle>About</PageTitle>
           <AboutContent>
             <AboutProfileIntro />
+            <DownloadLink href="/resume.pdf">Download Resume</DownloadLink>
           </AboutContent>
         </PageHeading>
       </div>
