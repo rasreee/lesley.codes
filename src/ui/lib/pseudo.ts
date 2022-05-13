@@ -1,3 +1,5 @@
+import type { AnyFunction, Dict } from 'lib/types'
+
 const objectKeys = <T extends Dict>(obj: T) =>
   Object.keys(obj) as unknown as (keyof T)[]
 
